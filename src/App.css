@@ -1,5 +1,5 @@
 .App {
-
+  background: green;
   margin: none;
   padding: none;
   width: 100%;
@@ -12,7 +12,12 @@
   justify-content: center;
 }
 .Header{
-  margin-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 50;
+  /* background: red; */
+  /* position: fixed; */
+
   width: 100%;
   /* background: red; */
   text-align: center;
@@ -21,7 +26,7 @@
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 60px;
   padding: none;
   display: inline-block;
   margin-top: 0px;
@@ -34,10 +39,45 @@ h1 {
 }
 
 .Greeting {
+  margin-top: 10px;
   color: #35CFFF;
   font-size: 20px;
 }
 
+.Body {
+  width: 100%;
+  /* background: purple; */
+}
+
+.DateContainer {
+  /* background: red; */
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: inline-block;
+  /* background: red; */
+  color: #35CFFF;
+  font-size: 20px;
+
+}
+
+.CurrentDate {
+  background: #35CFFF;
+  font-size: 20px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: 30px;;
+}
+
+.ArrowButton {
+  width: 20px;
+  height: 20px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  border-radius: 10px;
+}
 
 .MealContainer{
   display: block;
@@ -45,10 +85,46 @@ h1 {
   
   /* background: #35CFFF; */
   background: #D6F5FF;
-  /* width: 80%;*/
-  width: 750px;
-  max-width: 750px;
+  width: 60%;
+  /* width: 750px;
+  max-width: 750px; */
   height: 150px;
-  margin-top: 50px;
+  margin-bottom: 50px;
   border-radius: 30px;
+}
+
+
+.MealContainer:hover {
+  filter: brightness(85%);
+}
+
+.ArrowButton:Hover {
+  filter: brightness(85%);
+}
+
+
+
+
+.Calendar {
+  /* background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ; */
+  background:#fff url(./calendar.png) no-repeat ;
+  background-size: 100%;
+  width: 25px;
+  height: 25px;
+  /* width: 500px; */
+  /* height: 500px; */
+  border: none;
+}
+
+input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-spin-button {
+  display: none;
+}
+
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  /* display: none; */
+  opacity: 0;
 }
