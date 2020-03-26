@@ -40,9 +40,10 @@ h1 {
 }
 
 .Greeting {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  /* background: red; */
   color: #35CFFF;
-  font-size: 20px;
+  font-size: medium;
 }
 
 .Body {
@@ -52,7 +53,7 @@ h1 {
 
 .DateContainer {
   /* background: red; */
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 70px;
   display: inline-block;
   /* background: red; */
@@ -64,10 +65,10 @@ h1 {
 }
 
 .CurrentDate {
-  min-width: 110px;
+  min-width: 90px;
 
   background: #35CFFF;
-  font-size: 18px;
+  font-size: medium;
   color: white;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -80,15 +81,18 @@ h1 {
 }
 
 .ArrowButton {
-  width: 20px;
-  height: 20px;
+  height: 15px;
   /* padding-left: 10px; */
   /* padding-right: 10px; */
   border-radius: 10px;
 }
 
 .MealTitle {
-  float: left;
+  /* float: left; */
+  color: #4E4E4E;
+  font-size: large;
+  /* position: relative; */
+  /* margin-left: 30px; */
   margin-bottom: 30px;
 }
 
@@ -97,8 +101,8 @@ h1 {
   margin: auto;
 
   align-items: center;
-  /* background: #35CFFF; */
   background: #D6F5FF;
+  /* background: #35CFFF; */
   width: 60%;
   /* width: 750px;
   max-width: 750px; */
@@ -106,22 +110,56 @@ h1 {
   /* margin-bottom: 50px; */
   border-radius: 30px;
   margin-bottom: 30px;
+
+  padding-top: 15px;
 }
 
 
-.MealContainer:hover {
-  filter: brightness(85%);
-}
 
 .FoodItem {
+  text-align: left;
+  padding-left: 10px;
   margin: auto;
 
   /* display: block; */
   width: 80%;
-  background: red;
+  background: white;
   /* padding-top: 30px; */
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.AddButton {
+  /* background: red; */
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+  transition-duration: .25s;
+}
+
+
+.ItemAdditionScreen {
+  /* background: red; */
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 500px;
+  border-radius: 30px;
+
+}
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+.AddButton:hover {
+  transform: rotateZ(45deg);
+  width: 35px;
+  height: 35px;
+
 }
 
 .CurrentDate:Hover {

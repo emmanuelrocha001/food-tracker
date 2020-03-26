@@ -4,28 +4,8 @@ import './App.css';
 import logo from './diet.png'
 import left from './left-arrow.png'
 import right from './right-arrow.png'
-
-
-function FoodItem(){
-  return (
-    <div className="FoodItem">&nbsp;</div>
-  );
-}
-function MealContainer(){
-  return (
-    <div className="MealContainer">
-      <div className="MealTitle">Meal 1</div>
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-
-    </div>
-  );
-}
-
+import plus from './plus.png'
+import cross from './cross.png'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -84,6 +64,56 @@ function Greeting(props){
   );
 }
 
+function FoodItem(){
+  return (
+    <div className="FoodItem">dummy food info</div>
+  );
+}
+
+
+
+function Meal(props){
+  return (
+    <div className="MealContainer">
+      <div className="MealTitle">Meal 1</div>
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <img className="AddButton" src={plus} onClick={props.handleItemAddition}></img>
+
+    </div>
+  );
+}
+
+function ItemAdditionScreen(props) {
+  return(
+    <div className="ItemAdditionScreen">
+      <img className="AddButton" src={cross} onClick={props.handleItemAdditionScreenExit}></img>
+      <p>item addition screen</p>
+    </div>
+  );
+}
+
+function MealContainer(props){
+  return(
+    <div className="Body">
+      <Meal handleItemAddition={props.handleItemAddition}/>
+      <Meal handleItemAddition={props.handleItemAddition}/>
+      <Meal handleItemAddition={props.handleItemAddition}/>
+      <Meal handleItemAddition={props.handleItemAddition}/>
+      {props.showItemAddition == true && 
+        
+        <ItemAdditionScreen handleItemAdditionScreenExit={props.handleItemAdditionScreenExit}/>
+
+
+      }
+
+      </div>
+  );
+}
 
 
 
@@ -92,16 +122,31 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      showItemAddition: false
     }
 
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDateDecrement = this.handleDateDecrement.bind(this);
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
+    this.handleItemAddition = this.handleItemAddition.bind(this);
+    this.handleItemAdditionScreenExit = this.handleItemAdditionScreenExit.bind(this);
 
   }
 
+  handleItemAddition(mealId) {
+    this.setState({
+      showItemAddition: true
+    });
+
+  }
+
+  handleItemAdditionScreenExit() {
+    this.setState({
+      showItemAddition: false
+    });
+  }
 
   handleDateIncrement() {
     var n = this.state.selectedDate.getTime();
@@ -124,6 +169,7 @@ class App extends React.Component {
     });
 
   }
+
   handleDateChange(event) {
     var eventYear = event.target.value.substring(0,4);
     var eventMonth = event.target.value.substring(5,7);
@@ -145,14 +191,10 @@ class App extends React.Component {
         <h1>FoodTracker</h1>
         <img className="Logo" src={logo}></img>
       </div>
+      <Greeting userName="Emmanuel"/>
 
       <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-      <div className="Body">
-      <MealContainer />
-      <MealContainer />
-      <MealContainer />
-      <MealContainer />
-      </div>
+      <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
 
 
     </div>
