@@ -82,6 +82,7 @@ function Meal(props){
       <FoodItem />
       <FoodItem />
       <FoodItem />
+
       <img className="AddButton" src={plus} onClick={props.handleItemAddition}></img>
 
     </div>
@@ -98,21 +99,17 @@ function ItemAdditionScreen(props) {
 }
 
 function MealContainer(props){
-  return(
-    <div className="Body">
-      <Meal handleItemAddition={props.handleItemAddition}/>
-      <Meal handleItemAddition={props.handleItemAddition}/>
-      <Meal handleItemAddition={props.handleItemAddition}/>
-      <Meal handleItemAddition={props.handleItemAddition}/>
-      {props.showItemAddition == true && 
-        
-        <ItemAdditionScreen handleItemAdditionScreenExit={props.handleItemAdditionScreenExit}/>
 
 
-      }
-
-      </div>
-  );
+    return(
+      <div className="Body">
+        <Meal handleItemAddition={props.handleItemAddition}/>
+        <Meal handleItemAddition={props.handleItemAddition}/>
+        <Meal handleItemAddition={props.handleItemAddition}/>
+        <Meal handleItemAddition={props.handleItemAddition}/>
+  
+        </div>
+    );
 }
 
 
@@ -184,21 +181,48 @@ class App extends React.Component {
 
   render() {
 
+    if(this.state.showItemAddition == false) {
+      return (
+        <div className="App">
+          <div className="LightContainer">
+            <div className="Header">
+              <h1>FoodTracker</h1>
+              <img className="Logo" src={logo}></img>
+            </div>
+            <Greeting userName="Emmanuel"/>
+            <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
+            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
+            </div>
+         
+          {this.state.showItemAddition == true && 
+            <ItemAdditionScreen handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
+          }
+        
+        </div>
+        );
+    } else {
 
-    return (
-    <div className="App">
-      <div className="Header">
-        <h1>FoodTracker</h1>
-        <img className="Logo" src={logo}></img>
-      </div>
-      <Greeting userName="Emmanuel"/>
+      return (
+        <div className="App">
+          <div className="ContainerDark">
+            <div className="Header">
+              <h1>FoodTracker</h1>
+              <img className="Logo" src={logo}></img>
+            </div>
+            <Greeting userName="Emmanuel"/>
+            <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
+            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
+            </div>
+         
+          {this.state.showItemAddition == true && 
+            <ItemAdditionScreen handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
+          }
+    
+        </div>
+        );
 
-      <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-      <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
-
-
-    </div>
-    );
+    }
+    
 
 
 

@@ -1,5 +1,5 @@
 .App {
-  background: green;
+  background: #FEFEFE;
   margin: none;
   padding: none;
   width: 100%;
@@ -10,9 +10,27 @@
   display: block;
   align-items: center;
   justify-content: center;
+
 }
 
+html {
+  margin: none;
+  padding-bottom: -30px;
+  margin-bottom: -30px;
+  background: #FEFEFE;  
+}
+
+.LightContainer {
+  background: #FEFEFE;
+}
+.ContainerDark {
+  background: #FEFEFE;
+  filter: brightness(70%);
+}
+
+
 .Header{
+  background: #FEFEFE;
   padding-top: 20px;
   padding-bottom: 20px;
   z-index: 50;
@@ -44,14 +62,25 @@ h1 {
   /* background: red; */
   color: #35CFFF;
   font-size: medium;
+  background: #FEFEFE;
+
 }
 
 .Body {
+  /* background: red; */
+  background: #FEFEFE;
   width: 100%;
   /* background: purple; */
 }
 
+.BodyDark {
+  filter: brightness(0%);
+  background: red;
+}
+
 .DateContainer {
+  background: #FEFEFE;
+
   /* background: red; */
   padding-top: 20px;
   padding-bottom: 70px;
@@ -65,7 +94,7 @@ h1 {
 }
 
 .CurrentDate {
-  min-width: 90px;
+  min-width: 50px;
 
   background: #35CFFF;
   font-size: medium;
@@ -97,13 +126,14 @@ h1 {
 }
 
 .MealContainer{
-  display: inline-block;
+  display: block;
   margin: auto;
 
   align-items: center;
   background: #D6F5FF;
   /* background: #35CFFF; */
-  width: 60%;
+  width: 70%;
+  max-width: 600px;
   /* width: 750px;
   max-width: 750px; */
   /* height: 150px; */
@@ -140,13 +170,17 @@ h1 {
 
 .ItemAdditionScreen {
   /* background: red; */
+  /* background: gray; */
   background: white;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 500px;
+  /* background: #D6F5FF; */
+
+  width: 80%;
+  height: 600px;
+  max-width: 450px;
   border-radius: 30px;
 
 }
