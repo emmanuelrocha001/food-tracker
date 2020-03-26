@@ -5,11 +5,24 @@ import logo from './diet.png'
 import left from './left-arrow.png'
 import right from './right-arrow.png'
 
+
+function FoodItem(){
+  return (
+    <div className="FoodItem">&nbsp;</div>
+  );
+}
 function MealContainer(){
   return (
     <div className="MealContainer">
-    </div>
+      <div className="MealTitle">Meal 1</div>
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
+      <FoodItem />
 
+    </div>
   );
 }
 
@@ -29,9 +42,7 @@ function DatePicker(props){
   n -= 86400000;
   var yesterday = new Date(n);
   n += 172800000;
-  var tomorrow = new Date(n)
-  // alert(yesterday);
-  // alert(tomorrow);
+  var tomorrow = new Date(n);
   
   var todayString = formatDate(today);
   var yesterdayString = formatDate(yesterday);
@@ -52,13 +63,13 @@ function DatePicker(props){
   return (
     <div className="DateContainer">
       
-      <div className="CurrentDate">
-        <img className="ArrowButton" onClick={props.handleDateDecrement} src={left}>
+      <div className="CurrentDate" onClick={props.handleDateDecrement}>
+        <img className="ArrowButton" src={left}>
         </img>
       </div>
       <div className="CurrentDate">{actualDateString}</div>
-      <div className="CurrentDate">
-        <img className="ArrowButton" src={right} onClick={props.handleDateIncrement}>
+      <div className="CurrentDate" onClick={props.handleDateIncrement}>
+        <img className="ArrowButton" src={right}>
         </img>
       </div>
 

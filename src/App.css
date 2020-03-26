@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .Header{
   padding-top: 20px;
   padding-bottom: 20px;
@@ -52,23 +53,30 @@ h1 {
 .DateContainer {
   /* background: red; */
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 70px;
   display: inline-block;
   /* background: red; */
   color: #35CFFF;
   font-size: 20px;
+  /* background: red; */
+
 
 }
 
 .CurrentDate {
+  min-width: 110px;
+
   background: #35CFFF;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
+  padding-top: 3px;
+  padding-bottom: 3px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 10px;
   display: inline-block;
-  margin-right: 30px;;
+  margin-right: 30px;
+  
 }
 
 .ArrowButton {
@@ -79,18 +87,25 @@ h1 {
   border-radius: 10px;
 }
 
+.MealTitle {
+  float: left;
+  margin-bottom: 30px;
+}
+
 .MealContainer{
-  display: block;
+  display: inline-block;
   margin: auto;
-  
+
+  align-items: center;
   /* background: #35CFFF; */
   background: #D6F5FF;
   width: 60%;
   /* width: 750px;
   max-width: 750px; */
-  height: 150px;
-  margin-bottom: 50px;
+  /* height: 150px; */
+  /* margin-bottom: 50px; */
   border-radius: 30px;
+  margin-bottom: 30px;
 }
 
 
@@ -98,7 +113,18 @@ h1 {
   filter: brightness(85%);
 }
 
-.ArrowButton:Hover {
+.FoodItem {
+  margin: auto;
+
+  /* display: block; */
+  width: 80%;
+  background: red;
+  /* padding-top: 30px; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.CurrentDate:Hover {
   filter: brightness(85%);
 }
 
@@ -109,6 +135,7 @@ h1 {
   /* background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ; */
   background:#fff url(./calendar.png) no-repeat ;
   background-size: 100%;
+  margin-top: 15px;
   width: 25px;
   height: 25px;
   /* width: 500px; */
