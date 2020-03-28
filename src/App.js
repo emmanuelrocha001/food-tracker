@@ -83,17 +83,44 @@ function Meal(props){
       <FoodItem />
       <FoodItem />
 
-      <img className="AddButton" src={plus} onClick={props.handleItemAddition}></img>
+      <img className="AddButton" src={plus} onClick={props.handleItemAdditionScreenEnter}></img>
 
     </div>
   );
 }
 
+
+
+function SearchResult(){
+  return(
+    <div className="SearchResult">
+        <p className="ItemName">potato</p>
+        <div className="ItemDescription">
+          <p className="LeftItemDescription">generic, 1 potato</p>
+          <p className="RightItemDescription">30</p>
+        </div>
+    </div>
+
+  );
+
+}
 function ItemAdditionScreen(props) {
+
   return(
     <div className="ItemAdditionScreen">
-      <img className="AddButton" src={cross} onClick={props.handleItemAdditionScreenExit}></img>
-      <p>item addition screen</p>
+      <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenExit}></img>
+        <div className="SearchBarContainer">
+          <input className="SearchBar" type="text" value={props.userInput}/>
+        </div>
+        <p>top results</p>
+        <SearchResult />
+        <SearchResult />
+        <SearchResult />
+        <SearchResult />
+
+
+
+
     </div>
   );
 }
@@ -103,10 +130,10 @@ function MealContainer(props){
 
     return(
       <div className="Body">
-        <Meal handleItemAddition={props.handleItemAddition}/>
-        <Meal handleItemAddition={props.handleItemAddition}/>
-        <Meal handleItemAddition={props.handleItemAddition}/>
-        <Meal handleItemAddition={props.handleItemAddition}/>
+        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
   
         </div>
     );
@@ -120,19 +147,21 @@ class App extends React.Component {
 
     this.state = {
       selectedDate: new Date(),
-      showItemAddition: false
+      showItemAddition: false,
+      userInput: ""
     }
 
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDateDecrement = this.handleDateDecrement.bind(this);
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
-    this.handleItemAddition = this.handleItemAddition.bind(this);
+    this.handleItemAdditionScreenEnter = this.handleItemAdditionScreenEnter.bind(this);
     this.handleItemAdditionScreenExit = this.handleItemAdditionScreenExit.bind(this);
+    this.handleQueryChange = this.handleQueryChange.bind(this);
 
   }
 
-  handleItemAddition(mealId) {
+  handleItemAdditionScreenEnter(mealId) {
     this.setState({
       showItemAddition: true
     });
@@ -143,6 +172,10 @@ class App extends React.Component {
     this.setState({
       showItemAddition: false
     });
+  }
+
+  handleQueryChange() {
+
   }
 
   handleDateIncrement() {
@@ -189,13 +222,13 @@ class App extends React.Component {
               <h1>FoodTracker</h1>
               <img className="Logo" src={logo}></img>
             </div>
-            <Greeting userName="Emmanuel"/>
+            {/* <Greeting userName="Emmanuel"/> */}
             <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
+            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter}  showItemAddition={this.state.showItemAddition}/>
             </div>
          
           {this.state.showItemAddition == true && 
-            <ItemAdditionScreen handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
+            <ItemAdditionScreen userInput={this.state.userInput} handleQueryChange={this.handleQueryChange} handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
           }
         
         </div>
@@ -209,9 +242,9 @@ class App extends React.Component {
               <h1>FoodTracker</h1>
               <img className="Logo" src={logo}></img>
             </div>
-            <Greeting userName="Emmanuel"/>
+            {/* <Greeting userName="Emmanuel"/> */}
             <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAddition={this.handleItemAddition} showItemAddition={this.state.showItemAddition}/>
+            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter} showItemAddition={this.state.showItemAddition}/>
             </div>
          
           {this.state.showItemAddition == true && 

@@ -25,7 +25,7 @@ html {
 }
 .ContainerDark {
   background: #FEFEFE;
-  filter: brightness(70%);
+  filter: brightness(40%);
 }
 
 
@@ -44,14 +44,25 @@ html {
   color: #35CFFF;
 }
 
+
+
 h1 {
   font-size: 60px;
   padding: none;
   display: inline-block;
   margin-top: 0px;
   margin-bottom: 0px;
-}
+  /* color: #FF7F23; */
+  color: #35CFFF;
 
+  /* background: -webkit-linear-gradient(#fa709a, #fee140); */
+
+
+  /* font-size: 72px;
+  background: linear-gradient(to right,#29323c, #485563);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
 .Logo{
   margin-left: 15px;
   width: 40px;
@@ -73,17 +84,23 @@ h1 {
   /* background: purple; */
 }
 
-.BodyDark {
-  filter: brightness(0%);
-  background: red;
-}
 
 .DateContainer {
   background: #FEFEFE;
+  /* background: red; */
+  border-style: solid;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+
+  width: 80%;
+  max-width: 700px;
+  border-radius: 15px;
 
   /* background: red; */
   padding-top: 20px;
-  padding-bottom: 70px;
+  padding-bottom: 30px;
+  margin-bottom: 70px;
   display: inline-block;
   /* background: red; */
   color: #35CFFF;
@@ -94,10 +111,11 @@ h1 {
 }
 
 .CurrentDate {
-  min-width: 50px;
+  min-width: 20px;
 
   background: #35CFFF;
-  font-size: medium;
+  /* background: #FF7F23; */
+  font-size: large;
   color: white;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -130,15 +148,20 @@ h1 {
   margin: auto;
 
   align-items: center;
-  background: #D6F5FF;
+  background: #F3F3F3;
+  border-style: solid;
+  border-color: #D7D7D7;
+  border-width: 0px;
+
+  /* background: #D6F5FF; */
   /* background: #35CFFF; */
-  width: 70%;
+  width: 85%;
   max-width: 600px;
   /* width: 750px;
   max-width: 750px; */
   /* height: 150px; */
   /* margin-bottom: 50px; */
-  border-radius: 30px;
+  /* border-radius: 30px; */
   margin-bottom: 30px;
 
   padding-top: 15px;
@@ -159,13 +182,14 @@ h1 {
   margin-bottom: 15px;
 }
 
-.AddButton {
+.AddButton, .ExitButton{
   /* background: red; */
   width: 30px;
   height: 30px;
   margin: 15px;
   transition-duration: .25s;
 }
+
 
 
 .ItemAdditionScreen {
@@ -184,15 +208,81 @@ h1 {
   border-radius: 30px;
 
 }
+
+.SearchBar {
+  /* background: purple; */
+  margin-left: 0;
+  margin-top: 10px;
+  font-size: 18px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #6EDAFD;
+  color: #414141;
+  margin-bottom: 30px;
+
+}
+
+.SearchBar:focus {
+  outline-width: 0;
+}
+
+.SearchResultContainer{
+  margin: auto;
+  background: red;
+  width: 80%;
+  display: block;
+  text-align: left;
+  background: lightgray;
+}
+
+.SearchResult {
+  background: #F3F3F3;
+  /* background: red; */
+  /* border-radius: 20px; */
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+  margin-bottom: 10px;
+  /* margin-top: 10px; */
+  width: 70%;
+  height: 50px;
+
+  text-align: left;
+
+}
+
+.ItemName {
+  padding: none;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.ItemDescription {
+  background: green;
+}
+
+.LeftItemDescription {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  float: left;
+
+}
+
+.RightItemDescription {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background: purple; */
+  float: right;
+}
+
 @keyframes example {
   from {background-color: red;}
   to {background-color: yellow;}
 }
 
-.AddButton:hover {
-  transform: rotateZ(45deg);
-  width: 35px;
-  height: 35px;
+.AddButton:hover, .ExitButton:hover{
+  transform: rotateZ(90deg);
 
 }
 
