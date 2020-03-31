@@ -10,6 +10,9 @@
   display: block;
   align-items: center;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'Roboto', sans-serif;
 
 }
 
@@ -17,7 +20,7 @@ html {
   margin: none;
   padding-bottom: -30px;
   margin-bottom: -30px;
-  background: #FEFEFE;  
+  background: #FEFEFE;
 }
 
 .LightContainer {
@@ -42,18 +45,21 @@ html {
   text-align: center;
   /* background: #35CFFF; */
   color: #35CFFF;
+  background: #393e46;
 }
 
 
 
 h1 {
-  font-size: 60px;
+  font-size: 55px;
   padding: none;
   display: inline-block;
   margin-top: 0px;
   margin-bottom: 0px;
   /* color: #FF7F23; */
   color: #35CFFF;
+  color: #f3c623;
+  /* background: #393e46; */
 
   /* background: -webkit-linear-gradient(#fa709a, #fee140); */
 
@@ -87,23 +93,17 @@ h1 {
 
 .DateContainer {
   background: #FEFEFE;
-  /* background: red; */
-  border-style: solid;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-
   width: 80%;
   max-width: 700px;
-  border-radius: 15px;
 
   /* background: red; */
   padding-top: 20px;
   padding-bottom: 30px;
-  margin-bottom: 70px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: inline-block;
   /* background: red; */
-  color: #35CFFF;
+  color: #f3c623;
   font-size: 20px;
   /* background: red; */
 
@@ -111,36 +111,73 @@ h1 {
 }
 
 .CurrentDate {
-  min-width: 20px;
+  margin: auto;
+  min-width: 100px;
 
-  background: #35CFFF;
+  /* background: #393e46; */
   /* background: #FF7F23; */
   font-size: large;
-  color: white;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  color: #393e46;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 10px;
   display: inline-block;
   margin-right: 30px;
-  
+  /* background: #FF7F23; */
+
 }
+
+.ArrowButtonContainer {
+
+  /* background: #393e46; */
+  /* background: #FF7F23; */
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
+  display: inline-block;
+  margin-right: 30px;
+  margin-top: 15px;;
+
+
+}
+
+
 
 .ArrowButton {
-  height: 15px;
+  margin: auto;
+  width: 33px;
+  height: 33px;
+  display: block;
+  transition-duration: .25s;
+
   /* padding-left: 10px; */
   /* padding-right: 10px; */
-  border-radius: 10px;
 }
 
-.MealTitle {
+.ArrowButton:hover {
+  transform: rotateZ(360deg);
+
+}
+
+.LeftTitle {
   /* float: left; */
   color: #4E4E4E;
+  /* color: white; */
+  /* background: #393e46; */
+  /* background: #00adb5; */
+  /* border-style: solid; */
+  border-left: 0px;
+  border-width: 2px;
+  border-right: 0px;
+  border-top: 0px;
+
   font-size: large;
+  margin: auto;
+  text-align: left;
   /* position: relative; */
   /* margin-left: 30px; */
   margin-bottom: 30px;
+  width: 80%;
 }
 
 .MealContainer{
@@ -148,15 +185,15 @@ h1 {
   margin: auto;
 
   align-items: center;
-  background: #F3F3F3;
+  /* background: #eeeeee; */
+
   border-style: solid;
-  border-color: #D7D7D7;
   border-width: 0px;
 
   /* background: #D6F5FF; */
   /* background: #35CFFF; */
-  width: 85%;
-  max-width: 600px;
+  width: 80%;
+  max-width: 1000px;
   /* width: 750px;
   max-width: 750px; */
   /* height: 150px; */
@@ -167,28 +204,14 @@ h1 {
   padding-top: 15px;
 }
 
-
-
-.FoodItem {
-  text-align: left;
-  padding-left: 10px;
-  margin: auto;
-
-  /* display: block; */
-  width: 80%;
-  background: white;
-  /* padding-top: 30px; */
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
 .AddButton, .ExitButton{
   /* background: red; */
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   margin: 15px;
   transition-duration: .25s;
 }
+
 
 
 
@@ -217,7 +240,7 @@ h1 {
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: 2px solid #6EDAFD;
+  border-bottom: 2.25px solid #393e46;
   color: #414141;
   margin-bottom: 30px;
 
@@ -227,7 +250,7 @@ h1 {
   outline-width: 0;
 }
 
-.SearchResultContainer{
+.ItemContainer{
   margin: auto;
   background: red;
   width: 80%;
@@ -236,20 +259,24 @@ h1 {
   background: lightgray;
 }
 
-.SearchResult {
-  background: #F3F3F3;
+.Item {
+  background: #eeeeee;
   /* background: red; */
   /* border-radius: 20px; */
   padding-left: 15px;
   padding-right: 15px;
   margin: auto;
   margin-bottom: 10px;
+  padding-top: 5px;;
   /* margin-top: 10px; */
   width: 70%;
-  height: 50px;
+  height: 45px;
 
   text-align: left;
+}
 
+.Item:hover {
+  filter: brightness(85%);
 }
 
 .ItemName {
@@ -305,6 +332,10 @@ h1 {
   border: none;
 }
 
+.Calendar:focus {
+  outline-width: 0;
+
+}
 input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-spin-button {
   display: none;
 }

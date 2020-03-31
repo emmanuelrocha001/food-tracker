@@ -23,7 +23,7 @@ function DatePicker(props){
   var yesterday = new Date(n);
   n += 172800000;
   var tomorrow = new Date(n);
-  
+
   var todayString = formatDate(today);
   var yesterdayString = formatDate(yesterday);
   var tomorrowString = formatDate(tomorrow);
@@ -31,30 +31,32 @@ function DatePicker(props){
 
   var actualDateString =''
   if(dateString == todayString) {
-    actualDateString = "TODAY";
+    actualDateString = "today";
   } else if(dateString == yesterdayString) {
-    actualDateString = "YESTERDAY";
+    actualDateString = "yesterday";
   } else if(dateString == tomorrowString) {
-    actualDateString = "TOMORROW";
+    actualDateString = "tomorrow";
   } else {
     actualDateString = dateString;
   }
-  
+
   return (
     <div className="DateContainer">
-      
-      <div className="CurrentDate" onClick={props.handleDateDecrement}>
+
+      <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
         <img className="ArrowButton" src={left}>
         </img>
       </div>
       <div className="CurrentDate">{actualDateString}</div>
-      <div className="CurrentDate" onClick={props.handleDateIncrement}>
+      <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
         <img className="ArrowButton" src={right}>
         </img>
       </div>
-
+      <div ClassName="ArrowButtonContainer">
       <input onChange={props.handleDateChange} className="Calendar" type="date"/>
-  </div>  
+
+      </div>
+  </div>
   );
 }
 
@@ -64,24 +66,24 @@ function Greeting(props){
   );
 }
 
-function FoodItem(){
-  return (
-    <div className="FoodItem">dummy food info</div>
-  );
-}
+// function FoodItem(){
+//   return (
+//     <div className="FoodItem">dummy food info</div>
+//   );
+// }
 
 
 
 function Meal(props){
   return (
     <div className="MealContainer">
-      <div className="MealTitle">Meal 1</div>
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
-      <FoodItem />
+      <div className="LeftTitle">{props.mealTitle}</div>
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
 
       <img className="AddButton" src={plus} onClick={props.handleItemAdditionScreenEnter}></img>
 
@@ -91,9 +93,9 @@ function Meal(props){
 
 
 
-function SearchResult(){
+function Item(){
   return(
-    <div className="SearchResult">
+    <div className="Item">
         <p className="ItemName">potato</p>
         <div className="ItemDescription">
           <p className="LeftItemDescription">generic, 1 potato</p>
@@ -112,11 +114,11 @@ function ItemAdditionScreen(props) {
         <div className="SearchBarContainer">
           <input className="SearchBar" type="text" value={props.userInput}/>
         </div>
-        <p>top results</p>
-        <SearchResult />
-        <SearchResult />
-        <SearchResult />
-        <SearchResult />
+      <div className="LeftTitle">Results</div>
+        <Item />
+        <Item />
+        <Item />
+        <Item />
 
 
 
@@ -130,11 +132,11 @@ function MealContainer(props){
 
     return(
       <div className="Body">
-        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-  
+        <Meal mealTitle="Breakfast" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal mealTitle="Lunch" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal mealTitle="Dinner" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal mealTitle="Other" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+
         </div>
     );
 }
@@ -226,11 +228,11 @@ class App extends React.Component {
             <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
             <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter}  showItemAddition={this.state.showItemAddition}/>
             </div>
-         
-          {this.state.showItemAddition == true && 
+
+          {this.state.showItemAddition == true &&
             <ItemAdditionScreen userInput={this.state.userInput} handleQueryChange={this.handleQueryChange} handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
           }
-        
+
         </div>
         );
     } else {
@@ -246,16 +248,16 @@ class App extends React.Component {
             <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
             <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter} showItemAddition={this.state.showItemAddition}/>
             </div>
-         
-          {this.state.showItemAddition == true && 
+
+          {this.state.showItemAddition == true &&
             <ItemAdditionScreen handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
           }
-    
+
         </div>
         );
 
     }
-    
+
 
 
 
