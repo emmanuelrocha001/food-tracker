@@ -31,11 +31,11 @@ function DatePicker(props){
 
   var actualDateString =''
   if(dateString == todayString) {
-    actualDateString = "today";
+    actualDateString = "Today";
   } else if(dateString == yesterdayString) {
-    actualDateString = "yesterday";
+    actualDateString = "Yesterday";
   } else if(dateString == tomorrowString) {
-    actualDateString = "tomorrow";
+    actualDateString = "Tomorrow";
   } else {
     actualDateString = dateString;
   }
@@ -52,10 +52,7 @@ function DatePicker(props){
         <img className="ArrowButton" src={right}>
         </img>
       </div>
-      <div ClassName="ArrowButtonContainer">
       <input onChange={props.handleDateChange} className="Calendar" type="date"/>
-
-      </div>
   </div>
   );
 }
@@ -82,9 +79,6 @@ function Meal(props){
       <Item />
       <Item />
       <Item />
-      <Item />
-      <Item />
-
       <img className="AddButton" src={plus} onClick={props.handleItemAdditionScreenEnter}></img>
 
     </div>
