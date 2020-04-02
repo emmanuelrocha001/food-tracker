@@ -35,16 +35,12 @@ html {
 .Header{
   background: #FEFEFE;
   padding-top: 20px;
-  padding-bottom: 20px;
   z-index: 50;
-  /* background: red; */
-  /* position: fixed; */
-
+  padding-bottom: 20px;
   width: 100%;
-  /* background: red; */
   text-align: center;
-  /* background: #35CFFF; */
   color: #35CFFF;
+  background:#324A5E;
   background: #393e46;
 }
 
@@ -61,13 +57,6 @@ h1 {
   color: #f3c623;
   /* background: #393e46; */
 
-  /* background: -webkit-linear-gradient(#fa709a, #fee140); */
-
-
-  /* font-size: 72px;
-  background: linear-gradient(to right,#29323c, #485563);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
 }
 .Logo{
   margin-left: 15px;
@@ -134,6 +123,8 @@ h1 {
   padding-top: 0px;
   display: inline-block;
   vertical-align: middle;
+  max-width: 33px;
+  max-height: 33px;
 
 
 }
@@ -145,24 +136,16 @@ h1 {
   width: 33px;
   height: 33px;
   display: block;
-  transition-duration: .25s;
-
-  /* padding-left: 10px; */
-  /* padding-right: 10px; */
+  transition-duration: .15s;
 }
 
 .ArrowButton:hover {
-  transform: rotateZ(360deg);
-
+  width: 38px;
+  height: 38px;
 }
 
 .LeftTitle {
-  /* float: left; */
   color: #4E4E4E;
-  /* color: white; */
-  /* background: #393e46; */
-  /* background: #00adb5; */
-  /* border-style: solid; */
   border-left: 0px;
   border-width: 2px;
   border-right: 0px;
@@ -171,8 +154,6 @@ h1 {
   font-size: large;
   margin: auto;
   text-align: left;
-  /* position: relative; */
-  /* margin-left: 30px; */
   margin-bottom: 30px;
   width: 90%;
 }
@@ -182,22 +163,11 @@ h1 {
   margin: auto;
 
   align-items: center;
-  /* background: #eeeeee; */
-
   border-style: solid;
   border-width: 0px;
-
-  /* background: #D6F5FF; */
-  /* background: #35CFFF; */
   width: 95%;
   max-width: 1000px;
-  /* width: 750px;
-  max-width: 750px; */
-  /* height: 150px; */
-  /* margin-bottom: 50px; */
-  /* border-radius: 30px; */
   margin-bottom: 30px;
-
   padding-top: 15px;
 }
 
@@ -212,9 +182,7 @@ h1 {
 
 
 
-.ItemAdditionScreen {
-  /* background: red; */
-  /* background: gray; */
+.ExternalScreen {
   background: white;
   position: fixed;
   top: 50%;
@@ -223,8 +191,7 @@ h1 {
   /* background: #D6F5FF; */
 
   width: 80%;
-  height: 90%;
-  max-height: 850px;
+  height: 80%;
   max-width: 450px;
   border-radius: 30px;
 
@@ -246,6 +213,7 @@ h1 {
 
 .SearchBar:focus {
   outline-width: 0;
+
 }
 
 .ItemContainer{
@@ -319,13 +287,10 @@ h1 {
 
 
 .Calendar {
-  /* background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ; */
   background:#fff url(./calendar.png) no-repeat ;
   background-size: 100%;
   width: 27px;
   height: 27px;
-  /* width: 500px; */
-  /* height: 500px; */
   display: block;
   margin: auto;
   margin-top: 30px;

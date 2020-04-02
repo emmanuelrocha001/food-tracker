@@ -30,11 +30,11 @@ function DatePicker(props){
   var dateString = formatDate(props.currentDate);
 
   var actualDateString =''
-  if(dateString == todayString) {
+  if(dateString === todayString) {
     actualDateString = "Today";
-  } else if(dateString == yesterdayString) {
+  } else if(dateString === yesterdayString) {
     actualDateString = "Yesterday";
-  } else if(dateString == tomorrowString) {
+  } else if(dateString === tomorrowString) {
     actualDateString = "Tomorrow";
   } else {
     actualDateString = dateString;
@@ -63,23 +63,21 @@ function Greeting(props){
   );
 }
 
-// function FoodItem(){
-//   return (
-//     <div className="FoodItem">dummy food info</div>
-//   );
-// }
-
-
 
 function Meal(props){
   return (
     <div className="MealContainer">
       <div className="LeftTitle">{props.mealTitle}</div>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <img className="AddButton" src={plus} onClick={props.handleItemAdditionScreenEnter}></img>
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+      />
+
+      <img
+        className="AddButton"
+        src={plus}
+        onClick={props.handleItemAdditionScreenToggle}
+      >
+      </img>
 
     </div>
   );
@@ -87,9 +85,9 @@ function Meal(props){
 
 
 
-function Item(){
+function Item(props){
   return(
-    <div className="Item">
+    <div className="Item" onClick={props.handleItemExpandScreenToggle}>
         <p className="ItemName">potato</p>
         <div className="ItemDescription">
           <p className="LeftItemDescription">generic, 1 potato</p>
@@ -100,37 +98,64 @@ function Item(){
   );
 
 }
+
+function ItemExpandedScreen(props) {
+
+  return(
+    <div className="ExternalScreen">
+      <img className="ExitButton" src={cross} onClick={props.handleItemExpandScreenToggle}></img>
+      <div className="LeftTitle">Item Nutrition Info Screen</div>
+    </div>
+
+  );
+
+}
+
 function ItemAdditionScreen(props) {
 
   return(
-    <div className="ItemAdditionScreen">
-      <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenExit}></img>
+    <div className="ExternalScreen">
+      <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenToggle}></img>
         <div className="SearchBarContainer">
           <input className="SearchBar" type="text" value={props.userInput}/>
         </div>
       <div className="LeftTitle">Results</div>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-
-
-
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+      />
 
     </div>
   );
 }
+
+
 
 function MealContainer(props){
 
 
     return(
       <div className="Body">
-        <Meal mealTitle="Breakfast" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal mealTitle="Lunch" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal mealTitle="Dinner" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
-        <Meal mealTitle="Other" handleItemAdditionScreenEnter={props.handleItemAdditionScreenEnter}/>
+        <Meal
+          mealTitle="Breakfast"
+          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        />
+        <Meal
+          mealTitle="Lunch"
+          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        />
+        <Meal
+          mealTitle="Dinner"
+          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
 
+        />
+        <Meal
+          mealTitle="Other"
+          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        />
         </div>
     );
 }
@@ -144,6 +169,7 @@ class App extends React.Component {
     this.state = {
       selectedDate: new Date(),
       showItemAddition: false,
+      expandItem: false,
       userInput: ""
     }
 
@@ -151,28 +177,25 @@ class App extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDateDecrement = this.handleDateDecrement.bind(this);
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
-    this.handleItemAdditionScreenEnter = this.handleItemAdditionScreenEnter.bind(this);
-    this.handleItemAdditionScreenExit = this.handleItemAdditionScreenExit.bind(this);
-    this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
+    this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
 
   }
 
-  handleItemAdditionScreenEnter(mealId) {
+  handleItemExpandScreenToggle(itemId) {
     this.setState({
-      showItemAddition: true
+      expandItem: !this.state.expandItem
     });
 
   }
 
-  handleItemAdditionScreenExit() {
+  handleItemAdditionScreenToggle(mealId) {
     this.setState({
-      showItemAddition: false
+      showItemAddition: !this.state.showItemAddition
     });
   }
 
-  handleQueryChange() {
 
-  }
 
   handleDateIncrement() {
     var n = this.state.selectedDate.getTime();
@@ -210,27 +233,7 @@ class App extends React.Component {
 
   render() {
 
-    if(this.state.showItemAddition == false) {
-      return (
-        <div className="App">
-          <div className="LightContainer">
-            <div className="Header">
-              <h1>FoodTracker</h1>
-              <img className="Logo" src={logo}></img>
-            </div>
-            {/* <Greeting userName="Emmanuel"/> */}
-            <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter}  showItemAddition={this.state.showItemAddition}/>
-            </div>
-
-          {this.state.showItemAddition == true &&
-            <ItemAdditionScreen userInput={this.state.userInput} handleQueryChange={this.handleQueryChange} handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
-          }
-
-        </div>
-        );
-    } else {
-
+    if(this.state.showItemAddition === true || this.state.expandItem === true ) {
       return (
         <div className="App">
           <div className="ContainerDark">
@@ -238,17 +241,79 @@ class App extends React.Component {
               <h1>FoodTracker</h1>
               <img className="Logo" src={logo}></img>
             </div>
-            {/* <Greeting userName="Emmanuel"/> */}
-            <DatePicker currentDate={this.state.selectedDate} handleDateChange={this.handleDateChange} handleDateIncrement={this.handleDateIncrement} handleDateDecrement={this.handleDateDecrement}/>
-            <MealContainer handleItemAdditionScreenExit={this.handleItemAdditionScreenExit} handleItemAdditionScreenEnter={this.handleItemAdditionScreenEnter} showItemAddition={this.state.showItemAddition}/>
-            </div>
 
-          {this.state.showItemAddition == true &&
-            <ItemAdditionScreen handleItemAdditionScreenExit={this.handleItemAdditionScreenExit}/>
+            <DatePicker currentDate={this.state.selectedDate}
+              handleDateChange={this.handleDateChange}
+              handleDateIncrement={this.handleDateIncrement}
+              handleDateDecrement={this.handleDateDecrement}
+            />
+
+            <MealContainer
+              handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
+              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              showItemAddition={this.state.showItemAddition}
+            />
+          </div>
+
+
+          {this.state.showItemAddition === true &&
+            <ItemAdditionScreen
+              userInput={this.state.userInput}
+              handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
+              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+            />
           }
+
+          {this.state.expandItem === true &&
+            <ItemExpandedScreen
+              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+            />
+          }
+
 
         </div>
         );
+    } else {
+
+
+        return (
+          <div className="App">
+            <div className="LightContainer">
+              <div className="Header">
+                <h1>FoodTracker</h1>
+                <img className="Logo" src={logo}></img>
+              </div>
+
+              <DatePicker currentDate={this.state.selectedDate}
+                handleDateChange={this.handleDateChange}
+                handleDateIncrement={this.handleDateIncrement}
+                handleDateDecrement={this.handleDateDecrement}
+              />
+
+              <MealContainer
+                handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
+                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+                showItemAddition={this.state.showItemAddition}
+              />
+            </div>
+
+            {this.state.showItemAddition === true &&
+              <ItemAdditionScreen
+                userInput={this.state.userInput}
+                handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
+                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+
+              />
+            }
+
+            {this.state.expandItem === true &&
+              <ItemExpandedScreen
+                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              />
+            }
+
+        </div>
+          );
 
     }
 
