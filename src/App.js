@@ -70,6 +70,8 @@ function Meal(props){
       <div className="LeftTitle">{props.mealTitle}</div>
       <Item
         handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName={props.mealTitle}
+        isStatic={false}
       />
 
       <img
@@ -86,25 +88,79 @@ function Meal(props){
 
 
 function Item(props){
-  return(
-    <div className="Item" onClick={props.handleItemExpandScreenToggle}>
-        <p className="ItemName">potato</p>
-        <div className="ItemDescription">
-          <p className="LeftItemDescription">generic, 1 potato</p>
-          <p className="RightItemDescription">30</p>
-        </div>
-    </div>
+    if( props.isStatic === false) {
 
-  );
+      return(
+        <div className="Item" onClick={() =>{props.handleItemExpandScreenToggle(props.mealName)}}>
+          <p className="ItemName">Potato</p>
+          <div className="ItemDescription">
+            <p className="LeftItemDescription">generic, 1 potato</p>
+            <p className="RightItemDescription">30</p>
+          </div>
+        </div>
+
+      );
+
+    } else{
+      return(
+        <div className="ItemStatic" >
+          <p className="ItemName">Potato</p>
+          <div className="ItemDescription">
+            <p className="LeftItemDescription">generic, 1 potato</p>
+            <p className="RightItemDescription">30 cal</p>
+          </div>
+        </div>
+
+      );
+    }
 
 }
 
+function Macro(props) {
+  return(
+    <div className="Macro">
+    <p className="MacroName">{props.percent}%</p>
+    <p className="MacroGrams">{props.grams} g</p>
+    <p className="MacroName">{props.name}</p>
+
+    </div>
+  );
+}
 function ItemExpandedScreen(props) {
 
   return(
     <div className="ExternalScreen">
       <img className="ExitButton" src={cross} onClick={props.handleItemExpandScreenToggle}></img>
-      <div className="LeftTitle">Item Nutrition Info Screen</div>
+      {props.showItemAddition === false && props.currentMeal !== "" &&
+        <div className="ItemInput">
+          <p className="ItemInputLeft">Meal</p>
+          <p className="ItemInputRight">{props.currentMeal}</p>
+        </div>
+      }
+      <Item
+        mealName=""
+        isStatic={true}
+      />
+      <div className="MacrosContainer">
+        <Macro name="Carbs" grams={40} percent={77}/>
+        <Macro name="Fat" grams={10} percent={20}/>
+        <Macro name="Protein" grams={2} percent={3}/>
+      </div>
+
+
+      <div className="ItemInput">
+          <p className="ItemInputLeft">Serving size</p>
+          <p className="ItemInputRight">1 Potato</p>
+      </div>
+
+      <div className="ItemInput">
+          <p className="ItemInputLeft">Number of Servings</p>
+          <p className="ItemInputRight">1</p>
+      </div>
+
+
+
+
     </div>
 
   );
@@ -122,6 +178,8 @@ function ItemAdditionScreen(props) {
       <div className="LeftTitle">Results</div>
       <Item
         handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
       />
 
     </div>
@@ -170,7 +228,8 @@ class App extends React.Component {
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
-      userInput: ""
+      userInput: "",
+      currentMeal: ""
     }
 
 
@@ -182,7 +241,13 @@ class App extends React.Component {
 
   }
 
-  handleItemExpandScreenToggle(itemId) {
+  handleItemExpandScreenToggle(mealTitle) {
+    if(mealTitle != null && this.state.expandItem === false){
+      this.setState({
+        currentMeal: mealTitle
+      });
+    }
+
     this.setState({
       expandItem: !this.state.expandItem
     });
@@ -267,6 +332,8 @@ class App extends React.Component {
           {this.state.expandItem === true &&
             <ItemExpandedScreen
               handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              currentMeal={this.state.currentMeal}
+              showItemAddition={this.state.showItemAddition}
             />
           }
 
@@ -309,6 +376,8 @@ class App extends React.Component {
             {this.state.expandItem === true &&
               <ItemExpandedScreen
                 handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+                currentMeal={this.state.currentMeal}
+                showItemAddition={this.state.showItemAddition}
               />
             }
 
