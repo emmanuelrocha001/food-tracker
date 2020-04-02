@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fea141a6d19344c07cb0fd8204ea379b",
+    "revision": "c20351b4d777153ba50adde44291db67",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "f3d69b1ca02a2110acc0",
-    "url": "/food-tracker/static/css/main.dc44c036.chunk.css"
+    "revision": "9ef11372b2dac3e0624c",
+    "url": "/food-tracker/static/css/main.acca43a5.chunk.css"
   },
   {
-    "revision": "5d996ea06acadf5a4af5",
-    "url": "/food-tracker/static/js/2.64ce5cbc.chunk.js"
+    "revision": "cc9472e69d9ea62feac6",
+    "url": "/food-tracker/static/js/2.0074e8cb.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/food-tracker/static/js/2.64ce5cbc.chunk.js.LICENSE.txt"
+    "url": "/food-tracker/static/js/2.0074e8cb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f3d69b1ca02a2110acc0",
-    "url": "/food-tracker/static/js/main.e5f1a62d.chunk.js"
+    "revision": "9ef11372b2dac3e0624c",
+    "url": "/food-tracker/static/js/main.8188d304.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
