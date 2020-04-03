@@ -158,6 +158,16 @@ function ItemExpandedScreen(props) {
           <p className="ItemInputRight">1</p>
       </div>
 
+      <div className="ExternalButton" onClick={props.handleItemExpandScreenToggle}>
+        {props.showItemAddition === false &&
+        <p className="ExternalButtonText">Update</p>
+        }
+
+        {props.showItemAddition === true &&
+        <p className="ExternalButtonText">Add</p>
+        }
+
+      </div>
 
 
 
@@ -249,7 +259,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      expandItem: !this.state.expandItem
+      expandItem: !this.state.expandItem,
     });
 
   }
