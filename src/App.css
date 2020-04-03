@@ -287,21 +287,45 @@ h1 {
 
 }
 
-.MacrosContainer{
+.Pie{
+  /* background: blue; */
   display: inline-block;
+}
+
+
+.MacrosContainer{
+
+  display: flex;
   margin-top: 15px;
   margin-bottom: 15px;
   width: 90%;
-  height: 40px;
+  height: 90px;
   /* background: red; */
+  justify-content: center;
+  align-items: center;
 }
 .Macro {
+  margin: auto;
   display: inline-block;
   /* background: blue; */
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px; */
+  /* margin-right: 20px; */
 
 }
+
+.MacroPercentageCarbs {
+  font-size: 14px;
+  color: #393E46;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.MacroPercentageProtein {
+  font-size: 14px;
+  color: #f3c623;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 
 .MacroGrams {
   font-size: 16px;

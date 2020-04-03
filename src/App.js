@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.css';
+/*char api*/
+import {
+  PieChart, Pie, Sector, Cell,
+} from 'recharts';
 
+// app assets
 import logo from './diet.png'
 import left from './left-arrow.png'
 import right from './right-arrow.png'
@@ -116,10 +121,61 @@ function Item(props){
 
 }
 
+
+function MacrosVisual(props) {
+  const data = [{name: 'Carbs', value: 40}, {name: 'Fat', value: 10},
+                  {name: 'Protein', value: 2}];
+  const COLORS = ['#393E46', '#f3c623', '#848484'];
+
+
+  return (
+
+      <PieChart className="Pie" width={90} height={90}>
+          <Pie
+            animationDuration={900}
+            animationBegin={225}
+            data={data}
+            innerRadius={22}
+            outerRadius={30}
+            fill="#FFFFFF"
+            paddingAngle={5}
+          >
+            {
+              data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+            }
+          </Pie>
+      </PieChart>
+
+  );
+
+
+}
+function Macros(props) {
+
+  return(
+    <div className="MacrosContainer">
+        <MacrosVisual />
+        <Macro name="Carbs" grams={40} percent={77}/>
+        <Macro name="Fat" grams={10} percent={20}/>
+        <Macro name="Protein" grams={2} percent={3}/>
+      </div>
+  );
+}
+
 function Macro(props) {
   return(
     <div className="Macro">
-    <p className="MacroName">{props.percent}%</p>
+    {props.name === "Carbs" &&
+      <p className="MacroPercentageCarbs">{props.percent}%</p>
+
+    }
+    {props.name === "Protein" &&
+      <p className="MacroName">{props.percent}%</p>
+
+    }
+    {props.name === "Fat" &&
+      <p className="MacroPercentageProtein">{props.percent}%</p>
+    }
     <p className="MacroGrams">{props.grams} g</p>
     <p className="MacroName">{props.name}</p>
 
@@ -141,12 +197,10 @@ function ItemExpandedScreen(props) {
         mealName=""
         isStatic={true}
       />
-      <div className="MacrosContainer">
-        <Macro name="Carbs" grams={40} percent={77}/>
-        <Macro name="Fat" grams={10} percent={20}/>
-        <Macro name="Protein" grams={2} percent={3}/>
-      </div>
 
+
+
+      <Macros />
 
       <div className="ItemInput">
           <p className="ItemInputLeft">Serving size</p>
@@ -157,6 +211,7 @@ function ItemExpandedScreen(props) {
           <p className="ItemInputLeft">Number of Servings</p>
           <p className="ItemInputRight">1</p>
       </div>
+
 
       <div className="ExternalButton" onClick={props.handleItemExpandScreenToggle}>
         {props.showItemAddition === false &&
