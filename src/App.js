@@ -78,13 +78,25 @@ function Meal(props){
         mealName={props.mealTitle}
         isStatic={false}
       />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName={props.mealTitle}
+        isStatic={false}
+      />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName={props.mealTitle}
+        isStatic={false}
+      />
+      <div className="AddButtonContainer">
+        <img
+          className="AddButton"
+          src={plus}
+          onClick={props.handleItemAdditionScreenToggle}
+        >
+        </img>
 
-      <img
-        className="AddButton"
-        src={plus}
-        onClick={props.handleItemAdditionScreenToggle}
-      >
-      </img>
+      </div>
 
     </div>
   );
@@ -99,7 +111,7 @@ function Item(props){
         <div className="Item" onClick={() =>{props.handleItemExpandScreenToggle(props.mealName)}}>
           <p className="ItemName">Potato</p>
           <div className="ItemDescription">
-            <p className="LeftItemDescription">generic, 1 potato</p>
+            <p className="LeftItemDescription">Generic, 1 Potato</p>
             <p className="RightItemDescription">30</p>
           </div>
         </div>
@@ -133,7 +145,7 @@ function MacrosVisual(props) {
       <PieChart className="Pie" width={90} height={90}>
           <Pie
             animationDuration={900}
-            animationBegin={225}
+            animationBegin={100}
             data={data}
             innerRadius={22}
             outerRadius={30}
@@ -182,53 +194,68 @@ function Macro(props) {
     </div>
   );
 }
+
 function ItemExpandedScreen(props) {
 
-  return(
-    <div className="ExternalScreen">
-      <img className="ExitButton" src={cross} onClick={props.handleItemExpandScreenToggle}></img>
-      {props.showItemAddition === false && props.currentMeal !== "" &&
-        <div className="ItemInput">
-          <p className="ItemInputLeft">Meal</p>
-          <p className="ItemInputRight">{props.currentMeal}</p>
+  if(props.showNutrition === false){
+    return(
+      <div className="ExternalScreen">
+
+        <div className="ExitButtonContainer">
+          <img className="ExitButton" src={cross} onClick={props.handleItemExpandScreenToggle}></img>
         </div>
-      }
-      <Item
-        mealName=""
-        isStatic={true}
-      />
+
+          <div className="ExternalScreenContent">
+
+            {props.showItemAddition === false && props.currentMeal !== "" &&
+              <div className="ItemInput">
+                <p className="ItemInputLeft">Meal</p>
+                <p className="ItemInputRight">{props.currentMeal}</p>
+              </div>
+            }
+            <Item
+              mealName=""
+              isStatic={true}
+            />
+            <Macros />
+            <div className="ItemInput">
+                <p className="ItemInputLeft">Serving size</p>
+                <p className="ItemInputRight">1 Potato</p>
+            </div>
+            <div className="ItemInput">
+                <p className="ItemInputLeft">Number of Servings</p>
+                <p className="ItemInputRight">1</p>
+            </div>
+
+            <div className="ShowNutritionButton" onClick={props.handleNutritionScreenToggle}>
+              Show Nutrition &#x25BC;
+            </div>
+
+        </div>
+
+
+        <div className="ExternalButton" onClick={props.handleItemExpandScreenToggle}>
+          {props.showItemAddition === false &&
+          <p className="ExternalButtonText">Update</p>
+          }
+
+          {props.showItemAddition === true &&
+          <p className="ExternalButtonText">Add</p>
+          }
+
+        </div>
 
 
 
-      <Macros />
-
-      <div className="ItemInput">
-          <p className="ItemInputLeft">Serving size</p>
-          <p className="ItemInputRight">1 Potato</p>
       </div>
 
-      <div className="ItemInput">
-          <p className="ItemInputLeft">Number of Servings</p>
-          <p className="ItemInputRight">1</p>
-      </div>
+    );
 
-
-      <div className="ExternalButton" onClick={props.handleItemExpandScreenToggle}>
-        {props.showItemAddition === false &&
-        <p className="ExternalButtonText">Update</p>
-        }
-
-        {props.showItemAddition === true &&
-        <p className="ExternalButtonText">Add</p>
-        }
-
-      </div>
-
-
-
-    </div>
-
-  );
+  } else {
+    return(
+      <NutritionScreen handleNutritionScreenToggle={props.handleNutritionScreenToggle} />
+    );
+  }
 
 }
 
@@ -236,7 +263,13 @@ function ItemAdditionScreen(props) {
 
   return(
     <div className="ExternalScreen">
-      <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenToggle}></img>
+      <div className="ExitButtonContainer">
+        <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenToggle}></img>
+      </div>
+
+
+      <div className="ExternalScreenContent">
+
         <div className="SearchBarContainer">
           <input className="SearchBar" type="text" value={props.userInput}/>
         </div>
@@ -246,11 +279,134 @@ function ItemAdditionScreen(props) {
         mealName=""
         isStatic={false}
       />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
+      />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
+      />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
+      />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
+      />
+      <Item
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+        mealName=""
+        isStatic={false}
+      />
+
+      </div>
 
     </div>
   );
 }
 
+function NutritionScreen(props) {
+
+  return(
+    <div className="ExternalScreen">
+      <div className="HideNutritionButton" onClick={props.handleNutritionScreenToggle}>
+        Hide Nutrition &#9650;
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Calories</p>
+        <p className="NutrientRight">30</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Saturated Fat</p>
+        <p className="NutrientRight">2.5 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Trans Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Polyunsaturated Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Monounsaturated Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Cholesterol</p>
+        <p className="NutrientRight">0 mg</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Sodium</p>
+        <p className="NutrientRight">225 mg</p>
+      </div>
+      <div className="Nutrient">
+        <p className="NutrientLeft">Dietary Fiber</p>
+        <p className="NutrientRight">1 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Sugar</p>
+        <p className="NutrientRight">20 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Protein</p>
+        <p className="NutrientRight">2 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin D</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Calcium</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Iron</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Pottasium</p>
+        <p className="NutrientRight">0 mg</p>
+      </div>
+
+      {/* <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin A</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin C</p>
+        <p className="NutrientRight">0 %</p>
+      </div> */}
+
+
+
+
+
+    </div>
+  );
+
+
+}
 
 
 function MealContainer(props){
@@ -293,6 +449,7 @@ class App extends React.Component {
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
+      showNutrition: false,
       userInput: "",
       currentMeal: ""
     }
@@ -303,9 +460,15 @@ class App extends React.Component {
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
     this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
     this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
+    this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
 
   }
 
+  handleNutritionScreenToggle(){
+    this.setState({
+      showNutrition: !this.state.showNutrition
+    });
+  }
   handleItemExpandScreenToggle(mealTitle) {
     if(mealTitle != null && this.state.expandItem === false){
       this.setState({
@@ -368,9 +531,10 @@ class App extends React.Component {
         <div className="App">
           <div className="ContainerDark">
             <div className="Header">
-              <h1>FoodTracker</h1>
+              <h1>FoodPal</h1>
               <img className="Logo" src={logo}></img>
             </div>
+
 
             <DatePicker currentDate={this.state.selectedDate}
               handleDateChange={this.handleDateChange}
@@ -399,9 +563,10 @@ class App extends React.Component {
               handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
               currentMeal={this.state.currentMeal}
               showItemAddition={this.state.showItemAddition}
+              handleNutritionScreenToggle={this.handleNutritionScreenToggle}
+              showNutrition={this.state.showNutrition}
             />
           }
-
 
         </div>
         );
@@ -412,9 +577,11 @@ class App extends React.Component {
           <div className="App">
             <div className="LightContainer">
               <div className="Header">
-                <h1>FoodTracker</h1>
+                <h1>FoodPal</h1>
                 <img className="Logo" src={logo}></img>
               </div>
+
+
 
               <DatePicker currentDate={this.state.selectedDate}
                 handleDateChange={this.handleDateChange}
@@ -443,6 +610,8 @@ class App extends React.Component {
                 handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
                 currentMeal={this.state.currentMeal}
                 showItemAddition={this.state.showItemAddition}
+                handleNutritionScreenToggle={this.handleNutritionScreenToggle}
+                showNutrition={this.state.showNutrition}
               />
             }
 

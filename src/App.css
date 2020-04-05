@@ -79,17 +79,18 @@ h1 {
   /* background: purple; */
 }
 
-
+/* Date picker components --------------------------------------------*/
 .DateContainer {
   background: #FEFEFE;
+  /* background: red; */
   /* background: red; */
   width: 80%;
   max-width: 700px;
 
   /* background: red; */
-  padding-top: 30px;
+  padding-top: 10px;
   padding-bottom: 30px;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 30px;
   display: inline-block;
   /* background: red; */
@@ -129,8 +130,6 @@ h1 {
 
 }
 
-
-
 .ArrowButton {
   margin: auto;
   width: 33px;
@@ -144,6 +143,50 @@ h1 {
   height: 38px;
 }
 
+
+.CurrentDate:Hover {
+  filter: brightness(85%);
+}
+
+
+
+
+.Calendar {
+  background:#fff url(./calendar.png) no-repeat ;
+  background-size: 100%;
+  width: 27px;
+  height: 27px;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+
+  /* background: red; */
+
+}
+
+.Calendar:focus {
+  outline-width: 0;
+
+}
+input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-spin-button {
+  display: none;
+}
+
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  /* display: none; */
+  opacity: 0;
+}
+
+
+/* Date picker components --------------------------------------------*/
+
+/* Meal container components  -----------------------------------------------------*/
 .LeftTitle {
   /* background: red; */
   /*font color*/
@@ -163,59 +206,44 @@ h1 {
   align-items: center;
   border-style: solid;
   border-width: 0px;
-  width: 95%;
+  width: 90%;
   max-width: 1000px;
   margin-bottom: 30px;
+  background: #eeeeee;
+  background: #F2F2F2;
+  padding-top: 5px;
+  /* background: red; */
   /* padding-top: 15px; */
 }
 
-.AddButton, .ExitButton{
-  /* background: red; */
-  width: 33px;
-  height: 33px;
-  margin: 15px;
+.AddButton {
+  width: 30px;
+  height: 30px;
+  margin: auto;
   transition-duration: .25s;
-}
-
-
-
-
-.ExternalScreen {
-  background: white;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* background: #D6F5FF; */
-
-  width: 80%;
-  height: 80%;
-  max-width: 450px;
-  border-radius: 30px;
 
 }
 
-.SearchBar {
-  /* background: purple; */
-  margin-left: 0;
-  margin-top: 10px;
-  font-size: 18px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 1.5px solid #848484;
-  color: #414141;
-  margin-bottom: 30px;
+.AddButtonContainer {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 60px;
 
-}
+  background: #eeeeee;
+  background: #F2F2F2;
 
-.SearchBar:focus {
-  outline-width: 0;
+  /* background: #393e46; */
+
 
 }
 
 .Item {
   background: #eeeeee;
+  background: #F2F2F2;
+
   /* background: red; */
   /* border-radius: 20px; */
   padding-left: 15px;
@@ -227,6 +255,12 @@ h1 {
   width: 70%;
   height: 48px;
   text-align: left;
+
+
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #E1E1E1;
 }
 
 
@@ -250,17 +284,61 @@ h1 {
   border-right: none;
   border-top: none;
   padding-bottom: 10px;
-  border-bottom: 2px solid #eeeeee;;
+  border-bottom: 2px solid #eeeeee;
+}
+
+
+.Item:hover {
+  filter: brightness(85%);
+}
+
+.ItemName {
+  color: #343434;
+  font-size: 16px;
+  padding: none;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+
+.LeftItemDescription {
+  color: #848484;
+  font-size: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  float: left;
+
+}
+
+.RightItemDescription {
+  color: #848484;
+  font-size: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background: purple; */
+  float: right;
+}
+
+/* Meal container components  -----------------------------------------------------*/
+
+
+/* external screen components -----------------------------------------------------*/
+  .ExitButton{
+  /* background: red; */
+  width: 33px;
+  height: 33px;
+  margin: 15px;
+  transition-duration: .25s;
 }
 
 
 .ExternalButton {
   position: absolute;
   width: 100%;
-  height: 10%;
+  height: 60px;
   bottom: 0;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
+  /* border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; */
   text-align: center;
   color: #f3c623;
   background: #393e46;
@@ -280,12 +358,122 @@ h1 {
   margin-top: 0px;
   margin-bottom: 0px;
   margin: auto;
-  font-size: 20px;
+  font-size: 18px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
 }
+
+.ExitButtonContainer {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  /* border-top-left-radius: 30px; */
+  /* border-top-right-radius: 30px; */
+  text-align: center;
+  color: #f3c623;
+  background: #393e46;
+
+}
+
+
+.ExternalScreen {
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background: #D6F5FF; */
+
+  width: 85%;
+  height: 800px;
+  max-width: 450px;
+  /* border-radius: 30px; */
+
+}
+
+.ExternalScreenContent {
+  margin-top: 70px;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-device-height: 1000px){
+  .ExternalScreen{
+    height: 650px;
+  }
+}
+
+@media only screen and (max-device-height: 900px){
+  .ExternalScreen{
+    height: 600px;
+  }
+
+  .NutrientLeft {
+    font-size: 11px;
+    color: #343434;
+    margin: auto;
+    float: left;
+    /* margin-top: 0px; */
+    /* margin-bottom: 0px; */
+
+  }
+
+  .NutrientRight {
+    font-size: 12px;
+    color: #848484;
+    float: right;
+    /* text-align: right; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .Nutrient {
+    /* background: red; */
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    width: 90%;
+    /* height: 30px; */
+    display: inline-block;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 5px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+
+
+  }
+}
+
+
+/* external screen components -----------------------------------------------------*/
+
+
+.SearchBar {
+  /* background: purple; */
+  margin-left: 0;
+  margin-top: 10px;
+  font-size: 18px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1.5px solid #848484;
+  color: #414141;
+  margin-bottom: 30px;
+
+}
+
+.SearchBar:focus {
+  outline-width: 0;
+
+}
+
+
+
+
 
 .Pie{
   /* background: blue; */
@@ -354,7 +542,8 @@ h1 {
   border-right: none;
   border-top: none;
   padding-bottom: 10px;
-  border-bottom: 2px solid #eeeeee;;
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
 
   /* text-align: left; */
   /* background: red; */
@@ -380,38 +569,84 @@ h1 {
   margin-bottom: 0px;
 }
 
-.Item:hover {
-  filter: brightness(85%);
-}
 
-.ItemName {
+.NutrientLeft {
+  font-size: 15px;
   color: #343434;
-  font-size: 16px;
-  padding: none;
-  margin-bottom: 5px;
-  margin-top: 0px;
-}
-
-.ItemDescription {
-}
-
-.LeftItemDescription {
-  color: #848484;
-  font-size: 15px;
-  margin-bottom: 0px;
-  margin-top: 0px;
+  margin: auto;
   float: left;
+  /* margin-top: 0px; */
+  /* margin-bottom: 0px; */
 
 }
 
-.RightItemDescription {
+.NutrientRight {
+  font-size: 14px;
   color: #848484;
-  font-size: 15px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  /* background: purple; */
   float: right;
+  /* text-align: right; */
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
+
+.Nutrient {
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+
+  width: 90%;
+  /* height: 30px; */
+  display: inline-block;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
+
+
+}
+
+.ShowNutritionButton {
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  position: fixed;
+
+  bottom: 60px;
+  width: 100%;
+  /* height: 30px; */
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  text-align: center;
+  background: #eeeeee;
+}
+
+.HideNutritionButton {
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+
+  width: 100%;
+  /* height: 30px; */
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+
+  text-align: center;
+  background: #eeeeee;
+}
+
+.ShowNutritionButton:Hover, .HideNutritionButton:Hover {
+  filter: brightness(85%);
+
+}
+
 
 @keyframes example {
   from {background-color: red;}
@@ -423,41 +658,3 @@ h1 {
 
 }
 
-.CurrentDate:Hover {
-  filter: brightness(85%);
-}
-
-
-
-
-.Calendar {
-  background:#fff url(./calendar.png) no-repeat ;
-  background-size: 100%;
-  width: 27px;
-  height: 27px;
-  display: block;
-  margin: auto;
-  margin-top: 30px;
-  border: none;
-  font-family: 'Roboto', sans-serif;
-
-  /* background: red; */
-
-}
-
-.Calendar:focus {
-  outline-width: 0;
-
-}
-input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-spin-button {
-  display: none;
-}
-
-
-[type="date"]::-webkit-inner-spin-button {
-  display: none;
-}
-[type="date"]::-webkit-calendar-picker-indicator {
-  /* display: none; */
-  opacity: 0;
-}
