@@ -388,7 +388,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   /* background: #D6F5FF; */
 
   width: 85%;
-  height: 800px;
+  height: 700px;
   max-width: 450px;
   /* border-radius: 30px; */
 
@@ -455,17 +455,30 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 .SearchBar {
   /* background: purple; */
   margin-left: 0;
-  margin-top: 10px;
   font-size: 18px;
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: 1.5px solid #848484;
+  border-bottom: 1.5px solid #E1E1E1;
   color: #414141;
-  margin-bottom: 30px;
+  margin-left: 10px;
 
 }
 
+.SearchBarContainer {
+  /* background: red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+
+}
+
+.SearchIcon {
+  width: 20px;
+  height: 20px;
+}
 .SearchBar:focus {
   outline-width: 0;
 
@@ -473,11 +486,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 
-
-
 .Pie{
   /* background: blue; */
-  display: inline-block;
+  /* display: inline-block; */
+  display: absolute;
 }
 
 
@@ -568,6 +580,43 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+
+.NumberInput {
+  float: right;
+  font-size: 15px;
+  color: #848484;
+  color: #393e46;
+
+  float: right;
+  border: none;
+  /* background: red; */
+  max-width: 50px;
+  text-align: right;
+}
+
+
+
+.MealSelector {
+  text-align-last: right;
+  font-size: 15px;
+  color: #848484;
+  color: #393e46;
+  float: right;
+  border: none;
+  /* appearance: none; */
+
+}
+
+
+option {
+  outline: none;
+
+  font-size: 15px;
+  color: #848484;
+  /* background: purple; */
+}
+
 
 
 .NutrientLeft {

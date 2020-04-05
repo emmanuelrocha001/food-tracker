@@ -11,6 +11,7 @@ import left from './left-arrow.png'
 import right from './right-arrow.png'
 import plus from './plus.png'
 import cross from './cross.png'
+import search from './search.png'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -142,6 +143,7 @@ function MacrosVisual(props) {
 
   return (
 
+    <div className="CalMacroContainer">
       <PieChart className="Pie" width={90} height={90}>
           <Pie
             animationDuration={900}
@@ -157,6 +159,8 @@ function MacrosVisual(props) {
             }
           </Pie>
       </PieChart>
+
+    </div>
 
   );
 
@@ -210,7 +214,12 @@ function ItemExpandedScreen(props) {
             {props.showItemAddition === false && props.currentMeal !== "" &&
               <div className="ItemInput">
                 <p className="ItemInputLeft">Meal</p>
-                <p className="ItemInputRight">{props.currentMeal}</p>
+                <select className="MealSelector">
+                  <option className="MealSelectorChoice" value="breakfast">Breakfast</option>
+                  <option className="MealSelectorChoice" value="lunch">Lunch</option>
+                  <option className="MealSelectorChoice" value="dinner">Dinner</option>
+                  <option className="MealSelectorChoice" value="other">Other</option>
+                </select>
               </div>
             }
             <Item
@@ -220,11 +229,29 @@ function ItemExpandedScreen(props) {
             <Macros />
             <div className="ItemInput">
                 <p className="ItemInputLeft">Serving size</p>
-                <p className="ItemInputRight">1 Potato</p>
+                <select className="MealSelector">
+                  <option className="MealSelectorChoice" value="breakfast">1 g</option>
+                  <option className="MealSelectorChoice" value="lunch">1 cup, diced</option>
+                  <option className="MealSelectorChoice" value="dinner">1 oz</option>
+                  <option className="MealSelectorChoice" value="other">1 kg</option>
+                  <option className="MealSelectorChoice" value="other">1 large</option>
+                  <option className="MealSelectorChoice" value="other">1 small</option>
+
+
+                </select>
             </div>
             <div className="ItemInput">
                 <p className="ItemInputLeft">Number of Servings</p>
-                <p className="ItemInputRight">1</p>
+                  <input
+                    className="NumberInput"
+                    value={1}
+                    type="text"
+                    name="token"
+                    id="token"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="one-time-code"
+                  />
             </div>
 
             <div className="ShowNutritionButton" onClick={props.handleNutritionScreenToggle}>
@@ -271,6 +298,7 @@ function ItemAdditionScreen(props) {
       <div className="ExternalScreenContent">
 
         <div className="SearchBarContainer">
+          <img className="SearchIcon" src={search}></img>
           <input className="SearchBar" type="text" value={props.userInput}/>
         </div>
       <div className="LeftTitle">Results</div>
@@ -320,11 +348,6 @@ function NutritionScreen(props) {
       </div>
 
       <div className="Nutrient">
-        <p className="NutrientLeft">Calories</p>
-        <p className="NutrientRight">30</p>
-      </div>
-
-      <div className="Nutrient">
         <p className="NutrientLeft">Saturated Fat</p>
         <p className="NutrientRight">2.5 g</p>
       </div>
@@ -364,11 +387,6 @@ function NutritionScreen(props) {
       </div>
 
       <div className="Nutrient">
-        <p className="NutrientLeft">Protein</p>
-        <p className="NutrientRight">2 g</p>
-      </div>
-
-      <div className="Nutrient">
         <p className="NutrientLeft">Vitamin D</p>
         <p className="NutrientRight">0 %</p>
       </div>
@@ -388,7 +406,7 @@ function NutritionScreen(props) {
         <p className="NutrientRight">0 mg</p>
       </div>
 
-      {/* <div className="Nutrient">
+      <div className="Nutrient">
         <p className="NutrientLeft">Vitamin A</p>
         <p className="NutrientRight">0 %</p>
       </div>
@@ -396,7 +414,7 @@ function NutritionScreen(props) {
       <div className="Nutrient">
         <p className="NutrientLeft">Vitamin C</p>
         <p className="NutrientRight">0 %</p>
-      </div> */}
+      </div>
 
 
 
