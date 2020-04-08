@@ -12,6 +12,8 @@ import right from './right-arrow.png'
 import plus from './plus.png'
 import cross from './cross.png'
 import search from './search.png'
+import user from './user.png'
+import lock from './lock.png'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -427,6 +429,72 @@ function NutritionScreen(props) {
 }
 
 
+function SignInScreen(props) {
+
+
+  if( props.haveAccount === true ) {
+    return(
+
+      <div className="ExternalScreen">
+      <div className="ExternalTop"></div>
+      <div className="ExternalCenter">
+        <img className="LogoIsolated" src={logo}></img>
+        <p className="ExternalTitle">Sign In</p>
+
+
+        <div className="InfoContainer">
+          <img className="UserNameIcon" src={user}></img>
+          <input className="InfoInput" type="text" placeholder="username" />
+        </div>
+
+        <div className="InfoContainer">
+          <img className="UserNameIcon" src={lock}></img>
+          <input className="InfoInput" type="password" placeholder="password" />
+        </div>
+
+        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
+
+      </div>
+      <div className="ExternalButton" onClick={props.handleSignIn}>
+        <p className="ExternalButtonText">Sign In</p>
+
+      </div>
+    </div>
+
+    );
+  } else {
+    return(
+
+      <div className="ExternalScreen">
+      <div className="ExternalTop"></div>
+      <div className="ExternalCenter">
+        <img className="LogoIsolated" src={logo}></img>
+        <p className="ExternalTitle">Sign Up</p>
+
+
+        <div className="InfoContainer">
+          <img className="UserNameIcon" src={user}></img>
+          <input className="InfoInput" type="text" placeholder="username" />
+        </div>
+
+        <div className="InfoContainer">
+          <img className="UserNameIcon" src={lock}></img>
+          <input className="InfoInput" type="password" placeholder="password" />
+        </div>
+
+        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign up here!</p>
+
+      </div>
+      <div className="ExternalButton" onClick={props.handleSignIn} >
+        <p className="ExternalButtonText">Sign Up</p>
+
+      </div>
+    </div>
+
+    );
+  }
+}
+
 function MealContainer(props){
 
 
@@ -468,8 +536,10 @@ class App extends React.Component {
       showItemAddition: false,
       expandItem: false,
       showNutrition: false,
+      currentUser: null,
       userInput: "",
-      currentMeal: ""
+      currentMeal: "",
+      haveAccount: true
     }
 
 
@@ -479,7 +549,28 @@ class App extends React.Component {
     this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
     this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
     this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
+    this.handleHaveAccountToggle = this.handleHaveAccountToggle.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
 
+  }
+
+  handleSignIn(){
+    if( this.state.currentUser == null) {
+
+      this.setState({
+        currentUser: "hello"
+      });
+    } else {
+      this.setState({
+        currentUser: null
+      });
+    }
+  }
+
+  handleHaveAccountToggle(){
+    this.setState({
+      haveAccount: !this.state.haveAccount
+    });
   }
 
   handleNutritionScreenToggle(){
@@ -544,9 +635,10 @@ class App extends React.Component {
 
   render() {
 
-    if(this.state.showItemAddition === true || this.state.expandItem === true ) {
+    if(this.state.showItemAddition === true || this.state.expandItem === true || this.state.currentUser === null ) {
       return (
         <div className="App">
+
           <div className="ContainerDark">
             <div className="Header">
               <h1>FoodPal</h1>
@@ -567,6 +659,14 @@ class App extends React.Component {
             />
           </div>
 
+
+          {this.state.currentUser === null &&
+            <SignInScreen
+              haveAccount={this.state.haveAccount}
+              handleHaveAccountToggle={this.handleHaveAccountToggle}
+              handleSignIn={this.handleSignIn}
+            />
+          }
 
           {this.state.showItemAddition === true &&
             <ItemAdditionScreen

@@ -28,7 +28,7 @@ html {
 }
 .ContainerDark {
   background: #FEFEFE;
-  filter: brightness(40%);
+  filter: brightness(40%) blur(5px);
 }
 
 
@@ -342,8 +342,9 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   text-align: center;
   color: #f3c623;
   background: #393e46;
-
 }
+
+
 
 .ExternalButton:Hover {
 
@@ -391,6 +392,110 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   height: 700px;
   max-width: 450px;
   /* border-radius: 30px; */
+
+}
+
+.ExternalCenter{
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+  width: 100%;
+  height: 400px;
+  /* background: purple; */
+}
+
+.ExternalBottom {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  /* border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; */
+  text-align: center;
+  color: #f3c623;
+  background: #393e46;
+}
+
+.InfoContainer{
+  /* background: purple; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+
+
+}
+
+
+.ExternalTitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background: red; */
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #848484;
+  color:#343434;
+
+}
+.InfoTitle{
+  float: left;
+  font-size: 15px;
+  color: #848484;
+}
+
+.NoAccountText{
+  margin-top: 60px;
+  color: #848484;
+  font-size: 14px;
+  /* border: 1px solid #848484; */
+
+}
+
+.NoAccountText:hover {
+  color:#343434;
+
+  /* border: 1px solid #848484; */
+
+  /* border-bottom: #848484; */
+}
+
+
+.UserNameIcon{
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+
+
+.LogoIsolated{
+  background: #393e46;
+  padding: 20px;
+  border-radius: 60px;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.InfoInput{
+  float: right;
+  font-size: 16px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+}
+
+
+.ExternalTop {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  /* border-top-left-radius: 30px; */
+  /* border-top-right-radius: 30px; */
+  text-align: center;
+  color: #f3c623;
+  background: #393e46;
 
 }
 
