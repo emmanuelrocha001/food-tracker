@@ -482,7 +482,7 @@ function SignInScreen(props) {
           <input className="InfoInput" type="password" placeholder="password" />
         </div>
 
-        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
+        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign In here!</p>
 
       </div>
       <div className="ExternalButton" onClick={props.handleSignIn} >
