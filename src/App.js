@@ -4,7 +4,7 @@ import './App.css';
 import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
-
+import $ from 'jquery';
 // app assets
 import logo from './diet.png'
 import left from './left-arrow.png'
@@ -201,6 +201,37 @@ function Macro(props) {
     </div>
   );
 }
+
+function MealContainer(props){
+
+
+  return(
+    <div className="Body">
+      <Meal
+        mealTitle="Breakfast"
+        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+      />
+      <Meal
+        mealTitle="Lunch"
+        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+      />
+      <Meal
+        mealTitle="Dinner"
+        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+
+      />
+      <Meal
+        mealTitle="Other"
+        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
+        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
+      />
+      </div>
+  );
+}
+
 
 function ItemExpandedScreen(props) {
 
@@ -459,6 +490,10 @@ function SignInScreen(props) {
           <p className="LoginError">{props.error}</p>
         }
 
+        {props.successMessage != '' &&
+          <p className="SuccessMessage">{props.successMessage}</p>
+        }
+
       </div>
       <div className="ExternalButton" onClick={props.handleSignIn}>
         <p className="ExternalButtonText">Sign In</p>
@@ -478,25 +513,33 @@ function SignInScreen(props) {
 
 
         <div className="InfoContainer">
-          <input className="InfoInput" type="text" placeholder="First Name" />
+          <input className="InfoInput" type="text" placeholder="First Name" onChange={props.handleFirstNameInputChange}/>
         </div>
 
         <div className="InfoContainer">
-          <input className="InfoInput" type="text" placeholder="Last Name" />
+          <input className="InfoInput" type="text" placeholder="Last Name" onChange={props.handleLastNameInputChange}/>
         </div>
 
         <div className="InfoContainer">
-          <input className="InfoInput" type="password" placeholder="Email" />
+          <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
         </div>
 
         <div className="InfoContainer">
-          <input className="InfoInput" type="password" placeholder="Password" />
+          <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange}/>
         </div>
 
         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
 
+        { props.error != '' &&
+          <p className="LoginError">{props.error}</p>
+        }
+
+        {props.successMessage != '' &&
+          <p className="SuccessMessage">{props.successMessage}</p>
+        }
+
       </div>
-      <div className="ExternalButton" onClick={props.handleSignIn} >
+      <div className="ExternalButton" onClick={props.handleSignUp} >
         <p className="ExternalButtonText">Create Account</p>
 
       </div>
@@ -506,35 +549,6 @@ function SignInScreen(props) {
   }
 }
 
-function MealContainer(props){
-
-
-    return(
-      <div className="Body">
-        <Meal
-          mealTitle="Breakfast"
-          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        />
-        <Meal
-          mealTitle="Lunch"
-          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        />
-        <Meal
-          mealTitle="Dinner"
-          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-
-        />
-        <Meal
-          mealTitle="Other"
-          handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-          handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        />
-        </div>
-    );
-}
 
 
 
@@ -555,6 +569,7 @@ class App extends React.Component {
       lastNameInput: "",
       currentMeal: "",
       loginError: "",
+      successMessage: "",
       haveAccount: true
     }
 
@@ -566,13 +581,21 @@ class App extends React.Component {
     this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
     this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
     this.handleHaveAccountToggle = this.handleHaveAccountToggle.bind(this);
+
+    // input handlers
     this.handleEmailInputChange = this.handleEmailInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
+    this.handleFirstNameInputChange = this.handleFirstNameInputChange.bind(this);
+    this.handleLastNameInputChange = this.handleLastNameInputChange.bind(this);
+
+    // action handlers
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+
 
   }
 
-  handleSignIn(){
+  handleSignIn() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -596,7 +619,49 @@ class App extends React.Component {
 
   }
 
+  handleSignUp() {
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        email: this.state.emailInput, 
+        password: this.state.passwordInput, 
+        firstName: this.state.firstNameInput, 
+        lastName: this.state.lastNameInput })
+    };
+
+    fetch(foodAPIURL+'/user/signup', requestOptions)
+    .then(response => response.json()).then( data => {
+      if(data["successful"] === false){
+        this.setState({
+          loginError: data["message"]
+        });
+      } else{
+        this.setState({
+          successMessage: data["message"],
+          loginError: "",
+          haveAccount: true
+        });
+      }
+    })
+  }
+
+
+  handleFirstNameInputChange(event){
+    this.setState({
+      firstNameInput: event.target.value
+    });
+  }
+
+  handleLastNameInputChange(event){
+    this.setState({
+      lastNameInput: event.target.value
+    });
+  }
+
   handleEmailInputChange(event){
+    // alert(event.target.value);
     this.setState({
       emailInput: event.target.value
     });
@@ -610,8 +675,16 @@ class App extends React.Component {
   }
 
   handleHaveAccountToggle(){
+
+
     this.setState({
-      haveAccount: !this.state.haveAccount
+      haveAccount: !this.state.haveAccount,
+      loginError: "",
+      successMessage: "",
+      emailInput: "",
+      passwordInput: "",
+      firstNameInput: "",
+      lastNameInput: ""
     });
   }
 
@@ -687,6 +760,10 @@ class App extends React.Component {
               <img className="Logo" src={logo}></img>
             </div>
 
+            {this.state.currentUser !== null &&
+                <Greeting userName={this.state.currentUser["name"]}/>
+
+            }
 
             <DatePicker currentDate={this.state.selectedDate}
               handleDateChange={this.handleDateChange}
@@ -706,10 +783,17 @@ class App extends React.Component {
             <SignInScreen
               haveAccount={this.state.haveAccount}
               handleHaveAccountToggle={this.handleHaveAccountToggle}
+
+              handleFirstNameInputChange={this.handleFirstNameInputChange}
+              handleLastNameInputChange={this.handleLastNameInputChange}
               handleEmailInputChange={this.handleEmailInputChange}
               handlePasswordInputChange={this.handlePasswordInputChange}
-              error={this.state.loginError}
+              
               handleSignIn={this.handleSignIn}
+              handleSignUp={this.handleSignUp}
+              error={this.state.loginError}
+              successMessage={this.state.successMessage}
+
             />
           }
 
@@ -744,7 +828,9 @@ class App extends React.Component {
                 <img className="Logo" src={logo}></img>
               </div>
 
-
+              {this.state.currentUser !== null &&
+                <Greeting userName={this.state.currentUser["name"]}/>
+              }
 
               <DatePicker currentDate={this.state.selectedDate}
                 handleDateChange={this.handleDateChange}
