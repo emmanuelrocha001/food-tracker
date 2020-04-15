@@ -14,6 +14,7 @@ import cross from './cross.png'
 import search from './search.png'
 import user from './user.png'
 import lock from './lock.png'
+const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -443,16 +444,20 @@ function SignInScreen(props) {
 
 
         <div className="InfoContainer">
-          <img className="UserNameIcon" src={user}></img>
-          <input className="InfoInput" type="text" placeholder="username" />
+          {/* <img className="UserNameIcon" src={user}></img> */}
+          <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
         </div>
 
         <div className="InfoContainer">
-          <img className="UserNameIcon" src={lock}></img>
-          <input className="InfoInput" type="password" placeholder="password" />
+          {/* <img className="UserNameIcon" src={lock}></img> */}
+          <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
         </div>
 
         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
+        
+        { props.error != '' &&
+          <p className="LoginError">{props.error}</p>
+        }
 
       </div>
       <div className="ExternalButton" onClick={props.handleSignIn}>
@@ -473,20 +478,26 @@ function SignInScreen(props) {
 
 
         <div className="InfoContainer">
-          <img className="UserNameIcon" src={user}></img>
-          <input className="InfoInput" type="text" placeholder="username" />
+          <input className="InfoInput" type="text" placeholder="First Name" />
         </div>
 
         <div className="InfoContainer">
-          <img className="UserNameIcon" src={lock}></img>
-          <input className="InfoInput" type="password" placeholder="password" />
+          <input className="InfoInput" type="text" placeholder="Last Name" />
         </div>
 
-        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign In here!</p>
+        <div className="InfoContainer">
+          <input className="InfoInput" type="password" placeholder="Email" />
+        </div>
+
+        <div className="InfoContainer">
+          <input className="InfoInput" type="password" placeholder="Password" />
+        </div>
+
+        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
 
       </div>
       <div className="ExternalButton" onClick={props.handleSignIn} >
-        <p className="ExternalButtonText">Sign Up</p>
+        <p className="ExternalButtonText">Create Account</p>
 
       </div>
     </div>
@@ -538,7 +549,12 @@ class App extends React.Component {
       showNutrition: false,
       currentUser: null,
       userInput: "",
+      emailInput:"",
+      passwordInput: "",
+      firstNameInput: "",
+      lastNameInput: "",
       currentMeal: "",
+      loginError: "",
       haveAccount: true
     }
 
@@ -550,21 +566,47 @@ class App extends React.Component {
     this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
     this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
     this.handleHaveAccountToggle = this.handleHaveAccountToggle.bind(this);
+    this.handleEmailInputChange = this.handleEmailInputChange.bind(this);
+    this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
 
   }
 
   handleSignIn(){
-    if( this.state.currentUser == null) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: this.state.emailInput, password: this.state.passwordInput })
+    };
 
-      this.setState({
-        currentUser: "hello"
-      });
-    } else {
-      this.setState({
-        currentUser: null
-      });
-    }
+    fetch(foodAPIURL+'/user/login', requestOptions)
+    .then(response => response.json()).then( data => {
+      if(data["successful"] === false){
+        this.setState({
+          loginError: data["message"]
+        });
+      } else{
+        this.setState({
+          currentUser: data["user"]
+        });
+      }
+    })
+    .catch( error => console.log(error));
+
+
+  }
+
+  handleEmailInputChange(event){
+    this.setState({
+      emailInput: event.target.value
+    });
+
+  }
+
+  handlePasswordInputChange(event){
+    this.setState({
+      passwordInput: event.target.value
+    });
   }
 
   handleHaveAccountToggle(){
@@ -664,6 +706,9 @@ class App extends React.Component {
             <SignInScreen
               haveAccount={this.state.haveAccount}
               handleHaveAccountToggle={this.handleHaveAccountToggle}
+              handleEmailInputChange={this.handleEmailInputChange}
+              handlePasswordInputChange={this.handlePasswordInputChange}
+              error={this.state.loginError}
               handleSignIn={this.handleSignIn}
             />
           }
