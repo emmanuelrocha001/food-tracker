@@ -15,6 +15,7 @@ import search from './search.png'
 import user from './user.jpg'
 import lock from './lock.png'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
+// const foodAPIURL = 'https://localhost:5000'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -477,7 +478,7 @@ function ProfileScreen(props) {
 
 
       <div className="ProfileInfoContainer">
-        <p className="RightProfile">Name: {props.user["name"]}</p>
+        <p className="RightProfile">Name: {props.user["name"]} {props.user["lastName"]}</p>
       </div>
 
       <div className="ProfileInfoContainer">
@@ -569,8 +570,8 @@ function SignInScreen(props) {
           <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange}/>
         </div>
 
-        <div className="InfoContainer">
-          <input className="InfoInput" type="file" />
+        <div className="PicUploaderContainer">
+          <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicUpload} />
         </div>
 
         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
@@ -612,6 +613,7 @@ class App extends React.Component {
       passwordInput: "",
       firstNameInput: "",
       lastNameInput: "",
+      profilePicInput: null,
       currentMeal: "",
       loginError: "",
       successMessage: "",
@@ -635,6 +637,7 @@ class App extends React.Component {
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
     this.handleFirstNameInputChange = this.handleFirstNameInputChange.bind(this);
     this.handleLastNameInputChange = this.handleLastNameInputChange.bind(this);
+    this.handleProfilePicUpload = this.handleProfilePicUpload.bind(this);
 
     // action handlers
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -656,6 +659,7 @@ class App extends React.Component {
       passwordInput: "",
       firstNameInput: "",
       lastNameInput: "",
+      profilePicInput: null,
       currentMeal: "",
       loginError: "",
       successMessage: "",
@@ -691,7 +695,7 @@ class App extends React.Component {
   }
 
   handleSignUp() {
-    if( this.state.firstNameInput === '' || this.state.lastNameInput === '' || this.state.emailInput === '' || this.state.passwordInput === '') {
+    if( this.state.firstNameInput === '' || this.state.lastNameInput === '' || this.state.emailInput === '' || this.state.passwordInput === '' || this.state.profilePicInput === null ) {
       this.setState({
         loginError: "Please make sure all fields are filled in"
       });
@@ -705,7 +709,9 @@ class App extends React.Component {
           email: this.state.emailInput, 
           password: this.state.passwordInput, 
           firstName: this.state.firstNameInput, 
-          lastName: this.state.lastNameInput })
+          lastName: this.state.lastNameInput,
+          profilePic: this.state.profilePicInput
+         })
       };
   
       fetch(foodAPIURL+'/user/signup', requestOptions)
@@ -715,6 +721,7 @@ class App extends React.Component {
             loginError: data["message"]
           });
         } else{
+          console.log(data);
           this.setState({
             successMessage: data["message"],
             loginError: "",
@@ -726,7 +733,12 @@ class App extends React.Component {
     }
   }
 
-
+  handleProfilePicUpload(event) {
+    console.log(event.target.files[0]);
+    this.setState({
+      profilePicInput: event.target.files[0]
+    });
+  }
   handleFirstNameInputChange(event){
     this.setState({
       firstNameInput: event.target.value
@@ -875,6 +887,7 @@ class App extends React.Component {
               handleLastNameInputChange={this.handleLastNameInputChange}
               handleEmailInputChange={this.handleEmailInputChange}
               handlePasswordInputChange={this.handlePasswordInputChange}
+              handleProfilePicUpload={this.handleProfilePicUpload}
               
               handleSignIn={this.handleSignIn}
               handleSignUp={this.handleSignUp}

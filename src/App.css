@@ -455,9 +455,9 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .ExternalCenter{
-  position: absolute;
-  top: 45%;
-  transform: translate(0%, -50%);
+  /* position: absolute; */
+  margin-top: 80px;
+  /* transform: translate(0%, -50%); */
   width: 100%;
   height: 400px;
   /* background: purple; */
@@ -480,11 +480,31 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 
 
 }
 
+
+
+.PicUploaderContainer {
+  background: url(./upload-image.svg);
+  background-size: 100%;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.PicUploader{
+  background: red;
+  margin-right: 0px;
+  padding-right: 0px;
+  font-size: 15px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+
+}
 
 .ExternalTitle {
   margin-bottom: 0px;
@@ -503,7 +523,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .NoAccountText{
-  margin-top: 60px;
+  margin-top: 30px;
   color: #848484;
   font-size: 14px;
   /* border: 1px solid #848484; */
@@ -546,7 +566,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   border-radius: 60px;
   width: 50px;
   height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .InfoInput{
@@ -583,9 +603,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   }
 }
 
-@media only screen and (max-device-height: 900px){
+@media only screen and (max-device-height: 900px) and (max-device-width: 600px){
   .ExternalScreen{
-    height: 600px;
+    height: 100%;
+    width: 100%;
   }
 
 
