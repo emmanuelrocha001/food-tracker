@@ -468,7 +468,9 @@ function ProfileScreen(props) {
         <img className="ExitButton" src={cross} onClick={props.handleShowProfile}></img>
       </div>
 
-    <div className="ProfileScreenPic" ></div>
+    <div className="ProfileScreenPicContainer">
+      <div className="ProfileScreenPic" ></div>
+    </div>
 
 
     <div className="ProfileContentContainer">
@@ -488,8 +490,10 @@ function ProfileScreen(props) {
       
     </div>
 
+    <div className="ExternalButton" onClick={props.handleSignOff}>
+      <p className="ExternalButtonText">Sign Out</p>
+    </div>
 
-    
     </div>
 
   );
@@ -535,7 +539,6 @@ function SignInScreen(props) {
       </div>
       <div className="ExternalButton" onClick={props.handleSignIn}>
         <p className="ExternalButtonText">Sign In</p>
-
       </div>
     </div>
 
@@ -635,8 +638,31 @@ class App extends React.Component {
 
     // action handlers
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOff = this.handleSignOff.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
 
+
+  }
+
+  handleSignOff() {
+    this.setState({
+      selectedDate: new Date(),
+      showItemAddition: false,
+      expandItem: false,
+      showNutrition: false,
+      currentUser: null,
+      userInput: "",
+      emailInput:"",
+      passwordInput: "",
+      firstNameInput: "",
+      lastNameInput: "",
+      currentMeal: "",
+      loginError: "",
+      successMessage: "",
+      haveAccount: true,
+      showProfile: false
+
+    });
 
   }
 
@@ -877,9 +903,12 @@ class App extends React.Component {
             />
           }
 
-            {this.state.showProfile === true &&
-              <ProfileScreen user={this.state.currentUser} handleShowProfile={this.handleShowProfile}/>
-            }
+          {this.state.showProfile === true &&
+            <ProfileScreen user={this.state.currentUser} 
+              handleShowProfile={this.handleShowProfile}
+              handleSignOff={this.handleSignOff}
+            />
+          }
 
         </div>
         );
@@ -915,7 +944,10 @@ class App extends React.Component {
             </div>
 
             {this.state.showProfile === true &&
-              <ProfileScreen handleShowProfile={this.handleShowProfile}/>
+              <ProfileScreen handleShowProfile={this.handleShowProfile}
+                handleSignOff={this.handleSignOff}
+              />
+              
             }
 
         </div>
