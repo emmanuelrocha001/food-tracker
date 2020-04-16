@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6ef1fb16d801de34d97fa652ee4c472a",
+    "revision": "a46df61bf6eb312fa8a344730fed4f61",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "b8cd9198125da86ad60f",
-    "url": "/food-tracker/static/css/main.3451a400.chunk.css"
+    "revision": "092504d86eecd156157d",
+    "url": "/food-tracker/static/css/main.76e67695.chunk.css"
   },
   {
     "revision": "fe15e1115737cb3823a4",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/js/2.7284c0a6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b8cd9198125da86ad60f",
-    "url": "/food-tracker/static/js/main.232f811e.chunk.js"
+    "revision": "092504d86eecd156157d",
+    "url": "/food-tracker/static/js/main.8fab8bf3.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
@@ -46,10 +46,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "c037672a07169a9efca1c8591a6af561",
     "url": "/food-tracker/static/media/search.c037672a.png"
-  },
-  {
-    "revision": "969b3ee8b1e34abf6bd98f540e273ddc",
-    "url": "/food-tracker/static/media/user.969b3ee8.png"
   },
   {
     "revision": "f23ae7b370d850b2bafc8491456641cd",
