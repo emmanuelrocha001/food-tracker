@@ -33,21 +33,27 @@ html {
 
 
 .Header{
-  background: #FEFEFE;
-  padding-top: 30px;
+  padding-top: 15px;
   z-index: 50;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   width: 100%;
+  max-height: 50px;
   text-align: center;
   color: #35CFFF;
   background:#324A5E;
   background: #393e46;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  display: inline-block;
 }
 
 
 
 h1 {
-  font-size: 55px;
+  font-size: 40px;
+  float: left;
   padding: none;
   display: inline-block;
   margin-top: 0px;
@@ -55,14 +61,65 @@ h1 {
   /* color: #FF7F23; */
   color: #35CFFF;
   color: #f3c623;
-  /* background: #393e46; */
 
 }
+
+
 .Logo{
-  margin-left: 15px;
+  float: left;
+  margin-left: 10%;
   width: 40px;
+  margin-right: 10px;
+
 }
 
+.UserIconHeader{
+  width: 50px;
+  height: 50px;
+  
+  background:#fff url(./user.png) no-repeat ;
+  border-radius: 50%;
+  /* border: 3px solid #848484; */
+  /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
+  background-size: 100%;
+  /* background: red; */
+  float: right;
+  margin-right: 10%;
+}
+
+.UserNameHeader {
+  float: right;
+  color: #f3c623;
+  font-size: 16px;
+  margin-right: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+
+}
+
+
+.UserIconHeader:hover {
+  width: 55px;
+  height: 55px
+}
+
+.User{
+  /* float: right;
+  margin-right: 20%; */
+  /* clip-path: circle(35px at 50% 50%); */
+  border-radius: 50px;
+  border: 4px solid #393e46;
+  width: 70px;
+  height: 70px;
+}
+
+@media only screen and (max-device-width: 450px){
+  .UserNameHeader {
+    font-size: 0px;
+
+  }
+
+}
 .Greeting {
   /* margin-top: 10px; */
   /* background: red; */
@@ -320,6 +377,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   float: right;
 }
 
+
 /* Meal container components  -----------------------------------------------------*/
 
 
@@ -530,6 +588,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
     height: 600px;
   }
 
+
   .NutrientLeft {
     font-size: 11px;
     color: #343434;
@@ -570,6 +629,68 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 /* external screen components -----------------------------------------------------*/
+
+
+/* Profile screen components --------------------------------------------*/
+
+
+.ProfileScreenPic {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background:#fff url(./user.png) no-repeat ;
+  border-radius: 50%;
+  border: 10px solid #F2F2F2;
+  /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
+  background-size: 100%;
+  margin-top: 80px;
+  /* background: red; */
+
+}
+
+
+.ProfileContentContainer {
+  margin: auto;
+  margin-top: 40px;
+  background: #F2F2F2;
+  width: 80%;
+
+}
+
+.LeftProfile {
+  color: #343434;
+
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 10%;
+  float: left;
+
+}
+
+.ProfileInfoContainer {
+  width: 90%;
+  background: #F2F2F2;
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.RightProfile {
+  float: left;
+  margin-left: 15%;
+  color: #343434;
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background: purple; */
+  /* float: right; */
+}
+
+
+
+/* Profile screen components --------------------------------------------*/
 
 
 .SearchBar {

@@ -12,7 +12,7 @@ import right from './right-arrow.png'
 import plus from './plus.png'
 import cross from './cross.png'
 import search from './search.png'
-import user from './user.png'
+import user from './user.jpg'
 import lock from './lock.png'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
@@ -460,6 +460,44 @@ function NutritionScreen(props) {
 
 }
 
+function ProfileScreen(props) {
+
+  return(
+    <div className="ExternalScreen">
+      <div className="ExitButtonContainer">
+        <img className="ExitButton" src={cross} onClick={props.handleShowProfile}></img>
+      </div>
+
+    <div className="ProfileScreenPic" ></div>
+
+
+    <div className="ProfileContentContainer">
+
+
+      <div className="ProfileInfoContainer">
+        <p className="RightProfile">Name: {props.user["name"]}</p>
+      </div>
+
+      <div className="ProfileInfoContainer">
+        <p className="RightProfile">Email: {props.user["email"]}</p>
+      </div>
+
+      <div className="ProfileInfoContainer">
+        <p className="RightProfile">ID: {props.user["userId"]}</p>
+      </div>
+      
+    </div>
+
+
+    
+    </div>
+
+  );
+
+
+
+
+}
 
 function SignInScreen(props) {
 
@@ -528,6 +566,10 @@ function SignInScreen(props) {
           <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange}/>
         </div>
 
+        <div className="InfoContainer">
+          <input className="InfoInput" type="file" />
+        </div>
+
         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
 
         { props.error != '' &&
@@ -570,18 +612,21 @@ class App extends React.Component {
       currentMeal: "",
       loginError: "",
       successMessage: "",
-      haveAccount: true
+      haveAccount: true,
+      showProfile: false
     }
 
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDateDecrement = this.handleDateDecrement.bind(this);
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
+
+    // screen toggles
     this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
     this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
     this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
     this.handleHaveAccountToggle = this.handleHaveAccountToggle.bind(this);
-
+    this.handleShowProfile = this.handleShowProfile.bind(this);
     // input handlers
     this.handleEmailInputChange = this.handleEmailInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
@@ -620,31 +665,39 @@ class App extends React.Component {
   }
 
   handleSignUp() {
+    if( this.state.firstNameInput === '' || this.state.lastNameInput === '' || this.state.emailInput === '' || this.state.passwordInput === '') {
+      this.setState({
+        loginError: "Please make sure all fields are filled in"
+      });
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        email: this.state.emailInput, 
-        password: this.state.passwordInput, 
-        firstName: this.state.firstNameInput, 
-        lastName: this.state.lastNameInput })
-    };
+    } else {
 
-    fetch(foodAPIURL+'/user/signup', requestOptions)
-    .then(response => response.json()).then( data => {
-      if(data["successful"] === false){
-        this.setState({
-          loginError: data["message"]
-        });
-      } else{
-        this.setState({
-          successMessage: data["message"],
-          loginError: "",
-          haveAccount: true
-        });
-      }
-    })
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email: this.state.emailInput, 
+          password: this.state.passwordInput, 
+          firstName: this.state.firstNameInput, 
+          lastName: this.state.lastNameInput })
+      };
+  
+      fetch(foodAPIURL+'/user/signup', requestOptions)
+      .then(response => response.json()).then( data => {
+        if(data["successful"] === false){
+          this.setState({
+            loginError: data["message"]
+          });
+        } else{
+          this.setState({
+            successMessage: data["message"],
+            loginError: "",
+            haveAccount: true
+          });
+        }
+      })
+
+    }
   }
 
 
@@ -671,6 +724,12 @@ class App extends React.Component {
   handlePasswordInputChange(event){
     this.setState({
       passwordInput: event.target.value
+    });
+  }
+
+  handleShowProfile() {
+    this.setState({
+      showProfile: !this.state.showProfile
     });
   }
 
@@ -750,20 +809,22 @@ class App extends React.Component {
 
   render() {
 
-    if(this.state.showItemAddition === true || this.state.expandItem === true || this.state.currentUser === null ) {
+    if(this.state.showItemAddition === true || this.state.expandItem === true || this.state.currentUser === null || this.state.showProfile === true) {
       return (
         <div className="App">
 
           <div className="ContainerDark">
             <div className="Header">
-              <h1>FoodPal</h1>
               <img className="Logo" src={logo}></img>
+
+              <div className="UserIconHeader" ></div>
+              {this.state.currentUser !== null &&
+                <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
+              }
+
             </div>
 
-            {this.state.currentUser !== null &&
-                <Greeting userName={this.state.currentUser["name"]}/>
-
-            }
+            
 
             <DatePicker currentDate={this.state.selectedDate}
               handleDateChange={this.handleDateChange}
@@ -797,6 +858,7 @@ class App extends React.Component {
             />
           }
 
+
           {this.state.showItemAddition === true &&
             <ItemAdditionScreen
               userInput={this.state.userInput}
@@ -815,6 +877,10 @@ class App extends React.Component {
             />
           }
 
+            {this.state.showProfile === true &&
+              <ProfileScreen user={this.state.currentUser} handleShowProfile={this.handleShowProfile}/>
+            }
+
         </div>
         );
     } else {
@@ -824,13 +890,16 @@ class App extends React.Component {
           <div className="App">
             <div className="LightContainer">
               <div className="Header">
-                <h1>FoodPal</h1>
                 <img className="Logo" src={logo}></img>
+                <h1>FoodPal</h1>
+                  <div className="UserIconHeader" onClick={this.handleShowProfile} ></div>
+                  {this.state.currentUser !== null &&
+                    <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
+                  }
+
               </div>
 
-              {this.state.currentUser !== null &&
-                <Greeting userName={this.state.currentUser["name"]}/>
-              }
+
 
               <DatePicker currentDate={this.state.selectedDate}
                 handleDateChange={this.handleDateChange}
@@ -845,23 +914,8 @@ class App extends React.Component {
               />
             </div>
 
-            {this.state.showItemAddition === true &&
-              <ItemAdditionScreen
-                userInput={this.state.userInput}
-                handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
-                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
-
-              />
-            }
-
-            {this.state.expandItem === true &&
-              <ItemExpandedScreen
-                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
-                currentMeal={this.state.currentMeal}
-                showItemAddition={this.state.showItemAddition}
-                handleNutritionScreenToggle={this.handleNutritionScreenToggle}
-                showNutrition={this.state.showNutrition}
-              />
+            {this.state.showProfile === true &&
+              <ProfileScreen handleShowProfile={this.handleShowProfile}/>
             }
 
         </div>
