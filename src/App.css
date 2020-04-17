@@ -674,7 +674,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 .ProfileScreenPic {
   width: 150px;
   height: 150px;
-  background:#fff url(./user.jpg) no-repeat ;
+  background:#fff url('https://food-tracker-api-storage.s3.us-east-2.amazonaws.com/2020-04-17T09-14-40.158Zsydney.png') no-repeat ;
   border-radius: 50%;
   border: 15px solid #F2F2F2;
   /* filter: drop-shadow( 2px 2px 5px 5px #848484); */

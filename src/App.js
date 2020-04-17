@@ -14,6 +14,7 @@ import cross from './cross.png'
 import search from './search.png'
 import user from './user.jpg'
 import lock from './lock.png'
+import {createUseStyles} from 'react-jss'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 // const foodAPIURL = 'https://localhost:5000'
 
@@ -461,7 +462,10 @@ function NutritionScreen(props) {
 
 }
 
+
 function ProfileScreen(props) {
+
+
 
   return(
     <div className="ExternalScreen">
