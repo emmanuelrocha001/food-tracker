@@ -466,7 +466,7 @@ function NutritionScreen(props) {
 function ProfileScreen(props) {
 
 
-
+  var url = props.user["avatar"];
   return(
     <div className="ExternalScreen">
       <div className="ExitButtonContainer">
@@ -474,7 +474,7 @@ function ProfileScreen(props) {
       </div>
 
     <div className="ProfileScreenPicContainer">
-      <div className="ProfileScreenPic" ></div>
+      <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
     </div>
 
 
@@ -491,6 +491,10 @@ function ProfileScreen(props) {
 
       <div className="ProfileInfoContainer">
         <p className="RightProfile">ID: {props.user["userId"]}</p>
+      </div>
+
+      <div className="ProfileInfoContainer">
+        <p className="RightProfile">URL: {props.user["avatar"]}</p>
       </div>
       
     </div>
@@ -757,6 +761,7 @@ class App extends React.Component {
 
   handleEmailInputChange(event){
     // alert(event.target.value);
+
     this.setState({
       emailInput: event.target.value
     });
@@ -770,6 +775,7 @@ class App extends React.Component {
   }
 
   handleShowProfile() {
+//    alert(thing);
     this.setState({
       showProfile: !this.state.showProfile
     });
@@ -859,7 +865,14 @@ class App extends React.Component {
             <div className="Header">
               <img className="Logo" src={logo}></img>
 
-              <div className="UserIconHeader" ></div>
+              {this.state.currentUser === null &&
+                <div className="UserIconHeader" style={{background: "grey"}}></div>
+              }
+              
+              {this.state.currentUser !== null &&
+                <div className="UserIconHeader" style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
+              }
+
               {this.state.currentUser !== null &&
                 <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
               }
@@ -938,7 +951,10 @@ class App extends React.Component {
               <div className="Header">
                 <img className="Logo" src={logo}></img>
                 <h1>FoodPal</h1>
-                  <div className="UserIconHeader" onClick={this.handleShowProfile} ></div>
+
+                  {this.state.currentUser !== null &&
+                    <div className="UserIconHeader" onClick={this.handleShowProfile} style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
+                  }
                   {this.state.currentUser !== null &&
                     <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
                   }
