@@ -710,24 +710,44 @@ class App extends React.Component {
 
     } else {
 
+      // const requestOptions = {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ 
+      //     email: this.state.emailInput, 
+      //     password: this.state.passwordInput, 
+      //     firstName: this.state.firstNameInput, 
+      //     lastName: this.state.lastNameInput,
+      //     avatar: this.state.profilePicInput
+      //    })
+      // };
+
+      const form = new FormData();
+      form.append("email", this.state.emailInput);
+      form.append("password", this.state.passwordInput);
+      form.append("firstName", this.state.firstNameInput);
+      form.append("lastName", this.state.lastNameInput);
+      form.append("avatar", this.state.profilePicInput);
+
       const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          email: this.state.emailInput, 
-          password: this.state.passwordInput, 
-          firstName: this.state.firstNameInput, 
-          lastName: this.state.lastNameInput,
-          profilePic: this.state.profilePicInput
-         })
+        body: form,
+        mode: 'cors'
       };
+
   
       fetch(foodAPIURL+'/user/signup', requestOptions)
       .then(response => response.json()).then( data => {
         if(data["successful"] === false){
-          this.setState({
-            loginError: data["message"]
-          });
+          if(data["message"] !== null) {
+            this.setState({
+              loginError: data["message"]
+            });
+          } else {
+            this.setState({
+              loginError: "Account failed to be created."
+            });
+          }
         } else{
           console.log(data);
           this.setState({
