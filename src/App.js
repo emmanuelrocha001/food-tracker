@@ -69,8 +69,6 @@ function DatePicker(props){
 
       </div>
         <div className="CalendarContainer">
-          <div className='CalendarInside'>
-          </div>
           <input onChange={props.handleDateChange} className="Calendar" type="date"/>
         </div>
     </div>
