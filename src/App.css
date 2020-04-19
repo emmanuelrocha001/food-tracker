@@ -260,12 +260,11 @@ h1 {
   background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  
-
 
 }
 
 .CalendarContainer {
+  margin-top: 20px;
   display: grid;
   width: 100%;
 
@@ -798,36 +797,53 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
 
 .ProfileContentContainer {
   margin: auto;
-  margin-top: 40px;
-  background: #F2F2F2;
-  width: 80%;
-
+  margin-top: 30px;
+  /* background: #F2F2F2; */
+  width: 100%;
+  display: block;
 }
 
 .LeftProfile {
-  color: #343434;
 
+  width: 60px;
+
+
+  width: 20%;
+  color: white;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  
   font-size: 16px;
   margin-bottom: 0px;
   margin-top: 0px;
-  margin-left: 10%;
   float: left;
-
+  background: red;
+  height: 100%;
+  /* text-align: end; */
+  background: #AAAAAA;
+  color: white;
 }
 
 .ProfileInfoContainer {
-  width: 90%;
+  width: 85%;
+  height: 25px;
   background: #F2F2F2;
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
+
 .RightProfile {
+  margin-left: 5%;
+  width: 70%;
+  height: 100%;
   float: left;
-  margin-left: 15%;
   color: #343434;
+  display: flex;
+  align-items: center;
   font-size: 16px;
   margin-bottom: 0px;
   margin-top: 0px;

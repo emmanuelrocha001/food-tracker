@@ -491,15 +491,19 @@ function ProfileScreen(props) {
 
 
       <div className="ProfileInfoContainer">
-        <p className="RightProfile">Name: {props.user["name"]} {props.user["lastName"]}</p>
+        <div className="LeftProfile">Name</div>
+        <p className="RightProfile">{props.user["name"]} {props.user["lastName"]}</p>
       </div>
 
       <div className="ProfileInfoContainer">
-        <p className="RightProfile">Email: {props.user["email"]}</p>
+        <div className="LeftProfile">Email</div>
+
+        <p className="RightProfile">{props.user["email"]}</p>
       </div>
 
       <div className="ProfileInfoContainer">
-        <p className="RightProfile">ID: {props.user["userId"]}</p>
+        <div className="LeftProfile">ID</div>
+        <p className="RightProfile">{props.user["userId"]}</p>
       </div>
 
       
