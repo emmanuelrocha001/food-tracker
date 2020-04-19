@@ -7,10 +7,12 @@ import {
 import $ from 'jquery';
 // app assets
 import logo from './diet.png'
-import left from './left-arrow.png'
-import right from './right-arrow.png'
+import left from './left-arrow.svg'
+import right from './right-arrow.svg'
 import plus from './plus.png'
-import cross from './cross.png'
+// import cross from './cross.png'
+import cross from './close.svg'
+
 import search from './search.png'
 import user from './user.jpg'
 import lock from './lock.png'
@@ -52,19 +54,26 @@ function DatePicker(props){
   }
 
   return (
-    <div className="DateContainer">
+    
+    <div className="CalendarDateContainer">
+      <div className="DateContainer">
+        <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
+          <img className="ArrowButton" src={left}>
+          </img>
+        </div>
+        <div className="CurrentDate">{actualDateString}</div>
+        <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
+          <img className="ArrowButton" src={right}>
+          </img>
+        </div>
 
-      <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
-        <img className="ArrowButton" src={left}>
-        </img>
       </div>
-      <div className="CurrentDate">{actualDateString}</div>
-      <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
-        <img className="ArrowButton" src={right}>
-        </img>
-      </div>
-      <input onChange={props.handleDateChange} className="Calendar" type="date"/>
-  </div>
+        <div className="CalendarContainer">
+          <div className='CalendarInside'>
+          </div>
+          <input onChange={props.handleDateChange} className="Calendar" type="date"/>
+        </div>
+    </div>
   );
 }
 
@@ -95,12 +104,14 @@ function Meal(props){
         isStatic={false}
       />
       <div className="AddButtonContainer">
-        <img
-          className="AddButton"
-          src={plus}
-          onClick={props.handleItemAdditionScreenToggle}
-        >
-        </img>
+        <div className="AddButtonOuter">
+          <img
+            className="AddButton"
+            src={cross}
+            onClick={props.handleItemAdditionScreenToggle}
+          >
+          </img>
+        </div>
 
       </div>
 
@@ -470,7 +481,7 @@ function ProfileScreen(props) {
   return(
     <div className="ExternalScreen">
       <div className="ExitButtonContainer">
-        <img className="ExitButton" src={cross} onClick={props.handleShowProfile}></img>
+          <img className="ExitButton" src={cross} onClick={props.handleShowProfile}></img>
       </div>
 
     <div className="ProfileScreenPicContainer">
@@ -493,9 +504,6 @@ function ProfileScreen(props) {
         <p className="RightProfile">ID: {props.user["userId"]}</p>
       </div>
 
-      <div className="ProfileInfoContainer">
-        <p className="RightProfile">URL: {props.user["avatar"]}</p>
-      </div>
       
     </div>
 
@@ -518,10 +526,12 @@ function SignInScreen(props) {
   if( props.haveAccount === true ) {
     return(
 
-      <div className="ExternalScreen">
+      <div className="ExternalScreen" >
       <div className="ExternalTop"></div>
       <div className="ExternalCenter">
-        <img className="LogoIsolated" src={logo}></img>
+        <div className="LogoIsolatedContainer">
+          <img className="LogoIsolated" src={logo}></img>
+        </div>
         <p className="ExternalTitle">Sign In</p>
 
 

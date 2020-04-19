@@ -39,14 +39,20 @@ html {
   width: 100%;
   max-height: 50px;
   text-align: center;
-  color: #35CFFF;
-  background:#324A5E;
   background: #393e46;
   border-top: none;
   border-left: none;
   border-right: none;
 
   display: inline-block;
+
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  
 }
 
 
@@ -61,6 +67,7 @@ h1 {
   /* color: #FF7F23; */
   color: #35CFFF;
   color: #f3c623;
+  /* color: #606c88; */
 
 }
 
@@ -142,15 +149,16 @@ h1 {
   background: #FEFEFE;
   /* background: red; */
   /* background: red; */
-  width: 80%;
-  max-width: 700px;
+  /* max-width: 700px; */
 
-  /* background: red; */
   padding-top: 10px;
-  padding-bottom: 30px;
-  margin-top: 5px;
-  margin-bottom: 30px;
-  display: inline-block;
+  padding-bottom: 10px;
+  height: 40px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* background: red; */
   color: #f3c623;
   font-size: 22px;
@@ -180,50 +188,94 @@ h1 {
 
   color: white;
   padding-top: 0px;
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 33px;
-  max-height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  
+  max-width: 45px;
+  max-height: 45px;
+
+  border-radius: 50%;
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  transition-duration: .15s;
 
 
 }
 
 .ArrowButton {
-  margin: auto;
-  width: 33px;
-  height: 33px;
-  display: block;
+  width: 20px;
+  height: 20px;
   transition-duration: .15s;
 }
 
 .ArrowButton:hover {
-  width: 38px;
-  height: 38px;
+  /* width: 30px;
+  height: 30px; */
+}
+
+.ArrowButtonContainer:hover {
+  width: 40px;
+  height: 40px;
 }
 
 
 .CurrentDate:Hover {
-  filter: brightness(85%);
+  /* filter: brightness(85%); */
 }
 
 
 
 
 .Calendar {
-  background:#fff url(./calendar.png) no-repeat ;
+  background: url(./calendar.svg) no-repeat ;
   background-size: 100%;
-  width: 27px;
-  height: 27px;
-  display: block;
-  margin: auto;
-  margin-top: 30px;
+  width: 30px;
+  height: 30px;
   border: none;
   font-family: 'Roboto', sans-serif;
-
+  position: relative;
+  left: 50%;
+  top: -50%;
+  transform: translate(-50%, 0%);
   /* background: red; */
 
 }
 
+.CalendarInside {
+  width: 29px;
+  height: 20px;
+  position: relative;
+  /* top: 50%; */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 23%);
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  
+
+
+}
+
+.CalendarContainer {
+  display: grid;
+  width: 100%;
+
+}
+.CalendarDateContainer{
+  width: 100%;
+  margin-bottom: 20px;
+  /* height: 200px; */
+
+}
 .Calendar:focus {
   outline-width: 0;
 
@@ -275,10 +327,28 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .AddButton {
-  width: 30px;
-  height: 30px;
-  margin: auto;
+  width: 15px;
+  height: 15px;
   transition-duration: .25s;
+  transform: rotateZ(45deg);
+
+}
+.AddButtonOuter {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+  
 
 }
 
@@ -292,6 +362,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
   background: #eeeeee;
   background: #F2F2F2;
+  /* background: red; */
 
   /* background: #393e46; */
 
@@ -382,14 +453,33 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 /* external screen components -----------------------------------------------------*/
-  .ExitButton{
+.ExitButton{
   /* background: red; */
-  width: 33px;
-  height: 33px;
-  margin: 15px;
+  width: 18px;
+  height: 18px;
   transition-duration: .25s;
+
 }
 
+
+.ExitButtonContainer {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  /* border-top-left-radius: 30px; */
+  /* border-top-right-radius: 30px; */
+  align-items: center;
+  justify-content: center;
+  color: #f3c623;
+  background: #393e46;
+
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  
+}
 
 .ExternalButton {
   position: absolute;
@@ -401,6 +491,12 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   text-align: center;
   color: #f3c623;
   background: #393e46;
+
+
+  background: #606c88; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 
@@ -408,7 +504,8 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 .ExternalButton:Hover {
 
   background: #f3c623;
-  color: #393e46;
+  color: #606c88;
+ 
 
 }
 
@@ -423,20 +520,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   left: 50%;
   transform: translate(-50%, -50%);
 
-}
-
-.ExitButtonContainer {
-  position: absolute;
-  width: 100%;
-  height: 60px;
-  top: 0;
-  /* border-top-left-radius: 30px; */
-  /* border-top-right-radius: 30px; */
-  text-align: center;
-  color: #f3c623;
-  background: #393e46;
 
 }
+
+
 
 
 .ExternalScreen {
@@ -561,12 +648,23 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 .LogoIsolated{
-  background: #393e46;
-  padding: 20px;
-  border-radius: 60px;
   width: 50px;
   height: 50px;
-  margin-bottom: 20px;
+}
+.LogoIsolatedContainer {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 30px;
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .InfoInput{
@@ -587,8 +685,14 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   /* border-top-left-radius: 30px; */
   /* border-top-right-radius: 30px; */
   text-align: center;
+
   color: #f3c623;
   background: #393e46;
+
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
 
@@ -656,26 +760,35 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .ProfileScreenPicContainer {
   margin: auto;
-  background: #f3c623;
+  background: #D7D7D7;
+
   align-items: center;
   justify-content: center;
   display: flex;
-  width: 190px;
-  height: 190px;
+  width: 185px;
+  height: 185px;
   border-radius: 50%;
-  margin-top: 80px;
-
-  /* border: 10px solid #393e46; */
+  margin-top: 20px;
 
 
+  /*fancy gradient*/
   
+  background: #6441A5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  
+  background: #606c88;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .ProfileScreenPic {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 15px solid #F2F2F2;
+  border: 10px solid white;
   /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
   background-size: 100%;
   /* background: red; */
@@ -978,7 +1091,7 @@ option {
 }
 
 .AddButton:hover, .ExitButton:hover{
-  transform: rotateZ(90deg);
+  transform: rotateZ(135deg);
 
 }
 
