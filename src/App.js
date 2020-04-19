@@ -566,7 +566,9 @@ function SignInScreen(props) {
       <div className="ExternalScreen">
       <div className="ExternalTop"></div>
       <div className="ExternalCenter">
-        <img className="LogoIsolated" src={logo}></img>
+        <div className="LogoIsolatedContainer">
+          <img className="LogoIsolated" src={logo}></img>
+        </div>
         <p className="ExternalTitle">Sign Up</p>
 
 
