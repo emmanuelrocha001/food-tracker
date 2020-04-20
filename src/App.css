@@ -339,7 +339,8 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
   background: #606c88;  /* fallback for old browsers */
   background: #F2F2F2;
-  transition-duration: .125s;
+  transition-duration: 0s;
+  
 
   
 
@@ -347,10 +348,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .AddButtonOuter:hover {
 
-  width: 40px;
-  height: 40px;
-  background: #606c88;  /* fallback for old browsers */
-
+  /* width: 40px;
+  height: 40px; */
+  /* background: #606c88;  fallback for old browsers */
+  border: 4px solid #606c88; 
 }
 
 

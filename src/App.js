@@ -120,15 +120,14 @@ function Meal(props){
 
 
       <div className="AddButtonContainer">
-        <div className="AddButtonOuter">
-          <Button
-            styleClassName="Add" 
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={cross} 
-            actionHandler={props.handleItemAdditionScreenToggle}
-          />
-        </div>
+        <Button
+          styleClassName="Add" 
+          containerSize="32px"
+          imageSize="16px"
+          imageSource={cross}
+          styleClassNameOuter="AddButtonOuter" 
+          actionHandler={props.handleItemAdditionScreenToggle}
+        />
 
 
         {/* <div className="AddButtonOuter">
@@ -526,9 +525,14 @@ function ExternalScreenTop(props) {
 
 function Button(props) {
 
+
+  var class_name = "ButtonOutside"
+  if(props.styleClassNameOuter != null) {
+    class_name = props.styleClassNameOuter;
+  }
   return(
 
-    <div className="ButtonOutside" onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: "#FEFEFE", borderRadius: "50%", transitionDuration: ".25s"}} >
+    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: "#FEFEFE", borderRadius: "50%", transitionDuration: "0s"}} >
       <img
         className={props.styleClassName}
         src={props.imageSource} 
