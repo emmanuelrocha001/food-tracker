@@ -185,25 +185,20 @@ h1 {
 }
 
 .ArrowButtonContainer {
-
   color: white;
   padding-top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   
   max-width: 45px;
   max-height: 45px;
 
   border-radius: 50%;
-
-  background: #606c88;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   transition-duration: .15s;
+  background: #FEFEFE;
 
 
 }
@@ -222,6 +217,7 @@ h1 {
 .ArrowButtonContainer:hover {
   width: 40px;
   height: 40px;
+  background: #606c88;
 }
 
 
@@ -337,23 +333,30 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
 
   background: #606c88;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+  background: #F2F2F2;
+  transition-duration: .125s;
 
   
 
 }
 
+.AddButtonOuter:hover {
+
+  width: 40px;
+  height: 40px;
+  background: #606c88;  /* fallback for old browsers */
+
+}
+
+
 .AddButtonContainer {
   width: 100%;
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
   align-content: center;
@@ -362,9 +365,15 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   background: #eeeeee;
   background: #F2F2F2;
   /* background: red; */
+  transition-duration: .25s;
+
+  /* background: red; */
 
   /* background: #393e46; */
 
+}
+.Add{
+  margin: auto;
 
 }
 
@@ -452,32 +461,85 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 /* external screen components -----------------------------------------------------*/
-.ExitButton{
-  /* background: red; */
-  width: 18px;
-  height: 18px;
+.ExitButtonContainer {
+  /* background: green; */
+  left: 85%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.ButtonOutside {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition-duration: .25s;
 
 }
 
+.ButtonOutside:hover {
+  /* filter: brightness(85%); */
+}
+.Exit {
+  transition-duration: .25s;
+}
+.Exit:hover {
+  transform: rotateZ(90deg);
+}
 
-.ExitButtonContainer {
+.Add {
+  transition-duration: .25s;
+  transform: rotateZ(45deg);
+}
+
+/* .Add:hover {
+  transform: rotateZ(135deg);
+} */
+/* .ExitButton{
+  width: 18px;
+  height: 18px;
+  position: fixed;
+
+} */
+
+.ExternalScreenTitle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 175px;
+  border-radius: 30px;
+  font-size: 17px;
+  /* font-weight: bold; */
+  height: 30px;
+  text-align: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background: white;
+  color: #606c88;
+  margin-top: 30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ExternalScreenTop {
   width: 100%;
   height: 60px;
   /* border-top-left-radius: 30px; */
   /* border-top-right-radius: 30px; */
-  align-items: center;
-  justify-content: center;
   color: #f3c623;
   background: #393e46;
+  display: fixed;
 
 
   background: #606c88;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  
 }
 
 .ExternalButton {
@@ -542,7 +604,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .ExternalCenter{
   /* position: absolute; */
-  margin-top: 80px;
+  margin-top: 30px;
   /* transform: translate(0%, -50%); */
   width: 100%;
   height: 400px;
@@ -658,7 +720,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   align-items: center;
   justify-content: center;
   margin: auto;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 
   background: #606c88;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
@@ -675,25 +737,6 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 }
 
-
-.ExternalTop {
-  position: absolute;
-  width: 100%;
-  height: 60px;
-  top: 0;
-  /* border-top-left-radius: 30px; */
-  /* border-top-right-radius: 30px; */
-  text-align: center;
-
-  color: #f3c623;
-  background: #393e46;
-
-  background: #606c88;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-}
 
 .ExternalScreenContent {
   margin-top: 70px;
@@ -803,20 +846,26 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
   display: block;
 }
 
+.ProfileInfoContainer {
+  width: 85%;
+  height: 35px;
+  background: #F2F2F2;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .LeftProfile {
 
   width: 60px;
-
-
   width: 20%;
-  color: white;
   /* display: inline-block; */
   /* vertical-align: middle; */
   display: flex;
   align-items: center; 
   justify-content: center;
   
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 0px;
   margin-top: 0px;
   float: left;
@@ -824,17 +873,11 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
   height: 100%;
   /* text-align: end; */
   background: #AAAAAA;
-  color: white;
+  color: #606c88;
+  background: rgb(214, 214, 214);
+
 }
 
-.ProfileInfoContainer {
-  width: 85%;
-  height: 25px;
-  background: #F2F2F2;
-  display: inline-block;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
 
 .RightProfile {
   margin-left: 5%;
@@ -844,7 +887,7 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
   color: #343434;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 0px;
   margin-top: 0px;
   /* background: purple; */

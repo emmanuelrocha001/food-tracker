@@ -57,14 +57,30 @@ function DatePicker(props){
     
     <div className="CalendarDateContainer">
       <div className="DateContainer">
-        <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
+        <div className="ArrowButtonContainer">
+          <Button
+            containerSize="32px"
+            imageSize="16px"
+            imageSource={left} 
+            actionHandler={props.handleDateDecrement}
+          />
+        </div>
+        {/* <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
           <img className="ArrowButton" src={left}>
           </img>
-        </div>
+        </div> */}
         <div className="CurrentDate">{actualDateString}</div>
-        <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
+        {/* <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
           <img className="ArrowButton" src={right}>
           </img>
+        </div> */}
+        <div className="ArrowButtonContainer">
+          <Button
+            containerSize="32px"
+            imageSize="16px"
+            imageSource={right} 
+            actionHandler={props.handleDateIncrement}
+          />
         </div>
 
       </div>
@@ -101,15 +117,28 @@ function Meal(props){
         mealName={props.mealTitle}
         isStatic={false}
       />
+
+
       <div className="AddButtonContainer">
         <div className="AddButtonOuter">
+          <Button
+            styleClassName="Add" 
+            containerSize="32px"
+            imageSize="16px"
+            imageSource={cross} 
+            actionHandler={props.handleItemAdditionScreenToggle}
+          />
+        </div>
+
+
+        {/* <div className="AddButtonOuter">
           <img
             className="AddButton"
             src={cross}
             onClick={props.handleItemAdditionScreenToggle}
           >
           </img>
-        </div>
+        </div> */}
 
       </div>
 
@@ -250,9 +279,14 @@ function ItemExpandedScreen(props) {
     return(
       <div className="ExternalScreen">
 
-        <div className="ExitButtonContainer">
-          <img className="ExitButton" src={cross} onClick={props.handleItemExpandScreenToggle}></img>
-        </div>
+
+        {props.currentMeal === "" &&
+          <ExternalScreenTop screenTitle="Add Entry" exitHandler={props.handleItemExpandScreenToggle}/>
+        }
+
+        {props.currentMeal !== "" &&
+          <ExternalScreenTop screenTitle="Edit Entry" exitHandler={props.handleItemExpandScreenToggle}/>
+        }
 
           <div className="ExternalScreenContent">
 
@@ -335,9 +369,8 @@ function ItemAdditionScreen(props) {
 
   return(
     <div className="ExternalScreen">
-      <div className="ExitButtonContainer">
-        <img className="ExitButton" src={cross} onClick={props.handleItemAdditionScreenToggle}></img>
-      </div>
+      <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle}/>
+
 
 
       <div className="ExternalScreenContent">
@@ -471,6 +504,43 @@ function NutritionScreen(props) {
 
 }
 
+function ExternalScreenTop(props) {
+  return(
+    <div className="ExternalScreenTop">
+          <p className="ExternalScreenTitle">{props.screenTitle}</p>
+          {props.exitHandler !== null &&
+            <div className="ExitButtonContainer">
+              <Button
+                styleClassName="Exit" 
+                containerSize="32px"
+                imageSize="16px"
+                imageSource={cross} 
+                actionHandler={props.exitHandler}
+              />
+            </div>
+          }
+      </div>
+  );
+}
+
+
+function Button(props) {
+
+  return(
+
+    <div className="ButtonOutside" onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: "#FEFEFE", borderRadius: "50%", transitionDuration: ".25s"}} >
+      <img
+        className={props.styleClassName}
+        src={props.imageSource} 
+        style={{width: props.imageSize, height: props.imageSize}}
+        
+      >
+      </img>
+
+    </div>
+  );
+
+}
 
 function ProfileScreen(props) {
 
@@ -478,9 +548,8 @@ function ProfileScreen(props) {
   var url = props.user["avatar"];
   return(
     <div className="ExternalScreen">
-      <div className="ExitButtonContainer">
-          <img className="ExitButton" src={cross} onClick={props.handleShowProfile}></img>
-      </div>
+      <ExternalScreenTop screenTitle="Profile" exitHandler={props.handleShowProfile}/>
+
 
     <div className="ProfileScreenPicContainer">
       <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
@@ -529,13 +598,12 @@ function SignInScreen(props) {
     return(
 
       <div className="ExternalScreen" >
-      <div className="ExternalTop"></div>
+      <ExternalScreenTop screenTitle="Sign In" exitHandler={null}/>
+
       <div className="ExternalCenter">
         <div className="LogoIsolatedContainer">
           <img className="LogoIsolated" src={logo}></img>
         </div>
-        <p className="ExternalTitle">Sign In</p>
-
 
         <div className="InfoContainer">
           {/* <img className="UserNameIcon" src={user}></img> */}
@@ -568,12 +636,12 @@ function SignInScreen(props) {
     return(
 
       <div className="ExternalScreen">
-      <div className="ExternalTop"></div>
+      <ExternalScreenTop screenTitle="Sign Up" exitHandler={null}/>
+
       <div className="ExternalCenter">
         <div className="LogoIsolatedContainer">
           <img className="LogoIsolated" src={logo}></img>
         </div>
-        <p className="ExternalTitle">Sign Up</p>
 
 
         <div className="InfoContainer">
