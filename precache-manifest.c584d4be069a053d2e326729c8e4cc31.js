@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "be9a555abca4d1f98344ebb7399876f7",
+    "revision": "2df518c56e91b913b8fe5b14c056453d",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "d5a8a3571b8588008d40",
-    "url": "/food-tracker/static/css/main.69e856eb.chunk.css"
+    "revision": "b4e6d510f99d5a712475",
+    "url": "/food-tracker/static/css/main.eb15b38e.chunk.css"
   },
   {
     "revision": "a8fe317c3246b9d4331e",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/js/2.31103185.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d5a8a3571b8588008d40",
-    "url": "/food-tracker/static/js/main.a47326bc.chunk.js"
+    "revision": "b4e6d510f99d5a712475",
+    "url": "/food-tracker/static/js/main.054b580b.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
@@ -28,24 +28,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/media/calendar.b9323fd9.svg"
   },
   {
-    "revision": "7415ac54b8513097bb60857773a3d273",
-    "url": "/food-tracker/static/media/close.7415ac54.svg"
+    "revision": "7c7b7d1eb183c3a20334ad14a5c6011f",
+    "url": "/food-tracker/static/media/close.7c7b7d1e.svg"
   },
   {
     "revision": "cf35e2f9e810e53c10d058841598d7d3",
     "url": "/food-tracker/static/media/diet.cf35e2f9.png"
   },
   {
-    "revision": "e51c7575902303ecc6567738aaf9ac23",
-    "url": "/food-tracker/static/media/left-arrow.e51c7575.svg"
+    "revision": "d5f28d66bf5c43ede974c0dbe57a6f4b",
+    "url": "/food-tracker/static/media/left-arrow.d5f28d66.svg"
   },
   {
     "revision": "fbd996f1e26a7c9357643e3dfd7af0ba",
     "url": "/food-tracker/static/media/plus.fbd996f1.png"
   },
   {
-    "revision": "57e52470c1d30de9475570ec70476305",
-    "url": "/food-tracker/static/media/right-arrow.57e52470.svg"
+    "revision": "03316393af9fabaa70639fb51b04b41a",
+    "url": "/food-tracker/static/media/right-arrow.03316393.svg"
   },
   {
     "revision": "c037672a07169a9efca1c8591a6af561",
