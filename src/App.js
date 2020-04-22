@@ -16,9 +16,10 @@ import cross from './close.svg'
 import search from './search.png'
 import user from './user.jpg'
 import lock from './lock.png'
+import refresh from './refresh.svg'
 import {createUseStyles} from 'react-jss'
-const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 // const foodAPIURL = 'https://localhost:5000'
+const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -65,15 +66,7 @@ function DatePicker(props){
             actionHandler={props.handleDateDecrement}
           />
         </div>
-        {/* <div className="ArrowButtonContainer" onClick={props.handleDateDecrement}>
-          <img className="ArrowButton" src={left}>
-          </img>
-        </div> */}
         <div className="CurrentDate">{actualDateString}</div>
-        {/* <div className="ArrowButtonContainer" onClick={props.handleDateIncrement}>
-          <img className="ArrowButton" src={right}>
-          </img>
-        </div> */}
         <div className="ArrowButtonContainer">
           <Button
             containerSize="32px"
@@ -121,6 +114,7 @@ function Meal(props){
 
       <div className="AddButtonContainer">
         <Button
+          outerColor="#F2F2F2"
           styleClassName="Add" 
           containerSize="32px"
           imageSize="16px"
@@ -339,16 +333,14 @@ function ItemExpandedScreen(props) {
         </div>
 
 
-        <div className="ExternalButton" onClick={props.handleItemExpandScreenToggle}>
-          {props.showItemAddition === false &&
-          <p className="ExternalButtonText">Update</p>
-          }
+        {props.showItemAddition === false &&
+          <ExternalScreenBottom buttonText="Update" loadingExternal={props.loadingExternal} actionHandler={props.handleItemExpandScreenToggle} />
+          
+        }
+        {props.showItemAddition === true &&
+          <ExternalScreenBottom buttonText="Add" loadingExternal={props.loadingExternal} actionHandler={props.handleItemExpandScreenToggle} />
+        }
 
-          {props.showItemAddition === true &&
-          <p className="ExternalButtonText">Add</p>
-          }
-
-        </div>
 
 
 
@@ -522,17 +514,36 @@ function ExternalScreenTop(props) {
   );
 }
 
+function ExternalScreenBottom(props) {
+  return(
+    <div className="ExternalButton" onClick={props.actionHandler}>
+      {props.loadingExternal === true &&
+          <ExternalScreenLoading />
+      }
+      {props.loadingExternal === false &&
+        <p className="ExternalButtonText">{props.buttonText}</p>
+      }
+    </div>
+  );
+
+  
+}
+
 
 function Button(props) {
 
 
-  var class_name = "ButtonOutside"
+  var class_name = "ButtonOutside";
+  var outerColor = "white";
   if(props.styleClassNameOuter != null) {
     class_name = props.styleClassNameOuter;
   }
+  if(props.outerColor != null) {
+    outerColor = props.outerColor;
+  }
   return(
 
-    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: "#FEFEFE", borderRadius: "50%", transitionDuration: "0s"}} >
+    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
       <img
         className={props.styleClassName}
         src={props.imageSource} 
@@ -552,39 +563,34 @@ function ProfileScreen(props) {
   var url = props.user["avatar"];
   return(
     <div className="ExternalScreen">
+
       <ExternalScreenTop screenTitle="Profile" exitHandler={props.handleShowProfile}/>
 
-
-    <div className="ProfileScreenPicContainer">
-      <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
-    </div>
-
-
-    <div className="ProfileContentContainer">
-
-
-      <div className="ProfileInfoContainer">
-        <div className="LeftProfile">Name</div>
-        <p className="RightProfile">{props.user["name"]} {props.user["lastName"]}</p>
+      <div className="ProfileScreenPicContainer">
+        <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
       </div>
 
-      <div className="ProfileInfoContainer">
-        <div className="LeftProfile">Email</div>
 
-        <p className="RightProfile">{props.user["email"]}</p>
+      <div className="ProfileContentContainer">
+        <div className="ProfileInfoContainer">
+          <div className="LeftProfile">Name</div>
+          <p className="RightProfile">{props.user["name"]} {props.user["lastName"]}</p>
+        </div>
+
+        <div className="ProfileInfoContainer">
+          <div className="LeftProfile">Email</div>
+
+          <p className="RightProfile">{props.user["email"]}</p>
+        </div>
+
+        <div className="ProfileInfoContainer">
+          <div className="LeftProfile">ID</div>
+          <p className="RightProfile">{props.user["userId"]}</p>
+        </div>
       </div>
 
-      <div className="ProfileInfoContainer">
-        <div className="LeftProfile">ID</div>
-        <p className="RightProfile">{props.user["userId"]}</p>
-      </div>
+      <ExternalScreenBottom buttonText="Sign Out" loadingExternal={props.loadingExternal} actionHandler={props.handleSignOff} />
 
-      
-    </div>
-
-    <div className="ExternalButton" onClick={props.handleSignOff}>
-      <p className="ExternalButtonText">Sign Out</p>
-    </div>
 
     </div>
 
@@ -595,6 +601,14 @@ function ProfileScreen(props) {
 
 }
 
+function ExternalScreenLoading(props) {
+  return(
+    <div className="LoadingIconContainer">
+      <img src={refresh} className="LoadingIcon">
+      </img>
+    </div>
+  )
+}
 function SignInScreen(props) {
 
 
@@ -630,9 +644,9 @@ function SignInScreen(props) {
         }
 
       </div>
-      <div className="ExternalButton" onClick={props.handleSignIn}>
-        <p className="ExternalButtonText">Sign In</p>
-      </div>
+
+      <ExternalScreenBottom buttonText="Sign In" loadingExternal={props.loadingExternal} actionHandler={props.handleSignIn} />
+      
     </div>
 
     );
@@ -679,10 +693,8 @@ function SignInScreen(props) {
         }
 
       </div>
-      <div className="ExternalButton" onClick={props.handleSignUp} >
-        <p className="ExternalButtonText">Create Account</p>
+      <ExternalScreenBottom buttonText="Sign Up" loadingExternal={props.loadingExternal} actionHandler={props.handleSignUp} />
 
-      </div>
     </div>
 
     );
@@ -697,6 +709,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      loadingExternal: false,
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
@@ -743,6 +756,7 @@ class App extends React.Component {
 
   handleSignOff() {
     this.setState({
+      loadingExternal: false,
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
@@ -765,25 +779,43 @@ class App extends React.Component {
   }
 
   handleSignIn() {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: this.state.emailInput, password: this.state.passwordInput })
-    };
+    if(this.state.emailInput === '' || this.state.passwordInput === '') {
+      this.setState({
+        loginError: "Please make sure all fields are filled in"
+      });
 
-    fetch(foodAPIURL+'/user/login', requestOptions)
-    .then(response => response.json()).then( data => {
-      if(data["successful"] === false){
-        this.setState({
-          loginError: data["message"]
-        });
-      } else{
-        this.setState({
-          currentUser: data["user"]
-        });
-      }
-    })
-    .catch( error => console.log(error));
+    } else {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: this.state.emailInput, password: this.state.passwordInput })
+      };
+  
+      this.setState({
+        loadingExternal: true
+      });
+  
+      fetch(foodAPIURL+'/user/login', requestOptions)
+      .then(response => response.json()).then( data => {
+          this.setState({
+            loadingExternal: false
+          });
+  
+        if(data["successful"] === false){
+          this.setState({
+            loginError: data["message"],
+          });
+        } else{
+          this.setState({
+            currentUser: data["user"],
+          });
+        }
+      })
+      .catch( error => console.log(error));
+
+    }
+
+    
 
 
   }
@@ -796,17 +828,9 @@ class App extends React.Component {
 
     } else {
 
-      // const requestOptions = {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ 
-      //     email: this.state.emailInput, 
-      //     password: this.state.passwordInput, 
-      //     firstName: this.state.firstNameInput, 
-      //     lastName: this.state.lastNameInput,
-      //     avatar: this.state.profilePicInput
-      //    })
-      // };
+      this.setState({
+        loadingExternal: true
+      });
 
       const form = new FormData();
       form.append("email", this.state.emailInput);
@@ -824,10 +848,16 @@ class App extends React.Component {
   
       fetch(foodAPIURL+'/user/signup', requestOptions)
       .then(response => response.json()).then( data => {
+        this.setState({
+          loadingExternal: false
+        });
+
         if(data["successful"] === false){
           if(data["message"] !== null) {
             this.setState({
-              loginError: data["message"]
+              loginError: data["message"],
+              loadingExternal: false
+
             });
           } else {
             this.setState({
@@ -970,6 +1000,8 @@ class App extends React.Component {
           <div className="ContainerDark">
             <div className="Header">
               <img className="Logo" src={logo}></img>
+              <h1>FoodPal</h1>
+
 
               {this.state.currentUser === null &&
                 <div className="UserIconHeader" style={{background: "grey"}}></div>
@@ -1014,6 +1046,7 @@ class App extends React.Component {
               
               handleSignIn={this.handleSignIn}
               handleSignUp={this.handleSignUp}
+              loadingExternal={this.state.loadingExternal}
               error={this.state.loginError}
               successMessage={this.state.successMessage}
 
@@ -1026,6 +1059,8 @@ class App extends React.Component {
               userInput={this.state.userInput}
               handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
               handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              loadingExternal={this.state.loadingExternal}
+
             />
           }
 
@@ -1036,6 +1071,8 @@ class App extends React.Component {
               showItemAddition={this.state.showItemAddition}
               handleNutritionScreenToggle={this.handleNutritionScreenToggle}
               showNutrition={this.state.showNutrition}
+              loadingExternal={this.state.loadingExternal}
+
             />
           }
 
@@ -1043,6 +1080,8 @@ class App extends React.Component {
             <ProfileScreen user={this.state.currentUser} 
               handleShowProfile={this.handleShowProfile}
               handleSignOff={this.handleSignOff}
+              loadingExternal={this.state.loadingExternal}
+
             />
           }
 
@@ -1082,12 +1121,6 @@ class App extends React.Component {
               />
             </div>
 
-            {this.state.showProfile === true &&
-              <ProfileScreen handleShowProfile={this.handleShowProfile}
-                handleSignOff={this.handleSignOff}
-              />
-              
-            }
 
         </div>
           );
