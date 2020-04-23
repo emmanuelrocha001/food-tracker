@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b9d2b9a2a3efc13f0dadf2ae86c8025c",
+    "revision": "f370d7ec2220b5b2dc7a544ba133dd99",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "1320d1fdebd342119190",
-    "url": "/food-tracker/static/css/main.6061ea82.chunk.css"
+    "revision": "2ad8c167807ef7482dcd",
+    "url": "/food-tracker/static/css/main.39bdbd46.chunk.css"
   },
   {
     "revision": "6e2a6ff3353ab17af156",
@@ -16,48 +16,48 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/js/2.1d228d10.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1320d1fdebd342119190",
-    "url": "/food-tracker/static/js/main.a91863db.chunk.js"
+    "revision": "2ad8c167807ef7482dcd",
+    "url": "/food-tracker/static/js/main.a4560c25.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
     "url": "/food-tracker/static/js/runtime-main.76013246.js"
   },
   {
-    "revision": "b9323fd9872de7a63bbf513618024fce",
-    "url": "/food-tracker/static/media/calendar.b9323fd9.svg"
+    "revision": "dfe99ab47ef8c943c7c6a5bafc297a9e",
+    "url": "/food-tracker/static/media/calendar.dfe99ab4.svg"
   },
   {
-    "revision": "7c7b7d1eb183c3a20334ad14a5c6011f",
-    "url": "/food-tracker/static/media/close.7c7b7d1e.svg"
+    "revision": "61970edc75c9cb11415819f38c204951",
+    "url": "/food-tracker/static/media/close.61970edc.svg"
   },
   {
     "revision": "cf35e2f9e810e53c10d058841598d7d3",
     "url": "/food-tracker/static/media/diet.cf35e2f9.png"
   },
   {
-    "revision": "d5f28d66bf5c43ede974c0dbe57a6f4b",
-    "url": "/food-tracker/static/media/left-arrow.d5f28d66.svg"
+    "revision": "b28c3f740195b5760fe269e966c679d7",
+    "url": "/food-tracker/static/media/left-arrow.b28c3f74.svg"
   },
   {
     "revision": "fbd996f1e26a7c9357643e3dfd7af0ba",
     "url": "/food-tracker/static/media/plus.fbd996f1.png"
   },
   {
-    "revision": "70a48665567e21f370401359ee47a268",
-    "url": "/food-tracker/static/media/refresh.70a48665.svg"
+    "revision": "21e6a30d0bfebed4b420e8e193c43808",
+    "url": "/food-tracker/static/media/refresh.21e6a30d.svg"
   },
   {
-    "revision": "03316393af9fabaa70639fb51b04b41a",
-    "url": "/food-tracker/static/media/right-arrow.03316393.svg"
+    "revision": "624c3a2d9bbdbecca3a237f4ed7ca615",
+    "url": "/food-tracker/static/media/right-arrow.624c3a2d.svg"
   },
   {
     "revision": "c037672a07169a9efca1c8591a6af561",
     "url": "/food-tracker/static/media/search.c037672a.png"
   },
   {
-    "revision": "c62f875d1f6d79787f397f8a80b9ca5c",
-    "url": "/food-tracker/static/media/upload-image.c62f875d.svg"
+    "revision": "d356983f8d48ce0f7caa2f9b0935e5e2",
+    "url": "/food-tracker/static/media/upload-image.d356983f.svg"
   },
   {
     "revision": "f23ae7b370d850b2bafc8491456641cd",
