@@ -356,6 +356,7 @@ function Result(props) {
 }
 
 function Results(props) {
+  console.log(props.results);
   const listResults = props.results.map( result =>
   <Result
     key={result["fdcId"]}
@@ -366,7 +367,7 @@ function Results(props) {
 
   return(
     <div>
-      <div className="LeftTitle">Results: {props.totalResults}</div>
+      <div className="LeftTitle">Total results: {props.totalHits}</div>
       {listResults}
     </div>
   )
@@ -377,23 +378,26 @@ function Results(props) {
 function ItemAdditionScreen(props) {
   return(
     <div className="ExternalScreen">
-      <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle}/>
+      <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle} />
 
       <div className="ExternalScreenContent">
 
         <div className="SearchBarContainer">
           <img className="SearchIcon" src={search}></img>
-          <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleQuery}/>
+          <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
         </div>
 
       {props.results.length > 0 &&
         <Results
-          totalResults={10}
           results={props.results}
+          totalHits={props.totalHits}
         />
       }
 
       </div>
+
+      <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
+
 
     </div>
   );
@@ -675,11 +679,11 @@ function SignInScreen(props) {
 
         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
 
-        { props.error != '' &&
+        { props.error !== '' &&
           <p className="LoginError">{props.error}</p>
         }
 
-        {props.successMessage != '' &&
+        {props.successMessage !== '' &&
           <p className="SuccessMessage">{props.successMessage}</p>
         }
 
@@ -702,6 +706,7 @@ class App extends React.Component {
     this.state = {
       loadingExternal: false,
       results: [],
+      totalHits: 0,
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
@@ -745,35 +750,41 @@ class App extends React.Component {
     this.handleSignOff = this.handleSignOff.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleQuery = this.handleQuery.bind(this);
+    this.handleEnterSearch = this.handleEnterSearch.bind(this);
 
 
   }
 
 
-  handleQuery(event) {
+  handleEnterSearch(event) {
     if( event.key === "Enter" ) {
-      if(this.state.searchInput !== "") {
-        alert(event.target.value);
-
-       // add task to database
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: this.state.searchInput, pageSize: "5", pageNumber: "1" })
-        };
-        fetch( foodAPIURL + '/search/', requestOptions)
-          .then(response => response.json()).then( data => {
-            this.setState({
-              results: data["results"]
-            });
-
-          })
-          .catch( error => console.log(error));
-
-
-      // event.target.value = "";
-      // event.preventDefault();
+      this.handleQuery();
     }
+
+  }
+  handleQuery() {
+    if(this.state.searchInput !== "") {
+      this.setState({
+        loadingExternal: true
+      });
+
+
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: this.state.searchInput, pageSize: "5", pageNumber: "1" })
+      };
+      fetch( foodAPIURL + '/search/', requestOptions)
+        .then(response => response.json()).then( data => {
+          this.setState({
+            results: data["results"],
+            totalHits: data["totalHits"],
+            loadingExternal: false
+          });
+
+        })
+        .catch( error => console.log(error));
 
 
   }
@@ -799,6 +810,7 @@ class App extends React.Component {
       userInput: "",
       searchInput: "",
       results: [],
+      totalHits: 0,
       emailInput:"",
       passwordInput: "",
       firstNameInput: "",
@@ -1099,7 +1111,9 @@ class App extends React.Component {
               searchInput={this.state.searchInput}
               handleQueryChange={this.handleQueryChange}
               handleQuery={this.handleQuery}
+              handleEnterSearch={this.handleEnterSearch}
               results={this.state.results}
+              totalHits={this.state.totalHits}
 
             />
           }
