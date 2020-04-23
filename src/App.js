@@ -123,16 +123,6 @@ function Meal(props){
           actionHandler={props.handleItemAdditionScreenToggle}
         />
 
-
-        {/* <div className="AddButtonOuter">
-          <img
-            className="AddButton"
-            src={cross}
-            onClick={props.handleItemAdditionScreenToggle}
-          >
-          </img>
-        </div> */}
-
       </div>
 
     </div>
@@ -342,8 +332,6 @@ function ItemExpandedScreen(props) {
         }
 
 
-
-
       </div>
 
     );
@@ -368,39 +356,18 @@ function ItemAdditionScreen(props) {
 
         <div className="SearchBarContainer">
           <img className="SearchIcon" src={search}></img>
-          <input className="SearchBar" type="text" value={props.userInput}/>
+          <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleQuery}/>
         </div>
       <div className="LeftTitle">Results</div>
-      <Item
+      
+
+      {props.results.length > 0 &&
+        <Item
         handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
         mealName=""
         isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName=""
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName=""
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName=""
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName=""
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName=""
-        isStatic={false}
-      />
+       />
+      }
 
       </div>
 
@@ -710,12 +677,14 @@ class App extends React.Component {
 
     this.state = {
       loadingExternal: false,
+      results: [],
       selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
       showNutrition: false,
       currentUser: null,
       userInput: "",
+      searchInput: "",
       emailInput:"",
       passwordInput: "",
       firstNameInput: "",
@@ -745,15 +714,56 @@ class App extends React.Component {
     this.handleFirstNameInputChange = this.handleFirstNameInputChange.bind(this);
     this.handleLastNameInputChange = this.handleLastNameInputChange.bind(this);
     this.handleProfilePicUpload = this.handleProfilePicUpload.bind(this);
+    this.handleQueryChange = this.handleQueryChange.bind(this);
 
     // action handlers
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOff = this.handleSignOff.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleQuery = this.handleQuery.bind(this);
 
 
   }
 
+
+  handleQuery(event) {
+    if( event.key === "Enter" ) {
+      if(this.state.searchInput !== "") {
+        alert(event.target.value);
+        
+       // add task to database
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: this.state.searchInput, pageSize: "5", pageNumber: "1" })
+        };
+        fetch( foodAPIURL + '/search/', requestOptions)
+          .then(response => response.json()).then( data => {
+            this.setState({
+              results: data["results"]
+            });
+            
+          })
+          .catch( error => console.log(error));
+
+        
+      // event.target.value = "";
+      // event.preventDefault();
+    }
+    
+    
+  }
+
+}
+  
+  
+  handleQueryChange(event) {
+    
+    this.setState({
+      searchInput: event.target.value
+    });
+    
+  }
   handleSignOff() {
     this.setState({
       loadingExternal: false,
@@ -763,6 +773,8 @@ class App extends React.Component {
       showNutrition: false,
       currentUser: null,
       userInput: "",
+      searchInput: "",
+      results: [],
       emailInput:"",
       passwordInput: "",
       firstNameInput: "",
@@ -1060,6 +1072,10 @@ class App extends React.Component {
               handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
               handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
               loadingExternal={this.state.loadingExternal}
+              searchInput={this.state.searchInput}
+              handleQueryChange={this.handleQueryChange}
+              handleQuery={this.handleQuery}
+              results={this.state.results}
 
             />
           }
