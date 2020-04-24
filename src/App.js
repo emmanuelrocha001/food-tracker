@@ -355,6 +355,11 @@ function toTitleCase(original) {
   }
 }
 
+
+function toNumberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function Result(props) {
   return(
     <div className="Item" >
@@ -383,7 +388,8 @@ function Results(props) {
 
   return(
     <div>
-      <div className="LeftTitle">Total results: {props.totalHits}</div>
+      <div className="LeftTitle" style={{fontSize: "15px"}}>Top {props.results.length} ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
+
       {listResults}
     </div>
   )
@@ -403,26 +409,7 @@ function ItemAdditionScreen(props) {
       </div>
 
 
-      <div className="DateContainer">
-        <div className="ArrowButtonContainer">
-          <Button
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={left}
-            actionHandler={props.handlePageDecrement}
-          />
-        </div>
-        <div className="CurrentDate">{props.currentPage}</div>
-        <div className="ArrowButtonContainer">
-          <Button
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={right}
-            actionHandler={props.handlePageIncrement}
-          />
-        </div>
 
-      </div>
 
       {props.results !== undefined && props.results.length > 0 &&
         <Results
@@ -431,7 +418,38 @@ function ItemAdditionScreen(props) {
           currentPage={props.currentPage}
           totalHits={props.totalHits}
         />
+
+
+
       }
+
+      {props.results !== undefined && props.results.length > 0 &&
+
+        <div className="DateContainer">
+          <div className="ArrowButtonContainer">
+            <Button
+              containerSize="32px"
+              imageSize="16px"
+              imageSource={left}
+              actionHandler={props.handlePageDecrement}
+            />
+          </div>
+          <div className="CurrentDate">{props.currentPage}</div>
+          <div className="ArrowButtonContainer">
+            <Button
+              containerSize="32px"
+              imageSize="16px"
+              imageSource={right}
+              actionHandler={props.handlePageIncrement}
+            />
+          </div>
+        </div>
+
+
+      }
+
+
+
 
       <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
 
