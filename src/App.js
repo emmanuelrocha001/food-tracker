@@ -346,7 +346,13 @@ function ItemExpandedScreen(props) {
 
 
 function toTitleCase(original) {
-  return original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+  if(new_string.length > 40){
+    return new_string.substring(0, 40) + "...";
+  } else {
+    return new_string;
+  }
 }
 
 function Result(props) {
@@ -839,7 +845,8 @@ class App extends React.Component {
           this.setState({
             results: data["results"],
             totalHits: data["totalHits"],
-            loadingExternal: false
+            loadingExternal: false,
+            currentPage: 1
           });
 
         })

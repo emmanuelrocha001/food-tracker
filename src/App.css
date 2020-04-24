@@ -387,11 +387,11 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   padding-left: 15px;
   padding-right: 15px;
   margin: auto;
-  margin-bottom: 10px;
-  padding-top: 5px;;
+  margin-bottom: 15px;
+  padding-top: 5px;
   /* margin-top: 10px; */
-  width: 85%;
-  height: 55px;
+  width: 80%;
+  height: 50px;
   text-align: left;
 
 
