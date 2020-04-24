@@ -348,8 +348,8 @@ function ItemExpandedScreen(props) {
 function toTitleCase(original) {
   var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-  if(new_string.length > 40){
-    return new_string.substring(0, 40) + "...";
+  if(new_string.length > 35){
+    return new_string.substring(0, 35) + "...";
   } else {
     return new_string;
   }
@@ -388,7 +388,7 @@ function Results(props) {
 
   return(
     <div>
-      <div className="LeftTitle" style={{fontSize: "15px"}}>Top {props.results.length} ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
+      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top {props.results.length} ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
 
       {listResults}
     </div>
@@ -761,6 +761,7 @@ class App extends React.Component {
     this.state = {
       loadingExternal: false,
       results: [],
+      resultsDetailed: [],
       currentPage: 1,
       pageSize: 5,
       totalHits: 0,
@@ -860,6 +861,12 @@ class App extends React.Component {
       };
       fetch( foodAPIURL + '/search/', requestOptions)
         .then(response => response.json()).then( data => {
+
+
+          for(var i=0; i<this.state.pageSize; i++) {
+
+          }
+
           this.setState({
             results: data["results"],
             totalHits: data["totalHits"],
@@ -895,6 +902,7 @@ class App extends React.Component {
       searchInput: "",
       currentPage: 1,
       results: [],
+      resultsDetailed: [],
       totalHits: 0,
       emailInput:"",
       passwordInput: "",
