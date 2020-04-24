@@ -344,20 +344,30 @@ function ItemExpandedScreen(props) {
 
 }
 
+
+function toTitleCase(original) {
+  return original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 function Result(props) {
   return(
     <div className="Item" >
-      <p className="ItemName">{props.description}</p>
+      <p className="ItemName">{toTitleCase(props.description)}</p>
       <div className="ItemDescription">
-        <p className="LeftItemDescription">{props.brand}</p>
+        {props.brand !== undefined &&
+          <p className="LeftItemDescription">{toTitleCase(props.brand)}</p>
+        }
       </div>
     </div>
   );
 }
 
 function Results(props) {
-  console.log(props.results);
-  const listResults = props.results.map( result =>
+
+  var start = props.pageSize * (props.currentPage-1);
+  var end = start + props.pageSize;
+  var partialResults = props.results.slice(start, end);
+  const listResults = partialResults.map( result =>
   <Result
     key={result["fdcId"]}
     description={result["description"]}
@@ -380,21 +390,42 @@ function ItemAdditionScreen(props) {
     <div className="ExternalScreen">
       <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle} />
 
-      <div className="ExternalScreenContent">
 
-        <div className="SearchBarContainer">
-          <img className="SearchIcon" src={search}></img>
-          <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
+      <div className="SearchBarContainer">
+        <img className="SearchIcon" src={search}></img>
+        <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
+      </div>
+
+
+      <div className="DateContainer">
+        <div className="ArrowButtonContainer">
+          <Button
+            containerSize="32px"
+            imageSize="16px"
+            imageSource={left}
+            actionHandler={props.handlePageDecrement}
+          />
+        </div>
+        <div className="CurrentDate">{props.currentPage}</div>
+        <div className="ArrowButtonContainer">
+          <Button
+            containerSize="32px"
+            imageSize="16px"
+            imageSource={right}
+            actionHandler={props.handlePageIncrement}
+          />
         </div>
 
-      {props.results.length > 0 &&
+      </div>
+
+      {props.results !== undefined && props.results.length > 0 &&
         <Results
           results={props.results}
+          pageSize={props.pageSize}
+          currentPage={props.currentPage}
           totalHits={props.totalHits}
         />
       }
-
-      </div>
 
       <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
 
@@ -706,6 +737,8 @@ class App extends React.Component {
     this.state = {
       loadingExternal: false,
       results: [],
+      currentPage: 1,
+      pageSize: 5,
       totalHits: 0,
       selectedDate: new Date(),
       showItemAddition: false,
@@ -726,10 +759,15 @@ class App extends React.Component {
       showProfile: false
     }
 
-
+    // date
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDateDecrement = this.handleDateDecrement.bind(this);
     this.handleDateIncrement = this.handleDateIncrement.bind(this);
+
+    // page
+    this.handlePageIncrement = this.handlePageIncrement.bind(this);
+    this.handlePageDecrement = this.handlePageDecrement.bind(this);
+
 
     // screen toggles
     this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
@@ -756,6 +794,28 @@ class App extends React.Component {
   }
 
 
+  handlePageDecrement() {
+    if(this.state.currentPage-1 > 0) {
+      var cPage = this.state.currentPage - 1;
+      this.setState({
+        currentPage: cPage
+      });
+    }
+  }
+
+  handlePageIncrement() {
+    // TODO: update condition
+    if( this.state.results !== undefined) {
+      if(this.state.currentPage + 1 <= Math.ceil(this.state.results.length  / this.state.pageSize)) {
+        var cPage = this.state.currentPage + 1;
+        this.setState({
+          currentPage: cPage
+        });
+      }
+
+    }
+  }
+
   handleEnterSearch(event) {
     if( event.key === "Enter" ) {
       this.handleQuery();
@@ -769,11 +829,10 @@ class App extends React.Component {
       });
 
 
-
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: this.state.searchInput, pageSize: "5", pageNumber: "1" })
+        body: JSON.stringify({ query: this.state.searchInput, pageSize: "150", pageNumber: "1" })
       };
       fetch( foodAPIURL + '/search/', requestOptions)
         .then(response => response.json()).then( data => {
@@ -809,6 +868,7 @@ class App extends React.Component {
       currentUser: null,
       userInput: "",
       searchInput: "",
+      currentPage: 1,
       results: [],
       totalHits: 0,
       emailInput:"",
@@ -1114,6 +1174,10 @@ class App extends React.Component {
               handleEnterSearch={this.handleEnterSearch}
               results={this.state.results}
               totalHits={this.state.totalHits}
+              currentPage={this.state.currentPage}
+              pageSize={this.state.pageSize}
+              handlePageDecrement={this.handlePageDecrement}
+              handlePageIncrement={this.handlePageIncrement}
 
             />
           }
