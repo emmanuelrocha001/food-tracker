@@ -126,6 +126,10 @@ h1 {
 
   }
 
+  .Item {
+    width: 100%;
+  }
+
 }
 .Greeting {
   /* margin-top: 10px; */
@@ -390,7 +394,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   margin-bottom: 15px;
   padding-top: 5px;
   /* margin-top: 10px; */
-  width: 80%;
+  width: 85%;
   height: 50px;
   text-align: left;
 
@@ -432,7 +436,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .ItemName {
   color: #343434;
-  font-size: 15px;
+  font-size: 14px;
   padding: none;
   margin-bottom: 5px;
   margin-top: 0px;
@@ -451,7 +455,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .RightItemDescription {
   color: #848484;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 0px;
   margin-top: 0px;
   /* background: purple; */
@@ -560,6 +564,19 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   background: #606c88; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.ExternalButtonLoading {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  left: 0px;
+  /* border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; */
+  text-align: center;
+  background: #f3c623;
 
 }
 

@@ -344,12 +344,22 @@ function ItemExpandedScreen(props) {
 
 }
 
+function shorten(original){
+if(original.length > 40) {
+  return original.substring(0, 40) + "...";
+} else {
+  return original;
+}
+
+}
+
+
 
 function toTitleCase(original) {
   var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   if(new_string.length > 35){
-    return new_string.substring(0, 35) + "...";
+    return new_string.substring(0, 35);
   } else {
     return new_string;
   }
@@ -363,32 +373,35 @@ function toNumberWithCommas(x) {
 function Result(props) {
   return(
     <div className="Item" >
-      <p className="ItemName">{toTitleCase(props.description)}</p>
+      {props.topLeft !== undefined &&
+        <p className="ItemName">{props.topLeft}</p>
+
+      }
       <div className="ItemDescription">
-        {props.brand !== undefined &&
-          <p className="LeftItemDescription">{toTitleCase(props.brand)}</p>
+        {props.bottomLeft !== undefined &&
+
+          <p className="LeftItemDescription">{shorten(props.bottomLeft)}</p>
         }
+        <p className="RightItemDescription">{Math.round(props.bottomRight)}</p>
       </div>
     </div>
   );
 }
 
 function Results(props) {
-
-  var start = props.pageSize * (props.currentPage-1);
-  var end = start + props.pageSize;
-  var partialResults = props.results.slice(start, end);
-  const listResults = partialResults.map( result =>
+  const listResults =  props.results.map( result =>
   <Result
+    topLeft={result["topLeft"]}
+    bottomLeft={result["bottomLeft"]}
+    bottomRight={result["bottomRight"]}
+    fdcId={result["fdcId"]}
     key={result["fdcId"]}
-    description={result["description"]}
-    brand={result["brand"]}
   />
   );
 
   return(
     <div>
-      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top {props.results.length} ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
+      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top Results ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
 
       {listResults}
     </div>
@@ -414,6 +427,7 @@ function ItemAdditionScreen(props) {
       {props.results !== undefined && props.results.length > 0 &&
         <Results
           results={props.results}
+          topResults={props.topResults}
           pageSize={props.pageSize}
           currentPage={props.currentPage}
           totalHits={props.totalHits}
@@ -565,16 +579,20 @@ function ExternalScreenTop(props) {
 }
 
 function ExternalScreenBottom(props) {
-  return(
-    <div className="ExternalButton" onClick={props.actionHandler}>
-      {props.loadingExternal === true &&
+
+  if(props.loadingExternal === true) {
+    return(
+      <div className="ExternalButtonLoading" onClick={props.actionHandler}>
           <ExternalScreenLoading />
-      }
-      {props.loadingExternal === false &&
-        <p className="ExternalButtonText">{props.buttonText}</p>
-      }
-    </div>
-  );
+        </div>
+    );
+  } else {
+    return(
+      <div className="ExternalButton" onClick={props.actionHandler}>
+          <p className="ExternalButtonText">{props.buttonText}</p>
+      </div>
+    );
+  }
 
 
 }
@@ -761,7 +779,7 @@ class App extends React.Component {
     this.state = {
       loadingExternal: false,
       results: [],
-      resultsDetailed: [],
+      detailedResults: [],
       currentPage: 1,
       pageSize: 5,
       totalHits: 0,
@@ -815,9 +833,69 @@ class App extends React.Component {
     this.handleQuery = this.handleQuery.bind(this);
     this.handleEnterSearch = this.handleEnterSearch.bind(this);
 
+    // test
+    this.setDetailedResults = this.setDetailedResults.bind(this);
+
+
 
   }
 
+  setDetailedResults() {
+
+    var start = this.state.pageSize * (this.state.currentPage-1);
+    var end = start + this.state.pageSize;
+    var ids = this.state.results.slice(start, end);
+
+
+
+    var fdcids_string = "";
+      for(var i=0;i<ids.length;i++) {
+        if(i===0) {
+          fdcids_string = fdcids_string + "?fdcids=" + ids[i];
+        } else {
+          fdcids_string = fdcids_string + "&fdcids=" + ids[i];
+        }
+      }
+
+    this.setState({
+      loadingExternal: true
+    });
+
+    const requestOps = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    };
+    fetch( foodAPIURL + '/search/foods/' + fdcids_string, requestOps)
+      .then(response => response.json()).then( data => {
+
+        if(data["detailedResults"].length < 1) {
+
+          // remove results chunk with error from list
+          var workingResults = this.state.results;
+          workingResults.splice(start, this.state.pageSize);
+          this.setState({
+            detailedResults: workingResults
+          });
+          // reload page from updated list
+          this.setDetailedResults();
+        } else {
+
+
+          this.setState({
+            detailedResults: data["detailedResults"],
+            loadingExternal: false
+          });
+        }
+
+
+
+      })
+      .catch( error => {
+        console.log(error);
+      });
+
+
+  }
 
   handlePageDecrement() {
     if(this.state.currentPage-1 > 0) {
@@ -825,6 +903,8 @@ class App extends React.Component {
       this.setState({
         currentPage: cPage
       });
+      this.setDetailedResults();
+
     }
   }
 
@@ -836,6 +916,8 @@ class App extends React.Component {
         this.setState({
           currentPage: cPage
         });
+        this.setDetailedResults();
+
       }
 
     }
@@ -867,16 +949,36 @@ class App extends React.Component {
 
           }
 
-          this.setState({
-            results: data["results"],
-            totalHits: data["totalHits"],
-            loadingExternal: false,
-            currentPage: 1
-          });
+          // this.setState({
+          //   results: data["results"],
+          //   totalHits: data["totalHits"],
+          //   loadingExternal: false,
+          //   currentPage: 1
+          // });
+          if(data["results"]) {
+
+            this.setState({
+              results: data["results"],
+              totalHits: data["totalHits"],
+              loadingExternal: false,
+              currentPage: 1
+            });
+            this.setDetailedResults();
+          } else {
+            this.setState({
+              results: [],
+              totalHits: 0,
+              loadingExternal: false,
+              currentPage: 1
+            });
+          }
 
         })
-        .catch( error => console.log(error));
+        .catch( error => {
+          console.log(error);
+          console.log("something went wrong with query");
 
+        });
 
   }
 
@@ -902,7 +1004,7 @@ class App extends React.Component {
       searchInput: "",
       currentPage: 1,
       results: [],
-      resultsDetailed: [],
+      detailedResults: [],
       totalHits: 0,
       emailInput:"",
       passwordInput: "",
@@ -1205,10 +1307,9 @@ class App extends React.Component {
               handleQueryChange={this.handleQueryChange}
               handleQuery={this.handleQuery}
               handleEnterSearch={this.handleEnterSearch}
-              results={this.state.results}
+              results={this.state.detailedResults}
               totalHits={this.state.totalHits}
               currentPage={this.state.currentPage}
-              pageSize={this.state.pageSize}
               handlePageDecrement={this.handlePageDecrement}
               handlePageIncrement={this.handlePageIncrement}
 
