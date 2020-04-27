@@ -149,6 +149,14 @@ h1 {
 }
 
 /* Date picker components --------------------------------------------*/
+
+.resultPagePicker {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  bottom: 60px;
+}
+
 .DateContainer {
   background: #FEFEFE;
   /* background: red; */

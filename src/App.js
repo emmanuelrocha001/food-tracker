@@ -390,13 +390,22 @@ function Result(props) {
 
 function Results(props) {
   const listResults =  props.results.map( result =>
-  <Result
-    topLeft={result["topLeft"]}
-    bottomLeft={result["bottomLeft"]}
-    bottomRight={result["bottomRight"]}
-    fdcId={result["fdcId"]}
-    key={result["fdcId"]}
-  />
+    <div>
+
+      {isNaN(result) === true &&
+      <Result
+        topLeft={result["topLeft"]}
+        bottomLeft={result["bottomLeft"]}
+        bottomRight={result["bottomRight"]}
+        fdcId={result["fdcId"]}
+        key={result["fdcId"]}
+      />
+      }
+
+
+
+    </div>
+
   );
 
   return(
@@ -438,26 +447,31 @@ function ItemAdditionScreen(props) {
       }
 
       {props.results !== undefined && props.results.length > 0 &&
+        <div className="resultPagePicker">
 
-        <div className="DateContainer">
-          <div className="ArrowButtonContainer">
-            <Button
-              containerSize="32px"
-              imageSize="16px"
-              imageSource={left}
-              actionHandler={props.handlePageDecrement}
-            />
+          <div className="DateContainer">
+            <div className="ArrowButtonContainer">
+              <Button
+                containerSize="32px"
+                imageSize="16px"
+                imageSource={left}
+                actionHandler={props.handlePageDecrement}
+              />
+            </div>
+            <div className="CurrentDate">{props.currentPage}</div>
+            <div className="ArrowButtonContainer">
+              <Button
+                containerSize="32px"
+                imageSize="16px"
+                imageSource={right}
+                actionHandler={props.handlePageIncrement}
+              />
+            </div>
           </div>
-          <div className="CurrentDate">{props.currentPage}</div>
-          <div className="ArrowButtonContainer">
-            <Button
-              containerSize="32px"
-              imageSize="16px"
-              imageSource={right}
-              actionHandler={props.handlePageIncrement}
-            />
-          </div>
+
+
         </div>
+
 
 
       }
