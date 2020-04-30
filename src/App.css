@@ -84,7 +84,7 @@ h1 {
   width: 50px;
   height: 50px;
 
-  background:#fff url(./user.jpg) no-repeat ;
+  background:#fff;
   border-radius: 50%;
   /* border: 3px solid #848484; */
   /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
@@ -241,10 +241,10 @@ h1 {
 
 
 .Calendar {
-  background: url(./calendar.svg) no-repeat ;
+  background: url(./assets/ui/calendar.svg) no-repeat ;
   background-size: 100%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border: none;
   font-family: 'Roboto', sans-serif;
   position: relative;
@@ -699,7 +699,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 .PicUploaderContainer {
-  background: url(./upload-image.svg);
+  background: url(./assets/ui/upload-image.svg);
   background-size: 100%;
   width: 50px;
   height: 50px;
@@ -986,8 +986,8 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
 }
 
 .SearchIcon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 .SearchBar:focus {
   outline-width: 0;

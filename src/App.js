@@ -4,22 +4,19 @@ import './App.css';
 import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
-import $ from 'jquery';
 // app assets
-import logo from './diet.png'
-import left from './left-arrow.svg'
-import right from './right-arrow.svg'
-import plus from './plus.png'
-// import cross from './cross.png'
-import cross from './close.svg'
+import logo from './assets/ui/logo.svg';
+import left from './assets/ui/left-arrow.svg';
+import right from './assets/ui/right-arrow.svg';
+import cross from './assets/ui/close.svg';
+import refresh from './assets/ui/refresh.svg'
 
-import search from './search.png'
-import user from './user.jpg'
-import lock from './lock.png'
-import refresh from './refresh.svg'
-import {createUseStyles} from 'react-jss'
+import search from './assets/ui/search.svg'
 // const foodAPIURL = 'https://localhost:5000'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
+
+
+// helper functions ------------------------------------------------------------------------->
 
 function formatDate(d) {
   var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
@@ -29,6 +26,32 @@ function formatDate(d) {
   return dString;
 }
 
+function shorten(original){
+  if(original.length > 40) {
+    return original.substring(0, 40) + "...";
+  } else {
+    return original;
+  }
+}
+
+
+function toTitleCase(original) {
+  var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+  if(new_string.length > 35){
+    return new_string.substring(0, 35);
+  } else {
+    return new_string;
+  }
+}
+
+
+function toNumberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//Main screen components --------------------------------------------------------------------------------------------------->
+// Date picker
 function DatePicker(props){
 
   var today = new Date();
@@ -83,13 +106,35 @@ function DatePicker(props){
     </div>
   );
 }
+// Meals
+function Item(props){
+  if( props.isStatic === false) {
 
-function Greeting(props){
-  return (
-    <p className="Greeting">Hello, {props.userName}</p>
-  );
+    return(
+      <div className="Item" onClick={() =>{props.handleItemExpandScreenToggle(props.mealName)}}>
+        <p className="ItemName">Potato</p>
+        <div className="ItemDescription">
+          <p className="LeftItemDescription">Generic, 1 Potato</p>
+          <p className="RightItemDescription">30</p>
+        </div>
+      </div>
+
+    );
+
+  } else{
+    return(
+      <div className="ItemStatic" >
+        <p className="ItemName">Potato</p>
+        <div className="ItemDescription">
+          <p className="LeftItemDescription">generic, 1 potato</p>
+          <p className="RightItemDescription">30 cal</p>
+        </div>
+      </div>
+
+    );
+  }
+
 }
-
 
 function Meal(props){
   return (
@@ -129,105 +174,7 @@ function Meal(props){
   );
 }
 
-
-
-function Item(props){
-    if( props.isStatic === false) {
-
-      return(
-        <div className="Item" onClick={() =>{props.handleItemExpandScreenToggle(props.mealName)}}>
-          <p className="ItemName">Potato</p>
-          <div className="ItemDescription">
-            <p className="LeftItemDescription">Generic, 1 Potato</p>
-            <p className="RightItemDescription">30</p>
-          </div>
-        </div>
-
-      );
-
-    } else{
-      return(
-        <div className="ItemStatic" >
-          <p className="ItemName">Potato</p>
-          <div className="ItemDescription">
-            <p className="LeftItemDescription">generic, 1 potato</p>
-            <p className="RightItemDescription">30 cal</p>
-          </div>
-        </div>
-
-      );
-    }
-
-}
-
-
-function MacrosVisual(props) {
-  const data = [{name: 'Carbs', value: 40}, {name: 'Fat', value: 10},
-                  {name: 'Protein', value: 2}];
-  const COLORS = ['#393E46', '#f3c623', '#848484'];
-
-
-  return (
-
-    <div className="CalMacroContainer">
-      <PieChart className="Pie" width={90} height={90}>
-          <Pie
-            animationDuration={900}
-            animationBegin={100}
-            data={data}
-            innerRadius={22}
-            outerRadius={30}
-            fill="#FFFFFF"
-            paddingAngle={5}
-          >
-            {
-              data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
-            }
-          </Pie>
-      </PieChart>
-
-    </div>
-
-  );
-
-
-}
-function Macros(props) {
-
-  return(
-    <div className="MacrosContainer">
-        <MacrosVisual />
-        <Macro name="Carbs" grams={40} percent={77}/>
-        <Macro name="Fat" grams={10} percent={20}/>
-        <Macro name="Protein" grams={2} percent={3}/>
-      </div>
-  );
-}
-
-function Macro(props) {
-  return(
-    <div className="Macro">
-    {props.name === "Carbs" &&
-      <p className="MacroPercentageCarbs">{props.percent}%</p>
-
-    }
-    {props.name === "Protein" &&
-      <p className="MacroName">{props.percent}%</p>
-
-    }
-    {props.name === "Fat" &&
-      <p className="MacroPercentageProtein">{props.percent}%</p>
-    }
-    <p className="MacroGrams">{props.grams} g</p>
-    <p className="MacroName">{props.name}</p>
-
-    </div>
-  );
-}
-
 function MealContainer(props){
-
-
   return(
     <div className="Body">
       <Meal
@@ -255,6 +202,224 @@ function MealContainer(props){
   );
 }
 
+//--------------------------------------------------------------------------------------------------->
+
+// Generic components------------------------------------------------------------------------->
+function Button(props) {
+  var class_name = "ButtonOutside";
+  var outerColor = "white";
+  if(props.styleClassNameOuter != null) {
+    class_name = props.styleClassNameOuter;
+  }
+  if(props.outerColor != null) {
+    outerColor = props.outerColor;
+  }
+  return(
+
+    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
+      <img
+        className={props.styleClassName}
+        src={props.imageSource}
+        style={{width: props.imageSize, height: props.imageSize}}
+
+      >
+      </img>
+
+    </div>
+  );
+
+}
+
+function ExternalScreenTop(props) {
+  return(
+    <div className="ExternalScreenTop">
+          <p className="ExternalScreenTitle">{props.screenTitle}</p>
+          {props.exitHandler !== null &&
+            <div className="ExitButtonContainer">
+              <Button
+                styleClassName="Exit"
+                containerSize="32px"
+                imageSize="16px"
+                imageSource={cross}
+                actionHandler={props.exitHandler}
+              />
+            </div>
+          }
+      </div>
+  );
+}
+
+function ExternalScreenBottom(props) {
+
+  if(props.loadingExternal === true) {
+    return(
+      <div className="ExternalButtonLoading" onClick={props.actionHandler}>
+          <ExternalScreenLoading />
+        </div>
+    );
+  } else {
+    return(
+      <div className="ExternalButton" onClick={props.actionHandler}>
+          <p className="ExternalButtonText">{props.buttonText}</p>
+      </div>
+    );
+  }
+
+}
+
+function ExternalScreenLoading(props) {
+  return(
+    <div className="LoadingIconContainer">
+      <img src={refresh} className="LoadingIcon">
+      </img>
+    </div>
+  )
+}
+//--------------------------------------------------------------------------------------------------->
+
+// Item Expand Screen------------------------------------------------------------------------->
+function NutritionScreen(props) {
+  return(
+    <div className="ExternalScreen">
+      <div className="HideNutritionButton" onClick={props.handleNutritionScreenToggle}>
+        Hide Nutrition &#9650;
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Saturated Fat</p>
+        <p className="NutrientRight">2.5 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Trans Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Polyunsaturated Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Monounsaturated Fat</p>
+        <p className="NutrientRight">0 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Cholesterol</p>
+        <p className="NutrientRight">0 mg</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Sodium</p>
+        <p className="NutrientRight">225 mg</p>
+      </div>
+      <div className="Nutrient">
+        <p className="NutrientLeft">Dietary Fiber</p>
+        <p className="NutrientRight">1 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Sugar</p>
+        <p className="NutrientRight">20 g</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin D</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Calcium</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Iron</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Pottasium</p>
+        <p className="NutrientRight">0 mg</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin A</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+      <div className="Nutrient">
+        <p className="NutrientLeft">Vitamin C</p>
+        <p className="NutrientRight">0 %</p>
+      </div>
+
+    </div>
+  );
+
+}
+
+
+// macro components
+function MacrosVisual(props) {
+  const data = [{name: 'Carbs', value: 40}, {name: 'Fat', value: 10},
+                  {name: 'Protein', value: 2}];
+  const COLORS = ['#393E46', '#f3c623', '#848484'];
+
+  return (
+    <div className="CalMacroContainer">
+      <PieChart className="Pie" width={90} height={90}>
+          <Pie
+            animationDuration={900}
+            animationBegin={100}
+            data={data}
+            innerRadius={22}
+            outerRadius={30}
+            fill="#FFFFFF"
+            paddingAngle={5}
+          >
+            {
+              data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+            }
+          </Pie>
+      </PieChart>
+
+    </div>
+  );
+
+}
+
+function Macro(props) {
+  return(
+    <div className="Macro">
+    {props.name === "Carbs" &&
+      <p className="MacroPercentageCarbs">{props.percent}%</p>
+
+    }
+    {props.name === "Protein" &&
+      <p className="MacroName">{props.percent}%</p>
+
+    }
+    {props.name === "Fat" &&
+      <p className="MacroPercentageProtein">{props.percent}%</p>
+    }
+    <p className="MacroGrams">{props.grams} g</p>
+    <p className="MacroName">{props.name}</p>
+
+    </div>
+  );
+}
+
+function Macros(props) {
+  return(
+    <div className="MacrosContainer">
+        <MacrosVisual />
+        <Macro name="Carbs" grams={40} percent={77}/>
+        <Macro name="Fat" grams={10} percent={20}/>
+        <Macro name="Protein" grams={2} percent={3}/>
+      </div>
+  );
+}
 
 function ItemExpandedScreen(props) {
 
@@ -344,32 +509,10 @@ function ItemExpandedScreen(props) {
 
 }
 
-function shorten(original){
-if(original.length > 40) {
-  return original.substring(0, 40) + "...";
-} else {
-  return original;
-}
-
-}
+//--------------------------------------------------------------------------------------------------->
 
 
-
-function toTitleCase(original) {
-  var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
-  if(new_string.length > 35){
-    return new_string.substring(0, 35);
-  } else {
-    return new_string;
-  }
-}
-
-
-function toNumberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
+// search external screen componenets ------------------------------------------------------------------------->
 function Result(props) {
   return(
     <div className="Item" >
@@ -402,8 +545,6 @@ function Results(props) {
       />
       }
 
-
-
     </div>
 
   );
@@ -417,21 +558,15 @@ function Results(props) {
   )
 }
 
-
-
 function ItemAdditionScreen(props) {
   return(
     <div className="ExternalScreen">
       <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle} />
 
-
       <div className="SearchBarContainer">
         <img className="SearchIcon" src={search}></img>
         <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
       </div>
-
-
-
 
       {props.results !== undefined && props.results.length > 0 &&
         <Results
@@ -441,9 +576,6 @@ function ItemAdditionScreen(props) {
           currentPage={props.currentPage}
           totalHits={props.totalHits}
         />
-
-
-
       }
 
       {props.results !== undefined && props.results.length > 0 &&
@@ -468,176 +600,18 @@ function ItemAdditionScreen(props) {
               />
             </div>
           </div>
-
-
         </div>
-
-
-
       }
 
-
-
-
       <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
-
-
     </div>
   );
 }
 
-function NutritionScreen(props) {
-
-  return(
-    <div className="ExternalScreen">
-      <div className="HideNutritionButton" onClick={props.handleNutritionScreenToggle}>
-        Hide Nutrition &#9650;
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Saturated Fat</p>
-        <p className="NutrientRight">2.5 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Trans Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Polyunsaturated Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Monounsaturated Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Cholesterol</p>
-        <p className="NutrientRight">0 mg</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Sodium</p>
-        <p className="NutrientRight">225 mg</p>
-      </div>
-      <div className="Nutrient">
-        <p className="NutrientLeft">Dietary Fiber</p>
-        <p className="NutrientRight">1 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Sugar</p>
-        <p className="NutrientRight">20 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin D</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Calcium</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Iron</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Pottasium</p>
-        <p className="NutrientRight">0 mg</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin A</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin C</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
+//--------------------------------------------------------------------------------------------------->
 
 
-
-
-
-    </div>
-  );
-
-
-}
-
-function ExternalScreenTop(props) {
-  return(
-    <div className="ExternalScreenTop">
-          <p className="ExternalScreenTitle">{props.screenTitle}</p>
-          {props.exitHandler !== null &&
-            <div className="ExitButtonContainer">
-              <Button
-                styleClassName="Exit"
-                containerSize="32px"
-                imageSize="16px"
-                imageSource={cross}
-                actionHandler={props.exitHandler}
-              />
-            </div>
-          }
-      </div>
-  );
-}
-
-function ExternalScreenBottom(props) {
-
-  if(props.loadingExternal === true) {
-    return(
-      <div className="ExternalButtonLoading" onClick={props.actionHandler}>
-          <ExternalScreenLoading />
-        </div>
-    );
-  } else {
-    return(
-      <div className="ExternalButton" onClick={props.actionHandler}>
-          <p className="ExternalButtonText">{props.buttonText}</p>
-      </div>
-    );
-  }
-
-
-}
-
-
-function Button(props) {
-
-
-  var class_name = "ButtonOutside";
-  var outerColor = "white";
-  if(props.styleClassNameOuter != null) {
-    class_name = props.styleClassNameOuter;
-  }
-  if(props.outerColor != null) {
-    outerColor = props.outerColor;
-  }
-  return(
-
-    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
-      <img
-        className={props.styleClassName}
-        src={props.imageSource}
-        style={{width: props.imageSize, height: props.imageSize}}
-
-      >
-      </img>
-
-    </div>
-  );
-
-}
+//Profile screen ------------------------------------------------------------------------------------------>
 
 function ProfileScreen(props) {
 
@@ -678,19 +652,13 @@ function ProfileScreen(props) {
 
   );
 
-
-
-
 }
+//--------------------------------------------------------------------------------------------------->
 
-function ExternalScreenLoading(props) {
-  return(
-    <div className="LoadingIconContainer">
-      <img src={refresh} className="LoadingIcon">
-      </img>
-    </div>
-  )
-}
+
+
+//Sign in screen-------------------------------------------------------------------------------------->
+
 function SignInScreen(props) {
 
 
@@ -783,6 +751,7 @@ function SignInScreen(props) {
   }
 }
 
+//--------------------------------------------------------------------------------------------------->
 
 
 
