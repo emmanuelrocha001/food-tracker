@@ -9,46 +9,18 @@ import logo from './assets/ui/logo.svg';
 import left from './assets/ui/left-arrow.svg';
 import right from './assets/ui/right-arrow.svg';
 import cross from './assets/ui/close.svg';
-import refresh from './assets/ui/refresh.svg'
-
-import search from './assets/ui/search.svg'
+import refresh from './assets/ui/refresh.svg';
+import Helper from './helper.js';
+import Button from './components/Button';
+import search from './assets/ui/search.svg';
 // const foodAPIURL = 'https://localhost:5000'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
 
-// helper functions ------------------------------------------------------------------------->
+// helper functions
+const helper = new Helper();
+// components 
 
-function formatDate(d) {
-  var dMonth = (d.getMonth() + 1).toString().length < 2 ?  '0'+ (d.getMonth()+1).toString() : (d.getMonth()+1).toString()
-  var dDay = (d.getDate()).toString().length < 2 ?  '0'+ (d.getDate()).toString() : (d.getDate()).toString()
-  var dYear = d.getFullYear().toString();
-  var dString = dMonth + '/' + dDay + '/' + dYear;
-  return dString;
-}
-
-function shorten(original){
-  if(original.length > 40) {
-    return original.substring(0, 40) + "...";
-  } else {
-    return original;
-  }
-}
-
-
-function toTitleCase(original) {
-  var new_string = original.toLowerCase().split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
-  if(new_string.length > 35){
-    return new_string.substring(0, 35);
-  } else {
-    return new_string;
-  }
-}
-
-
-function toNumberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 //Main screen components --------------------------------------------------------------------------------------------------->
 // Date picker
@@ -61,10 +33,10 @@ function DatePicker(props){
   n += 172800000;
   var tomorrow = new Date(n);
 
-  var todayString = formatDate(today);
-  var yesterdayString = formatDate(yesterday);
-  var tomorrowString = formatDate(tomorrow);
-  var dateString = formatDate(props.currentDate);
+  var todayString = helper.formatDate(today);
+  var yesterdayString = helper.formatDate(yesterday);
+  var tomorrowString = helper.formatDate(tomorrow);
+  var dateString = helper.formatDate(props.currentDate);
 
   var actualDateString =''
   if(dateString === todayString) {
@@ -205,30 +177,30 @@ function MealContainer(props){
 //--------------------------------------------------------------------------------------------------->
 
 // Generic components------------------------------------------------------------------------->
-function Button(props) {
-  var class_name = "ButtonOutside";
-  var outerColor = "white";
-  if(props.styleClassNameOuter != null) {
-    class_name = props.styleClassNameOuter;
-  }
-  if(props.outerColor != null) {
-    outerColor = props.outerColor;
-  }
-  return(
+// function Button(props) {
+//   var class_name = "ButtonOutside";
+//   var outerColor = "white";
+//   if(props.styleClassNameOuter != null) {
+//     class_name = props.styleClassNameOuter;
+//   }
+//   if(props.outerColor != null) {
+//     outerColor = props.outerColor;
+//   }
+//   return(
 
-    <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
-      <img
-        className={props.styleClassName}
-        src={props.imageSource}
-        style={{width: props.imageSize, height: props.imageSize}}
+//     <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
+//       <img
+//         className={props.styleClassName}
+//         src={props.imageSource}
+//         style={{width: props.imageSize, height: props.imageSize}}
 
-      >
-      </img>
+//       >
+//       </img>
 
-    </div>
-  );
+//     </div>
+//   );
 
-}
+// }
 
 function ExternalScreenTop(props) {
   return(
@@ -523,7 +495,7 @@ function Result(props) {
       <div className="ItemDescription">
         {props.bottomLeft !== undefined &&
 
-          <p className="LeftItemDescription">{shorten(props.bottomLeft)}</p>
+          <p className="LeftItemDescription">{helper.shorten(props.bottomLeft)}</p>
         }
         <p className="RightItemDescription">{Math.round(props.bottomRight)}</p>
       </div>
@@ -551,7 +523,7 @@ function Results(props) {
 
   return(
     <div>
-      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top Results ({toNumberWithCommas(props.totalHits.toString())} total results)</div>
+      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top Results ({helper.toNumberWithCommas(props.totalHits.toString())} total results)</div>
 
       {listResults}
     </div>
