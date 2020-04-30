@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/food-tracker/precache-manifest.9cbff72fe31ae1ae44ff3e229e57b6df.js"
+  "/food-tracker/precache-manifest.cf6a4e851ea34a07a580484c4eda81ce.js"
 );
 
 self.addEventListener('message', (event) => {
