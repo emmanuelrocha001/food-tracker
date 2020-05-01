@@ -9,10 +9,22 @@ import logo from './assets/ui/logo.svg';
 import left from './assets/ui/left-arrow.svg';
 import right from './assets/ui/right-arrow.svg';
 import cross from './assets/ui/close.svg';
-import refresh from './assets/ui/refresh.svg';
-import Helper from './helper.js';
+
+// import components
 import Button from './components/Button';
-import search from './assets/ui/search.svg';
+import Item from './components/Item';
+import ExternalScreenLoading from './components/ExternalScreenLoading';
+import ExternalScreenTop from './components/ExternalScreenTop';
+import ExternalScreenBottom from './components/ExternalScreenBottom';
+import DatePicker from './components/DatePicker';
+import MealContainer from './components/MealContainer';
+// import screens
+import ProfileScreen from './screens/ProfileScreen';
+import SignInScreen from './screens/SignInScreen';
+import SearchScreen from './screens/SearchScreen';
+import ItemScreen from './screens/ItemScreen';
+import Helper from './helper.js';
+
 // const foodAPIURL = 'https://localhost:5000'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
@@ -21,711 +33,76 @@ const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 const helper = new Helper();
 // components 
 
-
 //Main screen components --------------------------------------------------------------------------------------------------->
-// Date picker
-function DatePicker(props){
-
-  var today = new Date();
-  var n = today.getTime();
-  n -= 86400000;
-  var yesterday = new Date(n);
-  n += 172800000;
-  var tomorrow = new Date(n);
-
-  var todayString = helper.formatDate(today);
-  var yesterdayString = helper.formatDate(yesterday);
-  var tomorrowString = helper.formatDate(tomorrow);
-  var dateString = helper.formatDate(props.currentDate);
-
-  var actualDateString =''
-  if(dateString === todayString) {
-    actualDateString = "Today";
-  } else if(dateString === yesterdayString) {
-    actualDateString = "Yesterday";
-  } else if(dateString === tomorrowString) {
-    actualDateString = "Tomorrow";
-  } else {
-    actualDateString = dateString;
-  }
-
-  return (
-
-    <div className="CalendarDateContainer">
-      <div className="DateContainer">
-        <div className="ArrowButtonContainer">
-          <Button
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={left}
-            actionHandler={props.handleDateDecrement}
-          />
-        </div>
-        <div className="CurrentDate">{actualDateString}</div>
-        <div className="ArrowButtonContainer">
-          <Button
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={right}
-            actionHandler={props.handleDateIncrement}
-          />
-        </div>
-
-      </div>
-        <div className="CalendarContainer">
-          <input onChange={props.handleDateChange} className="Calendar" type="date"/>
-        </div>
-    </div>
-  );
-}
-// Meals
-function Item(props){
-  if( props.isStatic === false) {
-
-    return(
-      <div className="Item" onClick={() =>{props.handleItemExpandScreenToggle(props.mealName)}}>
-        <p className="ItemName">Potato</p>
-        <div className="ItemDescription">
-          <p className="LeftItemDescription">Generic, 1 Potato</p>
-          <p className="RightItemDescription">30</p>
-        </div>
-      </div>
-
-    );
-
-  } else{
-    return(
-      <div className="ItemStatic" >
-        <p className="ItemName">Potato</p>
-        <div className="ItemDescription">
-          <p className="LeftItemDescription">generic, 1 potato</p>
-          <p className="RightItemDescription">30 cal</p>
-        </div>
-      </div>
-
-    );
-  }
-
-}
-
-function Meal(props){
-  return (
-    <div className="MealContainer">
-      <div className="LeftTitle">{props.mealTitle}</div>
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName={props.mealTitle}
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName={props.mealTitle}
-        isStatic={false}
-      />
-      <Item
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-        mealName={props.mealTitle}
-        isStatic={false}
-      />
 
 
-      <div className="AddButtonContainer">
-        <Button
-          outerColor="#F2F2F2"
-          styleClassName="Add"
-          containerSize="32px"
-          imageSize="16px"
-          imageSource={cross}
-          styleClassNameOuter="AddButtonOuter"
-          actionHandler={props.handleItemAdditionScreenToggle}
-        />
+// function Meal(props){
+//   return (
+//     <div className="MealContainer">
+//       <div className="LeftTitle">{props.mealTitle}</div>
+//       <Item
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//         mealName={props.mealTitle}
+//         isStatic={false}
+//       />
+//       <Item
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//         mealName={props.mealTitle}
+//         isStatic={false}
+//       />
+//       <Item
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//         mealName={props.mealTitle}
+//         isStatic={false}
+//       />
 
-      </div>
 
-    </div>
-  );
-}
+//       <div className="AddButtonContainer">
+//         <Button
+//           outerColor="#F2F2F2"
+//           styleClassName="Add"
+//           containerSize="32px"
+//           imageSize="16px"
+//           imageSource={cross}
+//           styleClassNameOuter="AddButtonOuter"
+//           actionHandler={props.handleSearchScreenToggle}
+//         />
 
-function MealContainer(props){
-  return(
-    <div className="Body">
-      <Meal
-        mealTitle="Breakfast"
-        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-      />
-      <Meal
-        mealTitle="Lunch"
-        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-      />
-      <Meal
-        mealTitle="Dinner"
-        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-
-      />
-      <Meal
-        mealTitle="Other"
-        handleItemAdditionScreenToggle={props.handleItemAdditionScreenToggle}
-        handleItemExpandScreenToggle={props.handleItemExpandScreenToggle}
-      />
-      </div>
-  );
-}
-
-//--------------------------------------------------------------------------------------------------->
-
-// Generic components------------------------------------------------------------------------->
-// function Button(props) {
-//   var class_name = "ButtonOutside";
-//   var outerColor = "white";
-//   if(props.styleClassNameOuter != null) {
-//     class_name = props.styleClassNameOuter;
-//   }
-//   if(props.outerColor != null) {
-//     outerColor = props.outerColor;
-//   }
-//   return(
-
-//     <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
-//       <img
-//         className={props.styleClassName}
-//         src={props.imageSource}
-//         style={{width: props.imageSize, height: props.imageSize}}
-
-//       >
-//       </img>
+//       </div>
 
 //     </div>
 //   );
-
 // }
 
-function ExternalScreenTop(props) {
-  return(
-    <div className="ExternalScreenTop">
-          <p className="ExternalScreenTitle">{props.screenTitle}</p>
-          {props.exitHandler !== null &&
-            <div className="ExitButtonContainer">
-              <Button
-                styleClassName="Exit"
-                containerSize="32px"
-                imageSize="16px"
-                imageSource={cross}
-                actionHandler={props.exitHandler}
-              />
-            </div>
-          }
-      </div>
-  );
-}
+// function MealContainer(props){
+//   return(
+//     <div className="Body">
+//       <Meal
+//         mealTitle="Breakfast"
+//         handleSearchScreenToggle={props.handleSearchScreenToggle}
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//       />
+//       <Meal
+//         mealTitle="Lunch"
+//         handleSearchScreenToggle={props.handleSearchScreenToggle}
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//       />
+//       <Meal
+//         mealTitle="Dinner"
+//         handleSearchScreenToggle={props.handleSearchScreenToggle}
+//         handleItemScreenToggle={props.handleItemScreenToggle}
 
-function ExternalScreenBottom(props) {
-
-  if(props.loadingExternal === true) {
-    return(
-      <div className="ExternalButtonLoading" onClick={props.actionHandler}>
-          <ExternalScreenLoading />
-        </div>
-    );
-  } else {
-    return(
-      <div className="ExternalButton" onClick={props.actionHandler}>
-          <p className="ExternalButtonText">{props.buttonText}</p>
-      </div>
-    );
-  }
-
-}
-
-function ExternalScreenLoading(props) {
-  return(
-    <div className="LoadingIconContainer">
-      <img src={refresh} className="LoadingIcon">
-      </img>
-    </div>
-  )
-}
-//--------------------------------------------------------------------------------------------------->
-
-// Item Expand Screen------------------------------------------------------------------------->
-function NutritionScreen(props) {
-  return(
-    <div className="ExternalScreen">
-      <div className="HideNutritionButton" onClick={props.handleNutritionScreenToggle}>
-        Hide Nutrition &#9650;
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Saturated Fat</p>
-        <p className="NutrientRight">2.5 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Trans Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Polyunsaturated Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Monounsaturated Fat</p>
-        <p className="NutrientRight">0 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Cholesterol</p>
-        <p className="NutrientRight">0 mg</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Sodium</p>
-        <p className="NutrientRight">225 mg</p>
-      </div>
-      <div className="Nutrient">
-        <p className="NutrientLeft">Dietary Fiber</p>
-        <p className="NutrientRight">1 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Sugar</p>
-        <p className="NutrientRight">20 g</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin D</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Calcium</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Iron</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Pottasium</p>
-        <p className="NutrientRight">0 mg</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin A</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-      <div className="Nutrient">
-        <p className="NutrientLeft">Vitamin C</p>
-        <p className="NutrientRight">0 %</p>
-      </div>
-
-    </div>
-  );
-
-}
-
-
-// macro components
-function MacrosVisual(props) {
-  const data = [{name: 'Carbs', value: 40}, {name: 'Fat', value: 10},
-                  {name: 'Protein', value: 2}];
-  const COLORS = ['#393E46', '#f3c623', '#848484'];
-
-  return (
-    <div className="CalMacroContainer">
-      <PieChart className="Pie" width={90} height={90}>
-          <Pie
-            animationDuration={900}
-            animationBegin={100}
-            data={data}
-            innerRadius={22}
-            outerRadius={30}
-            fill="#FFFFFF"
-            paddingAngle={5}
-          >
-            {
-              data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
-            }
-          </Pie>
-      </PieChart>
-
-    </div>
-  );
-
-}
-
-function Macro(props) {
-  return(
-    <div className="Macro">
-    {props.name === "Carbs" &&
-      <p className="MacroPercentageCarbs">{props.percent}%</p>
-
-    }
-    {props.name === "Protein" &&
-      <p className="MacroName">{props.percent}%</p>
-
-    }
-    {props.name === "Fat" &&
-      <p className="MacroPercentageProtein">{props.percent}%</p>
-    }
-    <p className="MacroGrams">{props.grams} g</p>
-    <p className="MacroName">{props.name}</p>
-
-    </div>
-  );
-}
-
-function Macros(props) {
-  return(
-    <div className="MacrosContainer">
-        <MacrosVisual />
-        <Macro name="Carbs" grams={40} percent={77}/>
-        <Macro name="Fat" grams={10} percent={20}/>
-        <Macro name="Protein" grams={2} percent={3}/>
-      </div>
-  );
-}
-
-function ItemExpandedScreen(props) {
-
-  if(props.showNutrition === false){
-    return(
-      <div className="ExternalScreen">
-
-
-        {props.currentMeal === "" &&
-          <ExternalScreenTop screenTitle="Add Entry" exitHandler={props.handleItemExpandScreenToggle}/>
-        }
-
-        {props.currentMeal !== "" &&
-          <ExternalScreenTop screenTitle="Edit Entry" exitHandler={props.handleItemExpandScreenToggle}/>
-        }
-
-          <div className="ExternalScreenContent">
-
-            {props.showItemAddition === false && props.currentMeal !== "" &&
-              <div className="ItemInput">
-                <p className="ItemInputLeft">Meal</p>
-                <select className="MealSelector">
-                  <option className="MealSelectorChoice" value="breakfast">Breakfast</option>
-                  <option className="MealSelectorChoice" value="lunch">Lunch</option>
-                  <option className="MealSelectorChoice" value="dinner">Dinner</option>
-                  <option className="MealSelectorChoice" value="other">Other</option>
-                </select>
-              </div>
-            }
-            <Item
-              mealName=""
-              isStatic={true}
-            />
-            <Macros />
-            <div className="ItemInput">
-                <p className="ItemInputLeft">Serving size</p>
-                <select className="MealSelector">
-                  <option className="MealSelectorChoice" value="breakfast">1 g</option>
-                  <option className="MealSelectorChoice" value="lunch">1 cup, diced</option>
-                  <option className="MealSelectorChoice" value="dinner">1 oz</option>
-                  <option className="MealSelectorChoice" value="other">1 kg</option>
-                  <option className="MealSelectorChoice" value="other">1 large</option>
-                  <option className="MealSelectorChoice" value="other">1 small</option>
-
-
-                </select>
-            </div>
-            <div className="ItemInput">
-                <p className="ItemInputLeft">Number of Servings</p>
-                  <input
-                    className="NumberInput"
-                    value={1}
-                    type="text"
-                    name="token"
-                    id="token"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    autocomplete="one-time-code"
-                  />
-            </div>
-
-            <div className="ShowNutritionButton" onClick={props.handleNutritionScreenToggle}>
-              Show Nutrition &#x25BC;
-            </div>
-
-        </div>
-
-
-        {props.showItemAddition === false &&
-          <ExternalScreenBottom buttonText="Update" loadingExternal={props.loadingExternal} actionHandler={props.handleItemExpandScreenToggle} />
-
-        }
-        {props.showItemAddition === true &&
-          <ExternalScreenBottom buttonText="Add" loadingExternal={props.loadingExternal} actionHandler={props.handleItemExpandScreenToggle} />
-        }
-
-
-      </div>
-
-    );
-
-  } else {
-    return(
-      <NutritionScreen handleNutritionScreenToggle={props.handleNutritionScreenToggle} />
-    );
-  }
-
-}
+//       />
+//       <Meal
+//         mealTitle="Other"
+//         handleSearchScreenToggle={props.handleSearchScreenToggle}
+//         handleItemScreenToggle={props.handleItemScreenToggle}
+//       />
+//       </div>
+//   );
+// }
 
 //--------------------------------------------------------------------------------------------------->
-
-
-// search external screen componenets ------------------------------------------------------------------------->
-function Result(props) {
-  return(
-    <div className="Item" >
-      {props.topLeft !== undefined &&
-        <p className="ItemName">{props.topLeft}</p>
-
-      }
-      <div className="ItemDescription">
-        {props.bottomLeft !== undefined &&
-
-          <p className="LeftItemDescription">{helper.shorten(props.bottomLeft)}</p>
-        }
-        <p className="RightItemDescription">{Math.round(props.bottomRight)}</p>
-      </div>
-    </div>
-  );
-}
-
-function Results(props) {
-  const listResults =  props.results.map( result =>
-    <div>
-
-      {isNaN(result) === true &&
-      <Result
-        topLeft={result["topLeft"]}
-        bottomLeft={result["bottomLeft"]}
-        bottomRight={result["bottomRight"]}
-        fdcId={result["fdcId"]}
-        key={result["fdcId"]}
-      />
-      }
-
-    </div>
-
-  );
-
-  return(
-    <div>
-      <div className="LeftTitle" style={{fontSize: "15px", marginBottom: "30px"}}>Top Results ({helper.toNumberWithCommas(props.totalHits.toString())} total results)</div>
-
-      {listResults}
-    </div>
-  )
-}
-
-function ItemAdditionScreen(props) {
-  return(
-    <div className="ExternalScreen">
-      <ExternalScreenTop screenTitle="Search" exitHandler={props.handleItemAdditionScreenToggle} />
-
-      <div className="SearchBarContainer">
-        <img className="SearchIcon" src={search}></img>
-        <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
-      </div>
-
-      {props.results !== undefined && props.results.length > 0 &&
-        <Results
-          results={props.results}
-          topResults={props.topResults}
-          pageSize={props.pageSize}
-          currentPage={props.currentPage}
-          totalHits={props.totalHits}
-        />
-      }
-
-      {props.results !== undefined && props.results.length > 0 &&
-        <div className="resultPagePicker">
-
-          <div className="DateContainer">
-            <div className="ArrowButtonContainer">
-              <Button
-                containerSize="32px"
-                imageSize="16px"
-                imageSource={left}
-                actionHandler={props.handlePageDecrement}
-              />
-            </div>
-            <div className="CurrentDate">{props.currentPage}</div>
-            <div className="ArrowButtonContainer">
-              <Button
-                containerSize="32px"
-                imageSize="16px"
-                imageSource={right}
-                actionHandler={props.handlePageIncrement}
-              />
-            </div>
-          </div>
-        </div>
-      }
-
-      <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
-    </div>
-  );
-}
-
-//--------------------------------------------------------------------------------------------------->
-
-
-//Profile screen ------------------------------------------------------------------------------------------>
-
-function ProfileScreen(props) {
-
-
-  var url = props.user["avatar"];
-  return(
-    <div className="ExternalScreen">
-
-      <ExternalScreenTop screenTitle="Profile" exitHandler={props.handleShowProfile}/>
-
-      <div className="ProfileScreenPicContainer">
-        <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
-      </div>
-
-
-      <div className="ProfileContentContainer">
-        <div className="ProfileInfoContainer">
-          <div className="LeftProfile">Name</div>
-          <p className="RightProfile">{props.user["name"]} {props.user["lastName"]}</p>
-        </div>
-
-        <div className="ProfileInfoContainer">
-          <div className="LeftProfile">Email</div>
-
-          <p className="RightProfile">{props.user["email"]}</p>
-        </div>
-
-        <div className="ProfileInfoContainer">
-          <div className="LeftProfile">ID</div>
-          <p className="RightProfile">{props.user["userId"]}</p>
-        </div>
-      </div>
-
-      <ExternalScreenBottom buttonText="Sign Out" loadingExternal={props.loadingExternal} actionHandler={props.handleSignOff} />
-
-
-    </div>
-
-  );
-
-}
-//--------------------------------------------------------------------------------------------------->
-
-
-
-//Sign in screen-------------------------------------------------------------------------------------->
-
-function SignInScreen(props) {
-
-
-  if( props.haveAccount === true ) {
-    return(
-
-      <div className="ExternalScreen" >
-      <ExternalScreenTop screenTitle="Sign In" exitHandler={null}/>
-
-      <div className="ExternalCenter">
-        <div className="LogoIsolatedContainer">
-          <img className="LogoIsolated" src={logo}></img>
-        </div>
-
-        <div className="InfoContainer">
-          {/* <img className="UserNameIcon" src={user}></img> */}
-          <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
-        </div>
-
-        <div className="InfoContainer">
-          {/* <img className="UserNameIcon" src={lock}></img> */}
-          <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
-        </div>
-
-        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
-
-        { props.error != '' &&
-          <p className="LoginError">{props.error}</p>
-        }
-
-        {props.successMessage != '' &&
-          <p className="SuccessMessage">{props.successMessage}</p>
-        }
-
-      </div>
-
-      <ExternalScreenBottom buttonText="Sign In" loadingExternal={props.loadingExternal} actionHandler={props.handleSignIn} />
-
-    </div>
-
-    );
-  } else {
-    return(
-
-      <div className="ExternalScreen">
-      <ExternalScreenTop screenTitle="Sign Up" exitHandler={null}/>
-
-      <div className="ExternalCenter">
-        <div className="LogoIsolatedContainer">
-          <img className="LogoIsolated" src={logo}></img>
-        </div>
-
-
-        <div className="InfoContainer">
-          <input className="InfoInput" type="text" placeholder="First Name" onChange={props.handleFirstNameInputChange}/>
-        </div>
-
-        <div className="InfoContainer">
-          <input className="InfoInput" type="text" placeholder="Last Name" onChange={props.handleLastNameInputChange}/>
-        </div>
-
-        <div className="InfoContainer">
-          <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
-        </div>
-
-        <div className="InfoContainer">
-          <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange}/>
-        </div>
-
-        <div className="PicUploaderContainer">
-          <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicUpload} />
-        </div>
-
-        <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
-
-        { props.error !== '' &&
-          <p className="LoginError">{props.error}</p>
-        }
-
-        {props.successMessage !== '' &&
-          <p className="SuccessMessage">{props.successMessage}</p>
-        }
-
-      </div>
-      <ExternalScreenBottom buttonText="Sign Up" loadingExternal={props.loadingExternal} actionHandler={props.handleSignUp} />
-
-    </div>
-
-    );
-  }
-}
-
-//--------------------------------------------------------------------------------------------------->
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -768,8 +145,8 @@ class App extends React.Component {
 
 
     // screen toggles
-    this.handleItemAdditionScreenToggle = this.handleItemAdditionScreenToggle.bind(this);
-    this.handleItemExpandScreenToggle = this.handleItemExpandScreenToggle.bind(this);
+    this.handleSearchScreenToggle = this.handleSearchScreenToggle.bind(this);
+    this.handleItemScreenToggle = this.handleItemScreenToggle.bind(this);
     this.handleNutritionScreenToggle = this.handleNutritionScreenToggle.bind(this);
     this.handleHaveAccountToggle = this.handleHaveAccountToggle.bind(this);
     this.handleShowProfile = this.handleShowProfile.bind(this);
@@ -904,12 +281,6 @@ class App extends React.Component {
 
           }
 
-          // this.setState({
-          //   results: data["results"],
-          //   totalHits: data["totalHits"],
-          //   loadingExternal: false,
-          //   currentPage: 1
-          // });
           if(data["results"]) {
 
             this.setState({
@@ -1134,7 +505,7 @@ class App extends React.Component {
       showNutrition: !this.state.showNutrition
     });
   }
-  handleItemExpandScreenToggle(mealTitle) {
+  handleItemScreenToggle(mealTitle) {
     if(mealTitle != null && this.state.expandItem === false){
       this.setState({
         currentMeal: mealTitle
@@ -1147,7 +518,7 @@ class App extends React.Component {
 
   }
 
-  handleItemAdditionScreenToggle(mealId) {
+  handleSearchScreenToggle(mealId) {
     this.setState({
       showItemAddition: !this.state.showItemAddition
     });
@@ -1224,8 +595,8 @@ class App extends React.Component {
             />
 
             <MealContainer
-              handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
-              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              handleSearchScreenToggle={this.handleSearchScreenToggle}
+              handleItemScreenToggle={this.handleItemScreenToggle}
               showItemAddition={this.state.showItemAddition}
             />
           </div>
@@ -1253,10 +624,10 @@ class App extends React.Component {
 
 
           {this.state.showItemAddition === true &&
-            <ItemAdditionScreen
+            <SearchScreen
               userInput={this.state.userInput}
-              handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
-              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+              handleSearchScreenToggle={this.handleSearchScreenToggle}
+              handleItemScreenToggle={this.handleItemScreenToggle}
               loadingExternal={this.state.loadingExternal}
               searchInput={this.state.searchInput}
               handleQueryChange={this.handleQueryChange}
@@ -1272,8 +643,8 @@ class App extends React.Component {
           }
 
           {this.state.expandItem === true &&
-            <ItemExpandedScreen
-              handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+            <ItemScreen
+              handleItemScreenToggle={this.handleItemScreenToggle}
               currentMeal={this.state.currentMeal}
               showItemAddition={this.state.showItemAddition}
               handleNutritionScreenToggle={this.handleNutritionScreenToggle}
@@ -1322,8 +693,8 @@ class App extends React.Component {
               />
 
               <MealContainer
-                handleItemAdditionScreenToggle={this.handleItemAdditionScreenToggle}
-                handleItemExpandScreenToggle={this.handleItemExpandScreenToggle}
+                handleSearchScreenToggle={this.handleSearchScreenToggle}
+                handleItemScreenToggle={this.handleItemScreenToggle}
                 showItemAddition={this.state.showItemAddition}
               />
             </div>
