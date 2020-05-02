@@ -26,7 +26,7 @@ function Meal(props){
 
             <div className="AddButtonContainer">
                 <Button
-                    outerColor="#F2F2F2"
+                    outerColor="#eeeeee"
                     styleClassName="Add"
                     containerSize="32px"
                     imageSize="16px"

@@ -95,6 +95,8 @@ class App extends React.Component {
     this.handleQuery = this.handleQuery.bind(this);
     this.handleEnterSearch = this.handleEnterSearch.bind(this);
 
+    // block scroll
+    this.handleScroll = this.handleScroll.bind(this);
     // test
     this.setDetailedResults = this.setDetailedResults.bind(this);
 
@@ -191,6 +193,14 @@ class App extends React.Component {
     }
 
   }
+
+  handleScroll(event) {
+    // alert("im scrolling");
+    event.preventDefault();
+  }
+
+
+
   handleQuery() {
     if(this.state.searchInput !== "") {
       this.setState({
@@ -468,6 +478,7 @@ class App extends React.Component {
   }
 
   handleDateDecrement() {
+
     var n = this.state.selectedDate.getTime();
     n -= 86400000;
     var newDate = new Date(n);
@@ -490,153 +501,117 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    document.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.handleScroll);
+  }
+
   render() {
 
-    if(this.state.showItemAddition === true || this.state.expandItem === true || this.state.currentUser === null || this.state.showProfile === true) {
-      return (
-        <div className="App">
+    return (
+      <div className="App">
 
-          <div className="ContainerDark">
-            <div className="Header">
-              <img className="Logo" src={logo}></img>
-              <h1>FoodPal</h1>
-
-
-              {this.state.currentUser === null &&
-                <div className="UserIconHeader" style={{background: "grey"}}></div>
-              }
-
-              {this.state.currentUser !== null &&
-                <div className="UserIconHeader" style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
-              }
-
-              {this.state.currentUser !== null &&
-                <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
-              }
-
-            </div>
-
-
-
-            <DatePicker currentDate={this.state.selectedDate}
-              handleDateChange={this.handleDateChange}
-              handleDateIncrement={this.handleDateIncrement}
-              handleDateDecrement={this.handleDateDecrement}
-            />
-
-            <MealContainer
-              handleSearchScreenToggle={this.handleSearchScreenToggle}
-              handleItemScreenToggle={this.handleItemScreenToggle}
-              showItemAddition={this.state.showItemAddition}
-            />
-          </div>
+        <div className="Header">
+          <img className="Logo" src={logo}></img>
+          <h1>FoodPal</h1>
 
 
           {this.state.currentUser === null &&
-            <SignInScreen
-              haveAccount={this.state.haveAccount}
-              handleHaveAccountToggle={this.handleHaveAccountToggle}
-
-              handleFirstNameInputChange={this.handleFirstNameInputChange}
-              handleLastNameInputChange={this.handleLastNameInputChange}
-              handleEmailInputChange={this.handleEmailInputChange}
-              handlePasswordInputChange={this.handlePasswordInputChange}
-              handleProfilePicUpload={this.handleProfilePicUpload}
-
-              handleSignIn={this.handleSignIn}
-              handleSignUp={this.handleSignUp}
-              loadingExternal={this.state.loadingExternal}
-              error={this.state.loginError}
-              successMessage={this.state.successMessage}
-
-            />
+            <div className="UserIconHeader" style={{background: "white"}}></div>
           }
 
-
-          {this.state.showItemAddition === true &&
-            <SearchScreen
-              userInput={this.state.userInput}
-              handleSearchScreenToggle={this.handleSearchScreenToggle}
-              handleItemScreenToggle={this.handleItemScreenToggle}
-              loadingExternal={this.state.loadingExternal}
-              searchInput={this.state.searchInput}
-              handleQueryChange={this.handleQueryChange}
-              handleQuery={this.handleQuery}
-              handleEnterSearch={this.handleEnterSearch}
-              results={this.state.detailedResults}
-              totalHits={this.state.totalHits}
-              currentPage={this.state.currentPage}
-              handlePageDecrement={this.handlePageDecrement}
-              handlePageIncrement={this.handlePageIncrement}
-
-            />
+          {this.state.currentUser !== null &&
+            <div className="UserIconHeader" onClick={this.handleShowProfile} style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
           }
 
-          {this.state.expandItem === true &&
-            <ItemScreen
-              handleItemScreenToggle={this.handleItemScreenToggle}
-              currentMeal={this.state.currentMeal}
-              showItemAddition={this.state.showItemAddition}
-              handleNutritionScreenToggle={this.handleNutritionScreenToggle}
-              showNutrition={this.state.showNutrition}
-              loadingExternal={this.state.loadingExternal}
-
-            />
-          }
-
-          {this.state.showProfile === true &&
-            <ProfileScreen user={this.state.currentUser}
-              handleShowProfile={this.handleShowProfile}
-              handleSignOff={this.handleSignOff}
-              loadingExternal={this.state.loadingExternal}
-
-            />
+          {this.state.currentUser !== null &&
+            <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
           }
 
         </div>
-        );
-    } else {
-
-
-        return (
-          <div className="App">
-            <div className="LightContainer">
-              <div className="Header">
-                <img className="Logo" src={logo}></img>
-                <h1>FoodPal</h1>
-
-                  {this.state.currentUser !== null &&
-                    <div className="UserIconHeader" onClick={this.handleShowProfile} style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
-                  }
-                  {this.state.currentUser !== null &&
-                    <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
-                  }
-
-              </div>
 
 
 
-              <DatePicker currentDate={this.state.selectedDate}
-                handleDateChange={this.handleDateChange}
-                handleDateIncrement={this.handleDateIncrement}
-                handleDateDecrement={this.handleDateDecrement}
-              />
+        <DatePicker currentDate={this.state.selectedDate}
+          handleDateChange={this.handleDateChange}
+          handleDateIncrement={this.handleDateIncrement}
+          handleDateDecrement={this.handleDateDecrement}
+        />
 
-              <MealContainer
-                handleSearchScreenToggle={this.handleSearchScreenToggle}
-                handleItemScreenToggle={this.handleItemScreenToggle}
-                showItemAddition={this.state.showItemAddition}
-              />
-            </div>
-
-
-        </div>
-          );
-
-    }
+        <MealContainer
+          handleSearchScreenToggle={this.handleSearchScreenToggle}
+          handleItemScreenToggle={this.handleItemScreenToggle}
+          showItemAddition={this.state.showItemAddition}
+        />
 
 
+        {this.state.currentUser === null &&
+          <SignInScreen
+            haveAccount={this.state.haveAccount}
+            handleHaveAccountToggle={this.handleHaveAccountToggle}
 
+            handleFirstNameInputChange={this.handleFirstNameInputChange}
+            handleLastNameInputChange={this.handleLastNameInputChange}
+            handleEmailInputChange={this.handleEmailInputChange}
+            handlePasswordInputChange={this.handlePasswordInputChange}
+            handleProfilePicUpload={this.handleProfilePicUpload}
+
+            handleSignIn={this.handleSignIn}
+            handleSignUp={this.handleSignUp}
+            loadingExternal={this.state.loadingExternal}
+            error={this.state.loginError}
+            successMessage={this.state.successMessage}
+
+          />
+        }
+
+
+        {this.state.showItemAddition === true &&
+          <SearchScreen
+            userInput={this.state.userInput}
+            handleSearchScreenToggle={this.handleSearchScreenToggle}
+            handleItemScreenToggle={this.handleItemScreenToggle}
+            loadingExternal={this.state.loadingExternal}
+            searchInput={this.state.searchInput}
+            handleQueryChange={this.handleQueryChange}
+            handleQuery={this.handleQuery}
+            handleEnterSearch={this.handleEnterSearch}
+            results={this.state.detailedResults}
+            totalHits={this.state.totalHits}
+            currentPage={this.state.currentPage}
+            handlePageDecrement={this.handlePageDecrement}
+            handlePageIncrement={this.handlePageIncrement}
+
+          />
+        }
+
+        {this.state.expandItem === true &&
+          <ItemScreen
+            handleItemScreenToggle={this.handleItemScreenToggle}
+            currentMeal={this.state.currentMeal}
+            showItemAddition={this.state.showItemAddition}
+            handleNutritionScreenToggle={this.handleNutritionScreenToggle}
+            showNutrition={this.state.showNutrition}
+            loadingExternal={this.state.loadingExternal}
+
+          />
+        }
+
+        {this.state.showProfile === true &&
+          <ProfileScreen 
+            user={this.state.currentUser}
+            handleShowProfile={this.handleShowProfile}
+            handleSignOff={this.handleSignOff}
+            loadingExternal={this.state.loadingExternal}
+
+          />
+        }
+
+      </div>
+    );
 
   }
 }

@@ -19,6 +19,7 @@ const helper = new Helper();
 
 function NutritionScreen(props) {
     return(
+        
         <div className="ExternalScreen">
             <div className="HideNutritionButton" onClick={props.handleNutritionScreenToggle}>
             Hide Nutrition &#9650;
@@ -160,88 +161,91 @@ function Macros(props) {
 function ItemScreen(props) {
     if(props.showNutrition === false){
         return(
-            <div className="ExternalScreen">
-    
-                {props.currentMeal === "" &&
-                    <ExternalScreenTop screenTitle="Add Entry" exitHandler={props.handleItemScreenToggle}/>
-                }
-        
-                {props.currentMeal !== "" &&
-                    <ExternalScreenTop screenTitle="Edit Entry" exitHandler={props.handleItemScreenToggle}/>
-                }
-        
-                <div className="ExternalScreenContent">
+            <div className="DarkBackground">
 
-                    {props.showItemAddition === false && props.currentMeal !== "" &&
-                        <div className="ItemInput">
-                        <p className="ItemInputLeft">Meal</p>
-                        <select className="MealSelector">
-                            <option className="MealSelectorChoice" value="breakfast">Breakfast</option>
-                            <option className="MealSelectorChoice" value="lunch">Lunch</option>
-                            <option className="MealSelectorChoice" value="dinner">Dinner</option>
-                            <option className="MealSelectorChoice" value="other">Other</option>
-                        </select>
-                        </div>
+                <div className="ExternalScreen">
+        
+                    {props.currentMeal === "" &&
+                        <ExternalScreenTop screenTitle="Add Entry" exitHandler={props.handleItemScreenToggle}/>
                     }
+            
+                    {props.currentMeal !== "" &&
+                        <ExternalScreenTop screenTitle="Edit Entry" exitHandler={props.handleItemScreenToggle}/>
+                    }
+            
+                    <div className="ExternalScreenContent">
 
-                    <Item
-                        mealName=""
-                        isStatic={true}
-                    />
+                        {props.showItemAddition === false && props.currentMeal !== "" &&
+                            <div className="ItemInput">
+                            <p className="ItemInputLeft">Meal</p>
+                            <select className="MealSelector">
+                                <option className="MealSelectorChoice" value="breakfast">Breakfast</option>
+                                <option className="MealSelectorChoice" value="lunch">Lunch</option>
+                                <option className="MealSelectorChoice" value="dinner">Dinner</option>
+                                <option className="MealSelectorChoice" value="other">Other</option>
+                            </select>
+                            </div>
+                        }
 
-                    <Macros />
+                        <Item
+                            mealName=""
+                            isStatic={true}
+                        />
 
-                    <div className="ItemInput">
-                        <p className="ItemInputLeft">Serving size</p>
-                        <select className="MealSelector">
-                            <option className="MealSelectorChoice" value="breakfast">1 g</option>
-                            <option className="MealSelectorChoice" value="lunch">1 cup, diced</option>
-                            <option className="MealSelectorChoice" value="dinner">1 oz</option>
-                            <option className="MealSelectorChoice" value="other">1 kg</option>
-                            <option className="MealSelectorChoice" value="other">1 large</option>
-                            <option className="MealSelectorChoice" value="other">1 small</option>
+                        <Macros />
+
+                        <div className="ItemInput">
+                            <p className="ItemInputLeft">Serving size</p>
+                            <select className="MealSelector">
+                                <option className="MealSelectorChoice" value="breakfast">1 g</option>
+                                <option className="MealSelectorChoice" value="lunch">1 cup, diced</option>
+                                <option className="MealSelectorChoice" value="dinner">1 oz</option>
+                                <option className="MealSelectorChoice" value="other">1 kg</option>
+                                <option className="MealSelectorChoice" value="other">1 large</option>
+                                <option className="MealSelectorChoice" value="other">1 small</option>
 
 
-                        </select>
-                    </div>
+                            </select>
+                        </div>
 
-                    <div className="ItemInput">
-                        <p className="ItemInputLeft">Number of Servings</p>
-                            <input
-                            className="NumberInput"
-                            value={1}
-                            type="text"
-                            name="token"
-                            id="token"
-                            inputmode="numeric"
-                            pattern="[0-9]*"
-                            autocomplete="one-time-code"
-                            />
+                        <div className="ItemInput">
+                            <p className="ItemInputLeft">Number of Servings</p>
+                                <input
+                                className="NumberInput"
+                                value={1}
+                                type="text"
+                                name="token"
+                                id="token"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                                autocomplete="one-time-code"
+                                />
+                        </div>
+                
+                        <div className="ShowNutritionButton" onClick={props.handleNutritionScreenToggle}>
+                            Show Nutrition &#x25BC;
+                        </div>
+            
                     </div>
             
-                    <div className="ShowNutritionButton" onClick={props.handleNutritionScreenToggle}>
-                        Show Nutrition &#x25BC;
-                    </div>
+            
+                    {props.showItemAddition === false &&
+                        <ExternalScreenBottom buttonText="Update" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenToggle} />
+            
+                    }
+                    {props.showItemAddition === true &&
+                        <ExternalScreenBottom buttonText="Add" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenScreenToggle} />
+                    }
+        
         
                 </div>
-        
-        
-                {props.showItemAddition === false &&
-                    <ExternalScreenBottom buttonText="Update" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenToggle} />
-        
-                }
-                {props.showItemAddition === true &&
-                    <ExternalScreenBottom buttonText="Add" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenScreenToggle} />
-                }
-    
-    
             </div>
-    
         );
-    
     } else {
         return(
-            <NutritionScreen handleNutritionScreenToggle={props.handleNutritionScreenToggle} />
+            <div className="DarkBackground">
+                <NutritionScreen handleNutritionScreenToggle={props.handleNutritionScreenToggle} />
+            </div>
         );
     }
     

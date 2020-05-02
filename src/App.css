@@ -1,10 +1,22 @@
+
+html,body {
+  height: 100%;
+  min-height: 100%;
+  /* background: #FEFEFE; */
+  /* background: #666666; */
+}
+
 .App {
   background: #FEFEFE;
   margin: none;
   padding: none;
   width: 100%;
   height: 100%;
+  min-height: 100%;
+
+  /* background: white; */
   background: white;
+
   margin: auto;
   text-align: center;
   display: block;
@@ -16,20 +28,13 @@
 
 }
 
-html {
+/* html {
   margin: none;
   padding-bottom: -30px;
   margin-bottom: -30px;
   background: #FEFEFE;
-}
+} */
 
-.LightContainer {
-  background: #FEFEFE;
-}
-.ContainerDark {
-  background: #FEFEFE;
-  filter: brightness(40%);
-}
 
 
 .Header{
@@ -131,38 +136,20 @@ h1 {
   }
 
 }
-.Greeting {
-  /* margin-top: 10px; */
-  /* background: red; */
-  color: #393e46;
-  font-size: 18px;
 
-  background: #FEFEFE;
 
-}
-
-.Body {
-  /* background: red; */
-  background: #FEFEFE;
-  width: 100%;
-  /* background: purple; */
-}
 
 /* Date picker components --------------------------------------------*/
 
 .resultPagePicker {
-  position: absolute;
+  position: fixed;
   left: 50%;
-  transform: translate(-50%, 0%);
-  bottom: 60px;
+  top: 50%;
+  transform: translate(-50%, 250px);
+  /* bottom: 60px; */
 }
 
 .DateContainer {
-  background: #FEFEFE;
-  /* background: red; */
-  /* background: red; */
-  /* max-width: 700px; */
-
   padding-top: 10px;
   padding-bottom: 10px;
   height: 40px;
@@ -171,29 +158,20 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: red; */
   color: #f3c623;
   font-size: 22px;
-  /* background: red; */
-
-
 }
 
 .CurrentDate {
 
   margin: auto;
   min-width: 100px;
-
-  /* background: #393e46; */
-  /* background: #FF7F23; */
   font-size: 18px;
   color: #343434;
   display: inline-block;
   margin-left: 30px;
   margin-right: 30px;
   vertical-align: middle;
-  /* background: #FF7F23; */
-
 }
 
 .ArrowButtonContainer {
@@ -210,7 +188,6 @@ h1 {
 
   border-radius: 50%;
   transition-duration: .15s;
-  background: #FEFEFE;
 
 
 }
@@ -251,7 +228,6 @@ h1 {
   left: 50%;
   top: -50%;
   transform: translate(-50%, 0%);
-  /* background: red; */
 
 }
 
@@ -305,8 +281,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 /* Meal container components  -----------------------------------------------------*/
 .LeftTitle {
-  /* background: red; */
-  /*font color*/
+
   color: #343434;
   font-size: 18px;
   margin: auto;
@@ -327,7 +302,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   max-width: 1000px;
   margin-bottom: 30px;
   background: #eeeeee;
-  background: #F2F2F2;
+  /* background: #F2F2F2; */
   padding-top: 5px;
   /* background: red; */
   /* padding-top: 15px; */
@@ -351,6 +326,8 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
   background: #606c88;  /* fallback for old browsers */
   background: #F2F2F2;
+  /* background: #eeeeee; */
+
   transition-duration: 0s;
 
 
@@ -375,8 +352,8 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   align-content: center;
   margin-bottom: 60px;
 
-  background: #eeeeee;
   background: #F2F2F2;
+  background: #eeeeee;
   /* background: red; */
   transition-duration: .25s;
 
@@ -392,7 +369,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .Item {
   background: #eeeeee;
-  background: #F2F2F2;
+  background: #FFFFFF;
 
   /* background: red; */
   /* border-radius: 20px; */
@@ -477,14 +454,19 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 /* external screen components -----------------------------------------------------*/
 .ExitButtonContainer {
   /* background: green; */
-  left: 85%;
   width: 60px;
   height: 60px;
   position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(260px, -450px);
   display: flex;
   align-items: center;
   justify-content: center;
 
+}
+.ExitButtonContainer:hover {
+  filter: brightness(80%);
 }
 
 .ButtonOutside {
@@ -503,7 +485,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   transition-duration: .25s;
 }
 .Exit:hover {
-  transform: rotateZ(90deg);
+  /* transform: rotateZ(90deg); */
 }
 
 .Add {
@@ -556,17 +538,39 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.ExternalButton {
-  position: absolute;
-  width: 100%;
+.ExternalScreenBottom {
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* top: 800px; */
+  /* bottom: -100; */
+  top: 50%;
+  transform: translate(0%, 315px);
+
+  width: 425px;
   height: 60px;
-  bottom: 0;
-  left: 0px;
   /* border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px; */
   text-align: center;
   color: #f3c623;
   background: #393e46;
+}
+
+
+.ExternalButton {
+  /* position: absolute; */
+  width: 100%;
+  height: 60px;
+  /* border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; */
+  text-align: center;
+  color: #f3c623;
+  background: #393e46;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 
   background: #606c88; /* fallback for old browsers */
@@ -576,11 +580,8 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .ExternalButtonLoading {
-  position: absolute;
   width: 100%;
   height: 60px;
-  bottom: 0;
-  left: 0px;
   /* border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px; */
   text-align: center;
@@ -599,33 +600,62 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .ExternalButtonText {
-  position: absolute;
   color: white;
   margin-top: 0px;
   margin-bottom: 0px;
   margin: auto;
   font-size: 18px;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 
 
 }
 
 
 
-
-.ExternalScreen {
-  background: white;
+.DarkBackground {
+  background: rgba(0,0,0,0.65);
   position: fixed;
+
+  width: 125%;
+  height: 125%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.ScreenFull {
+  background: rgba(255,0,0,0.25);
+
+  width: 75%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.ExternalScreen {
+  background: white;
+  display: fixed;
+  /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
   /* background: #D6F5FF; */
 
-  width: 85%;
-  height: 700px;
-  max-width: 425px;
+  height: 750px;
+  width: 425px;
+
+  /* min-width: 400px */
+  /* max-width: 425px; */
   /* border-radius: 30px; */
 
 }
@@ -670,21 +700,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   100% {
       -webkit-transform: rotate(360deg);
       transform:rotate(360deg);
-       }
+      }
   }
 
 
-.ExternalBottom {
-  position: absolute;
-  width: 100%;
-  height: 60px;
-  bottom: 0;
-  /* border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px; */
-  text-align: center;
-  color: #f3c623;
-  background: #393e46;
-}
 
 .InfoContainer{
   /* background: purple; */
@@ -808,14 +827,14 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-device-height: 1000px){
   .ExternalScreen{
-    height: 650px;
+    /* height: 650px; */
   }
 }
 
 @media only screen and (max-device-height: 900px) and (max-device-width: 600px){
   .ExternalScreen{
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
   }
 
 
@@ -854,6 +873,50 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
     border-bottom: 1px solid #eeeeee;
 
 
+  }
+
+  .ExternalScreenBottom {
+
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* top: 800px; */
+    /* bottom: -100; */
+    top: 80%;
+    transform: translate(0%, 30px);
+
+    width:80%;
+    height: 60px;
+    /* border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px; */
+    text-align: center;
+    color: #f3c623;
+    background: #393e46;
+  }
+
+  .resultPagePicker {
+    position: fixed;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -30px);
+    /* bottom: 60px; */
+  }
+
+  .ExitButtonContainer {
+    /* background: green; */
+    /* width: 60px;
+    height: 60px; */
+    transform: translate(-20px, 0px);
+    left: 80%;
+    top: 10%;
+
+    /* position: fixed; */
+    /* left: 50%;
+    top: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

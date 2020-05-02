@@ -54,50 +54,52 @@ function Results(props) {
 
 function SearchScreen(props) {
     return(
-        <div className="ExternalScreen">
-            <ExternalScreenTop screenTitle="Search" exitHandler={props.handleSearchScreenToggle} />
-    
-            <div className="SearchBarContainer">
-                <img className="SearchIcon" src={search}></img>
-                <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
-            </div>
-    
-            {props.results !== undefined && props.results.length > 0 &&
-                <Results
-                    results={props.results}
-                    topResults={props.topResults}
-                    pageSize={props.pageSize}
-                    currentPage={props.currentPage}
-                    totalHits={props.totalHits}
-                />
-            }
-    
-            {props.results !== undefined && props.results.length > 0 &&
-                <div className="resultPagePicker">
+
+        <div className="DarkBackground">
+            <div className="ExternalScreen">
+                <ExternalScreenTop screenTitle="Search" exitHandler={props.handleSearchScreenToggle} />
         
-                    <div className="DateContainer">
-                        <div className="ArrowButtonContainer">
-                            <Button
-                            containerSize="32px"
-                            imageSize="16px"
-                            imageSource={left}
-                            actionHandler={props.handlePageDecrement}
-                            />
-                        </div>
-                        <div className="CurrentDate">{props.currentPage}</div>
-                        <div className="ArrowButtonContainer">
-                            <Button
-                            containerSize="32px"
-                            imageSize="16px"
-                            imageSource={right}
-                            actionHandler={props.handlePageIncrement}
-                            />
+                <div className="SearchBarContainer">
+                    <img className="SearchIcon" src={search}></img>
+                    <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
+                </div>
+        
+                {props.results !== undefined && props.results.length > 0 &&
+                    <Results
+                        results={props.results}
+                        topResults={props.topResults}
+                        pageSize={props.pageSize}
+                        currentPage={props.currentPage}
+                        totalHits={props.totalHits}
+                    />
+                }
+        
+                {props.results !== undefined && props.results.length > 0 &&
+                    <div className="resultPagePicker">
+                        <div className="DateContainer">
+                            <div className="ArrowButtonContainer">
+                                <Button
+                                containerSize="32px"
+                                imageSize="16px"
+                                imageSource={left}
+                                actionHandler={props.handlePageDecrement}
+                                />
+                            </div>
+                            <div className="CurrentDate">{props.currentPage}</div>
+                            <div className="ArrowButtonContainer">
+                                <Button
+                                containerSize="32px"
+                                imageSize="16px"
+                                imageSource={right}
+                                actionHandler={props.handlePageIncrement}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-    
-            <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
+                }
+        
+                <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
+            </div>
         </div>
     );
 }
