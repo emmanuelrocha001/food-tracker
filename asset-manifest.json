@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/food-tracker/static/css/main.e06ba3aa.chunk.css",
-    "main.js": "/food-tracker/static/js/main.324854be.chunk.js",
-    "main.js.map": "/food-tracker/static/js/main.324854be.chunk.js.map",
+    "main.css": "/food-tracker/static/css/main.64f6980f.chunk.css",
+    "main.js": "/food-tracker/static/js/main.dd8de4d5.chunk.js",
+    "main.js.map": "/food-tracker/static/js/main.dd8de4d5.chunk.js.map",
     "runtime-main.js": "/food-tracker/static/js/runtime-main.76013246.js",
     "runtime-main.js.map": "/food-tracker/static/js/runtime-main.76013246.js.map",
     "static/js/2.91e6fcfc.chunk.js": "/food-tracker/static/js/2.91e6fcfc.chunk.js",
     "static/js/2.91e6fcfc.chunk.js.map": "/food-tracker/static/js/2.91e6fcfc.chunk.js.map",
     "index.html": "/food-tracker/index.html",
-    "precache-manifest.7949d982f93a287685eb7fb9802b71ac.js": "/food-tracker/precache-manifest.7949d982f93a287685eb7fb9802b71ac.js",
+    "precache-manifest.8b83bb70f6ec5265d94a4ef0d752a562.js": "/food-tracker/precache-manifest.8b83bb70f6ec5265d94a4ef0d752a562.js",
     "service-worker.js": "/food-tracker/service-worker.js",
-    "static/css/main.e06ba3aa.chunk.css.map": "/food-tracker/static/css/main.e06ba3aa.chunk.css.map",
+    "static/css/main.64f6980f.chunk.css.map": "/food-tracker/static/css/main.64f6980f.chunk.css.map",
     "static/js/2.91e6fcfc.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.91e6fcfc.chunk.js.LICENSE.txt",
-    "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.49f1fe60.svg",
-    "static/media/App.css": "/food-tracker/static/media/upload-image.c62f875d.svg",
+    "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.bc62abcf.svg",
+    "static/media/App.css": "/food-tracker/static/media/upload-image.d561443a.svg",
     "static/media/close-white.svg": "/food-tracker/static/media/close-white.d9560695.svg",
     "static/media/close.svg": "/food-tracker/static/media/close.c639de82.svg",
     "static/media/left-arrow-dark.svg": "/food-tracker/static/media/left-arrow-dark.638c7d9e.svg",
@@ -27,7 +27,7 @@
   "entrypoints": [
     "static/js/runtime-main.76013246.js",
     "static/js/2.91e6fcfc.chunk.js",
-    "static/css/main.e06ba3aa.chunk.css",
-    "static/js/main.324854be.chunk.js"
+    "static/css/main.64f6980f.chunk.css",
+    "static/js/main.dd8de4d5.chunk.js"
   ]
 }

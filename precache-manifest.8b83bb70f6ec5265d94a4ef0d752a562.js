@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ba7ac273490af9dad1e53ed86e79461f",
+    "revision": "796f2c97fd7c774b6578d98333f276e5",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "37c943bd26d3b99cb6dd",
-    "url": "/food-tracker/static/css/main.e06ba3aa.chunk.css"
+    "revision": "57919e1d2268d2b80bb2",
+    "url": "/food-tracker/static/css/main.64f6980f.chunk.css"
   },
   {
     "revision": "7ddaed2c2071bdf1dfb6",
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/js/2.91e6fcfc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "37c943bd26d3b99cb6dd",
-    "url": "/food-tracker/static/js/main.324854be.chunk.js"
+    "revision": "57919e1d2268d2b80bb2",
+    "url": "/food-tracker/static/js/main.dd8de4d5.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
     "url": "/food-tracker/static/js/runtime-main.76013246.js"
   },
   {
-    "revision": "49f1fe60e9d6def16aa3738e9875d3a3",
-    "url": "/food-tracker/static/media/add-dark.49f1fe60.svg"
+    "revision": "bc62abcf223956d1ccd2eeebc67b7884",
+    "url": "/food-tracker/static/media/add-dark.bc62abcf.svg"
   },
   {
-    "revision": "51ae4b88b9e70b20ab0319f835a83e68",
-    "url": "/food-tracker/static/media/calendar.51ae4b88.svg"
+    "revision": "95dd0f2096cdb76c76cb7b9358e9613b",
+    "url": "/food-tracker/static/media/calendar.95dd0f20.svg"
   },
   {
     "revision": "d956069578d31b82cd2683a98825cea6",
@@ -68,7 +68,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/media/search.fa0fe205.svg"
   },
   {
-    "revision": "c62f875d1f6d79787f397f8a80b9ca5c",
-    "url": "/food-tracker/static/media/upload-image.c62f875d.svg"
+    "revision": "d561443a5068459b46399573cbd669dc",
+    "url": "/food-tracker/static/media/upload-image.d561443a.svg"
   }
 ]);
