@@ -1,8 +1,10 @@
 
 import React from 'react';
+import '.././style/MealContainer.css';
+
 import Item from './Item';
 import Button from './Button';
-import cross from '../assets/ui/close.svg'
+import cross from '../assets/ui/add-dark.svg';
 function Meal(props){
     return (
         <div className="MealContainer">
@@ -26,10 +28,10 @@ function Meal(props){
 
             <div className="AddButtonContainer">
                 <Button
-                    outerColor="#eeeeee"
+                    outerColor="white"
                     styleClassName="Add"
                     containerSize="32px"
-                    imageSize="16px"
+                    imageSize="22px"
                     imageSource={cross}
                     styleClassNameOuter="AddButtonOuter"
                     actionHandler={props.handleSearchScreenToggle}

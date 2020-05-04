@@ -1,11 +1,13 @@
 import React from 'react';
+import '.././style/SearchScreen.css';
+
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
 import Helper from '../helper.js';
 import Button from '../components/Button';
 
-import left from '../assets/ui/left-arrow.svg';
-import right from '../assets/ui/right-arrow.svg';
+import left from '../assets/ui/left-arrow-dark.svg';
+import right from '../assets/ui/right-arrow-dark.svg';
 import search from '../assets/ui/search.svg';
 const helper = new Helper();
 
@@ -56,48 +58,52 @@ function SearchScreen(props) {
     return(
 
         <div className="DarkBackground">
-            <div className="ExternalScreen">
-                <ExternalScreenTop screenTitle="Search" exitHandler={props.handleSearchScreenToggle} />
-        
-                <div className="SearchBarContainer">
-                    <img className="SearchIcon" src={search}></img>
-                    <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
-                </div>
-        
-                {props.results !== undefined && props.results.length > 0 &&
-                    <Results
-                        results={props.results}
-                        topResults={props.topResults}
-                        pageSize={props.pageSize}
-                        currentPage={props.currentPage}
-                        totalHits={props.totalHits}
-                    />
-                }
-        
-                {props.results !== undefined && props.results.length > 0 &&
-                    <div className="resultPagePicker">
-                        <div className="DateContainer">
-                            <div className="ArrowButtonContainer">
-                                <Button
-                                containerSize="32px"
-                                imageSize="16px"
-                                imageSource={left}
-                                actionHandler={props.handlePageDecrement}
-                                />
-                            </div>
-                            <div className="CurrentDate">{props.currentPage}</div>
-                            <div className="ArrowButtonContainer">
-                                <Button
-                                containerSize="32px"
-                                imageSize="16px"
-                                imageSource={right}
-                                actionHandler={props.handlePageIncrement}
-                                />
+            <div className="ExternalScreenContainer">
+                <ExternalScreenTop screenTitle="Powered by FoodData Central" exitHandler={props.handleSearchScreenToggle} />
+                <div className="ExternalScreenMiddleContainer">
+                    <div className="Buffer"></div>
+
+                    <div className="SearchBarContainer">
+                        <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
+                        <img className="SearchIcon" src={search}></img>
+                    </div>
+            
+                    {props.results !== undefined && props.results.length > 0 &&
+                        <Results
+                            results={props.results}
+                            topResults={props.topResults}
+                            pageSize={props.pageSize}
+                            currentPage={props.currentPage}
+                            totalHits={props.totalHits}
+                        />
+                    }
+            
+                    {props.results !== undefined && props.results.length > 0 &&
+                        <div className="resultPagePicker">
+                            <div className="DateContainer">
+                                <div className="ArrowButtonContainer">
+                                    <Button
+                                    outerColor="white"
+                                    containerSize="32px"
+                                    imageSize="16px"
+                                    imageSource={left}
+                                    actionHandler={props.handlePageDecrement}
+                                    />
+                                </div>
+                                <div className="CurrentDate">{props.currentPage}</div>
+                                <div className="ArrowButtonContainer">
+                                    <Button
+                                    outerColor="white"
+                                    containerSize="32px"
+                                    imageSize="16px"
+                                    imageSource={right}
+                                    actionHandler={props.handlePageIncrement}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
-        
+                    }
+                </div>
                 <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
             </div>
         </div>

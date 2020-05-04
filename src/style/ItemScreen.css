@@ -1,0 +1,203 @@
+.Pie{
+    /* background: blue; */
+    /* display: inline-block; */
+    display: absolute;
+  }
+  
+  
+  .MacrosContainer{
+  
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    height: 90px;
+    /* background: red; */
+    justify-content: center;
+    align-items: center;
+  }
+  .Macro {
+    margin: auto;
+    display: inline-block;
+    /* background: blue; */
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
+  
+  }
+  
+  .MacroPercentageCarbs {
+    font-size: 14px;
+    color: #393E46;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .MacroPercentageProtein {
+    font-size: 14px;
+    color: #f3c623;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  
+  .MacroGrams {
+    font-size: 16px;
+    color: #343434;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  
+  }
+  .MacroName {
+    font-size: 14px;
+    color: #848484;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  
+  }
+  
+  .ItemInput {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
+    width: 90%;
+    /* height: 30px; */
+    display: inline-block;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+  
+    /* text-align: left; */
+    /* background: red; */
+  
+  }
+  
+  .ItemInputLeft {
+    font-size: 16px;
+    color: #343434;
+    margin: auto;
+    float: left;
+    /* margin-top: 0px; */
+    /* margin-bottom: 0px; */
+  
+  }
+  
+  .ItemInputRight {
+    font-size: 15px;
+    color: #848484;
+    float: right;
+    /* text-align: right; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  
+  .NumberInput {
+    float: right;
+    font-size: 15px;
+    color: #848484;
+    color: #393e46;
+  
+    float: right;
+    border: none;
+    /* background: red; */
+    max-width: 50px;
+    text-align: right;
+  }
+  
+  
+  
+  .MealSelector {
+    text-align-last: right;
+    font-size: 15px;
+    color: #848484;
+    color: #393e46;
+    float: right;
+    border: none;
+    /* appearance: none; */
+  
+  }
+  
+  
+  option {
+    outline: none;
+  
+    font-size: 15px;
+    color: #848484;
+    /* background: purple; */
+  }
+  
+  
+  
+  .NutrientLeft {
+    font-size: 15px;
+    color: #343434;
+    margin: auto;
+    float: left;
+    /* margin-top: 0px; */
+    /* margin-bottom: 0px; */
+  
+  }
+  
+  .NutrientRight {
+    font-size: 14px;
+    color: #848484;
+    float: right;
+    /* text-align: right; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .Nutrient {
+    margin: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  
+    width: 90%;
+    /* height: 30px; */
+    display: inline-block;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+  
+  
+  }
+  
+.ShowNutritionButton {
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+    bottom: 60px;
+    width: 100%;
+    /* height: 30px; */
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  
+    text-align: center;
+    background: #eeeeee;
+}
+
+.HideNutritionButton {
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+    width: 100%;
+    /* height: 30px; */
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    background: #eeeeee;
+}
+.ShowNutritionButton:Hover, .HideNutritionButton:Hover {
+    filter: brightness(85%);
+}

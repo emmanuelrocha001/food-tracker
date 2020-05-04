@@ -1,8 +1,8 @@
 
 import React from 'react';
 import Button from './Button';
-import left from '.././assets/ui/left-arrow.svg';
-import right from '.././assets/ui/right-arrow.svg';
+import left from '.././assets/ui/left-arrow-dark.svg';
+import right from '.././assets/ui/right-arrow-dark.svg';
 import Helper from '../helper.js';
 
 const helper = new Helper();

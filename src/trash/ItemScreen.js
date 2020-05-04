@@ -1,5 +1,5 @@
 import React from 'react';
-import '.././style/ItemScreen.css';
+
 /*char api*/
 import {
     PieChart, Pie, Sector, Cell,
@@ -163,7 +163,7 @@ function ItemScreen(props) {
         return(
             <div className="DarkBackground">
 
-                <div className="ExternalScreenContainer">
+                <div className="ExternalScreen">
         
                     {props.currentMeal === "" &&
                         <ExternalScreenTop screenTitle="Add Entry" exitHandler={props.handleItemScreenToggle}/>
@@ -173,9 +173,8 @@ function ItemScreen(props) {
                         <ExternalScreenTop screenTitle="Edit Entry" exitHandler={props.handleItemScreenToggle}/>
                     }
             
-                    <div className="ExternalScreenMiddleContainer">
+                    <div className="ExternalScreenContent">
 
-                        <div className="Buffer"></div>
                         {props.showItemAddition === false && props.currentMeal !== "" &&
                             <div className="ItemInput">
                             <p className="ItemInputLeft">Meal</p>

@@ -37,28 +37,6 @@ html,body {
 
 
 
-.Header{
-  padding-top: 15px;
-  z-index: 50;
-  padding-bottom: 15px;
-  width: 100%;
-  max-height: 50px;
-  text-align: center;
-  background: #393e46;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-
-  display: inline-block;
-
-
-  background: #606c88;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
-}
 
 
 
@@ -77,59 +55,8 @@ h1 {
 }
 
 
-.Logo{
-  float: left;
-  margin-left: 10%;
-  width: 40px;
-  margin-right: 10px;
-
-}
-
-.UserIconHeader{
-  width: 50px;
-  height: 50px;
-
-  background:#fff;
-  border-radius: 50%;
-  /* border: 3px solid #848484; */
-  /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
-  background-size: 100%;
-  /* background: red; */
-  float: right;
-  margin-right: 10%;
-}
-
-.UserNameHeader {
-  float: right;
-  color: #f3c623;
-  font-size: 16px;
-  margin-right: 10px;
-  padding-bottom: 0px;
-  padding-top: 0px;
-
-}
-
-
-.UserIconHeader:hover {
-  width: 55px;
-  height: 55px
-}
-
-.User{
-  /* float: right;
-  margin-right: 20%; */
-  /* clip-path: circle(35px at 50% 50%); */
-  border-radius: 50px;
-  border: 4px solid #393e46;
-  width: 70px;
-  height: 70px;
-}
 
 @media only screen and (max-device-width: 450px){
-  .UserNameHeader {
-    font-size: 0px;
-
-  }
 
   .Item {
     width: 100%;
@@ -141,13 +68,6 @@ h1 {
 
 /* Date picker components --------------------------------------------*/
 
-.resultPagePicker {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 250px);
-  /* bottom: 60px; */
-}
 
 .DateContainer {
   padding-top: 10px;
@@ -206,7 +126,7 @@ h1 {
 .ArrowButtonContainer:hover {
   width: 40px;
   height: 40px;
-  background: #606c88;
+  background: var(--main-app-color);
 }
 
 
@@ -221,7 +141,8 @@ h1 {
   background: url(./assets/ui/calendar.svg) no-repeat ;
   background-size: 100%;
   width: 35px;
-  height: 35px;
+  min-height: 38px;
+  /* height: 35px; */
   border: none;
   font-family: 'Roboto', sans-serif;
   position: relative;
@@ -280,194 +201,12 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 /* Date picker components --------------------------------------------*/
 
 /* Meal container components  -----------------------------------------------------*/
-.LeftTitle {
-
-  color: #343434;
-  font-size: 18px;
-  margin: auto;
-  text-align: left;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: 90%;
-}
-
-.MealContainer{
-  display: block;
-  margin: auto;
-
-  align-items: center;
-  border-style: solid;
-  border-width: 0px;
-  width: 90%;
-  max-width: 1000px;
-  margin-bottom: 30px;
-  background: #eeeeee;
-  /* background: #F2F2F2; */
-  padding-top: 5px;
-  /* background: red; */
-  /* padding-top: 15px; */
-}
-
-.AddButton {
-  width: 15px;
-  height: 15px;
-  transition-duration: .25s;
-  transform: rotateZ(45deg);
-
-}
-.AddButtonOuter {
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-
-  background: #606c88;  /* fallback for old browsers */
-  background: #F2F2F2;
-  /* background: #eeeeee; */
-
-  transition-duration: 0s;
-
-
-
-
-}
-
-.AddButtonOuter:hover {
-
-  /* width: 40px;
-  height: 40px; */
-  /* background: #606c88;  fallback for old browsers */
-  border: 4px solid #606c88;
-}
-
-
-.AddButtonContainer {
-  width: 100%;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  margin-bottom: 60px;
-
-  background: #F2F2F2;
-  background: #eeeeee;
-  /* background: red; */
-  transition-duration: .25s;
-
-  /* background: red; */
-
-  /* background: #393e46; */
-
-}
-.Add{
-  margin: auto;
-
-}
-
-.Item {
-  background: #eeeeee;
-  background: #FFFFFF;
-
-  /* background: red; */
-  /* border-radius: 20px; */
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: auto;
-  margin-bottom: 15px;
-  padding-top: 5px;
-  /* margin-top: 10px; */
-  width: 85%;
-  height: 50px;
-  text-align: left;
-
-
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 1px solid #E1E1E1;
-}
-
-
-
-
-.ItemStatic {
-  /* background: red; */
-  /* border-radius: 20px; */
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: auto;
-  margin-bottom: 10px;
-  padding-top: 5px;;
-  /* margin-top: 10px; */
-  width: 90%;
-  height: 48px;
-  text-align: left;
-
-
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #eeeeee;
-}
-
-
-.Item:hover {
-  filter: brightness(85%);
-}
-
-.ItemName {
-  color: #343434;
-  font-size: 14px;
-  padding: none;
-  margin-bottom: 5px;
-  margin-top: 0px;
-  text-transform: capitalize;
-}
-
-
-.LeftItemDescription {
-  color: #848484;
-  font-size: 14px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  float: left;
-
-}
-
-.RightItemDescription {
-  color: #848484;
-  font-size: 14px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  /* background: purple; */
-  float: right;
-}
-
 
 /* Meal container components  -----------------------------------------------------*/
 
 
 /* external screen components -----------------------------------------------------*/
-.ExitButtonContainer {
-  /* background: green; */
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(260px, -450px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-}
-.ExitButtonContainer:hover {
-  filter: brightness(80%);
-}
 
 .ButtonOutside {
   margin: auto;
@@ -490,7 +229,6 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .Add {
   transition-duration: .25s;
-  transform: rotateZ(45deg);
 }
 
 /* .Add:hover {
@@ -599,36 +337,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 }
 
-.ExternalButtonText {
-  color: white;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin: auto;
-  font-size: 18px;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
 
-
-}
-
-
-
-.DarkBackground {
-  background: rgba(0,0,0,0.65);
-  position: fixed;
-
-  width: 125%;
-  height: 125%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
 
 .ScreenFull {
   background: rgba(255,0,0,0.25);
@@ -790,25 +499,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 
-.LogoIsolated{
-  width: 50px;
-  height: 50px;
-}
-.LogoIsolatedContainer {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-bottom: 60px;
 
-  background: #606c88;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
 
 .InfoInput{
   float: right;
@@ -816,6 +507,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: none;
 
 }
 
@@ -831,94 +523,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   }
 }
 
-@media only screen and (max-device-height: 900px) and (max-device-width: 600px){
-  .ExternalScreen{
-    height: 80%;
-    width: 80%;
-  }
 
-
-  .NutrientLeft {
-    font-size: 11px;
-    color: #343434;
-    margin: auto;
-    float: left;
-    /* margin-top: 0px; */
-    /* margin-bottom: 0px; */
-
-  }
-
-  .NutrientRight {
-    font-size: 12px;
-    color: #848484;
-    float: right;
-    /* text-align: right; */
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .Nutrient {
-    /* background: red; */
-    margin: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-
-    width: 90%;
-    /* height: 30px; */
-    display: inline-block;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    padding-bottom: 5px;
-    text-align: center;
-    border-bottom: 1px solid #eeeeee;
-
-
-  }
-
-  .ExternalScreenBottom {
-
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* top: 800px; */
-    /* bottom: -100; */
-    top: 80%;
-    transform: translate(0%, 30px);
-
-    width:80%;
-    height: 60px;
-    /* border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px; */
-    text-align: center;
-    color: #f3c623;
-    background: #393e46;
-  }
-
-  .resultPagePicker {
-    position: fixed;
-    left: 50%;
-    top: 80%;
-    transform: translate(-50%, -30px);
-    /* bottom: 60px; */
-  }
-
-  .ExitButtonContainer {
-    /* background: green; */
-    /* width: 60px;
-    height: 60px; */
-    transform: translate(-20px, 0px);
-    left: 80%;
-    top: 10%;
-
-    /* position: fixed; */
-    /* left: 50%;
-    top: 50%; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
 
 /* external screen components -----------------------------------------------------*/
@@ -964,45 +569,11 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
 }
 
 
-.ProfileContentContainer {
-  margin: auto;
-  margin-top: 30px;
-  /* background: #F2F2F2; */
-  width: 100%;
-  display: block;
-}
 
-.ProfileInfoContainer {
-  width: 85%;
-  height: 35px;
-  background: #F2F2F2;
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
-.LeftProfile {
 
-  width: 60px;
-  width: 20%;
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  font-size: 17px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  float: left;
-  background: red;
-  height: 100%;
-  /* text-align: end; */
-  background: #AAAAAA;
-  color: #606c88;
-  background: rgb(214, 214, 214);
 
-}
 
 
 .RightProfile {
@@ -1025,249 +596,9 @@ background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, F
 /* Profile screen components --------------------------------------------*/
 
 
-.SearchBar {
-  /* background: purple; */
-  margin-left: 0;
-  font-size: 20px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 1.5px solid #E1E1E1;
-  color: #414141;
-  margin-left: 10px;
-
-}
-
-.SearchBarContainer {
-  /* background: red; */
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-
-}
-
-.SearchIcon {
-  width: 22px;
-  height: 22px;
-}
-.SearchBar:focus {
-  outline-width: 0;
-
-}
 
 
 
-.Pie{
-  /* background: blue; */
-  /* display: inline-block; */
-  display: absolute;
-}
-
-
-.MacrosContainer{
-
-  display: flex;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: 90%;
-  height: 90px;
-  /* background: red; */
-  justify-content: center;
-  align-items: center;
-}
-.Macro {
-  margin: auto;
-  display: inline-block;
-  /* background: blue; */
-  /* margin-left: 20px; */
-  /* margin-right: 20px; */
-
-}
-
-.MacroPercentageCarbs {
-  font-size: 14px;
-  color: #393E46;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.MacroPercentageProtein {
-  font-size: 14px;
-  color: #f3c623;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-
-.MacroGrams {
-  font-size: 16px;
-  color: #343434;
-  margin-top: 0px;
-  margin-bottom: 5px;
-
-}
-.MacroName {
-  font-size: 14px;
-  color: #848484;
-  margin-top: 0px;
-  margin-bottom: 0px;
-
-}
-
-.ItemInput {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  width: 90%;
-  /* height: 30px; */
-  display: inline-block;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-bottom: 10px;
-  text-align: center;
-  border-bottom: 1px solid #eeeeee;
-
-  /* text-align: left; */
-  /* background: red; */
-
-}
-
-.ItemInputLeft {
-  font-size: 16px;
-  color: #343434;
-  margin: auto;
-  float: left;
-  /* margin-top: 0px; */
-  /* margin-bottom: 0px; */
-
-}
-
-.ItemInputRight {
-  font-size: 15px;
-  color: #848484;
-  float: right;
-  /* text-align: right; */
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-
-.NumberInput {
-  float: right;
-  font-size: 15px;
-  color: #848484;
-  color: #393e46;
-
-  float: right;
-  border: none;
-  /* background: red; */
-  max-width: 50px;
-  text-align: right;
-}
-
-
-
-.MealSelector {
-  text-align-last: right;
-  font-size: 15px;
-  color: #848484;
-  color: #393e46;
-  float: right;
-  border: none;
-  /* appearance: none; */
-
-}
-
-
-option {
-  outline: none;
-
-  font-size: 15px;
-  color: #848484;
-  /* background: purple; */
-}
-
-
-
-.NutrientLeft {
-  font-size: 15px;
-  color: #343434;
-  margin: auto;
-  float: left;
-  /* margin-top: 0px; */
-  /* margin-bottom: 0px; */
-
-}
-
-.NutrientRight {
-  font-size: 14px;
-  color: #848484;
-  float: right;
-  /* text-align: right; */
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.Nutrient {
-  margin: auto;
-  margin-top: 2px;
-  margin-bottom: 2px;
-
-  width: 90%;
-  /* height: 30px; */
-  display: inline-block;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-bottom: 10px;
-  text-align: center;
-  border-bottom: 1px solid #eeeeee;
-
-
-}
-
-.ShowNutritionButton {
-  /* margin-top: 20px;
-  margin-bottom: 20px; */
-  position: fixed;
-
-  bottom: 60px;
-  width: 100%;
-  /* height: 30px; */
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-bottom: 10px;
-  padding-top: 10px;
-
-  text-align: center;
-  background: #eeeeee;
-}
-
-.HideNutritionButton {
-  /* margin-top: 20px;
-  margin-bottom: 20px; */
-
-  width: 100%;
-  /* height: 30px; */
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  margin-bottom: 10px;
-
-  text-align: center;
-  background: #eeeeee;
-}
-
-.ShowNutritionButton:Hover, .HideNutritionButton:Hover {
-  filter: brightness(85%);
-
-}
 
 
 @keyframes example {
@@ -1279,4 +610,3 @@ option {
   transform: rotateZ(135deg);
 
 }
-

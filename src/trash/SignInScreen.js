@@ -1,5 +1,5 @@
 import React from 'react';
-import ExternalScreenTop from '.././components/ExternalScreenTop';
+import ExternalScreenTop from '../components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
 import logo from '.././assets/ui/logo.svg';
 
@@ -7,37 +7,35 @@ function SignInScreen(props) {
     if( props.haveAccount === true ) {
         return(
             <div className="DarkBackground">
-                    <div className="ExternalScreenContainer" >
-                        <ExternalScreenTop screenTitle="Welcome" exitHandler={null}/>
-                        <div className="ExternalScreenMiddleContainer">
-                                
-                                <div className="Buffer"></div>
-                                
-                                <div className="LogoIsolatedContainer">
-                                    <img className="LogoIsolated" src={logo}></img>
-                                </div>
-                        
-                                <div className="InfoContainer">
-                                    {/* <img className="UserNameIcon" src={user}></img> */}
-                                    <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
-                                </div>
-                        
-                                <div className="InfoContainer">
-                                    {/* <img className="UserNameIcon" src={lock}></img> */}
-                                    <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
-                                </div>
-                        
-                                <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
-                        
-                                { props.error != '' &&
-                                    <p className="LoginError">{props.error}</p>
-                                }
-                        
-                                {props.successMessage != '' &&
-                                    <p className="SuccessMessage">{props.successMessage}</p>
-                                }
-                        </div>
+                    <div className="ExternalScreen" >
+                        <ExternalScreenTop screenTitle="Sign In" exitHandler={null}/>
+                
+                        <div className="ExternalCenter">
+                            <div className="LogoIsolatedContainer">
+                                <img className="LogoIsolated" src={logo}></img>
+                            </div>
                     
+                            <div className="InfoContainer">
+                                {/* <img className="UserNameIcon" src={user}></img> */}
+                                <input className="InfoInput" type="text" placeholder="Email" onChange={props.handleEmailInputChange}/>
+                            </div>
+                    
+                            <div className="InfoContainer">
+                                {/* <img className="UserNameIcon" src={lock}></img> */}
+                                <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
+                            </div>
+                    
+                            <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
+                    
+                            { props.error != '' &&
+                                <p className="LoginError">{props.error}</p>
+                            }
+                    
+                            {props.successMessage != '' &&
+                                <p className="SuccessMessage">{props.successMessage}</p>
+                            }
+                        </div>
+                
                         <ExternalScreenBottom buttonText="Sign In" loadingExternal={props.loadingExternal} actionHandler={props.handleSignIn} />
                 
                     </div>
@@ -47,13 +45,10 @@ function SignInScreen(props) {
         return(
             <div className="DarkBackground">
     
-                <div className="ExternalScreenContainer">
-                    <ExternalScreenTop screenTitle="Welcome" exitHandler={null}/>
+                <div className="ExternalScreen">
+                    <ExternalScreenTop screenTitle="Sign Up" exitHandler={null}/>
             
-                    <div className="ExternalScreenMiddleContainer">
-                        <div className="Buffer">
-
-                        </div>
+                    <div className="ExternalCenter">
                         <div className="LogoIsolatedContainer">
                             <img className="LogoIsolated" src={logo}></img>
                         </div>

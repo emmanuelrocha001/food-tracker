@@ -1,0 +1,162 @@
+.LeftTitle {
+
+    color: #343434;
+    font-size: 18px;
+    margin: auto;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+  }
+  
+  .MealContainer{
+    display: block;
+    margin: auto;
+  
+    align-items: center;
+    border-style: solid;
+    border-width: 0px;
+    width: 90%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    background: var(--main-background-color);
+    /* background: #F2F2F2; */
+    padding-top: 5px;
+    /* background: red; */
+    /* padding-top: 15px; */
+  }
+  
+  .AddButton {
+    width: 15px;
+    height: 15px;
+    transition-duration: .25s;
+    transform: rotateZ(45deg);
+  
+  }
+  .AddButtonOuter {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  
+    background: var(--main-background-color);
+  
+    transition-duration: 0s;
+  
+  
+  
+  
+  }
+  
+  .AddButtonOuter:hover {
+  
+    /* width: 40px;
+    height: 40px; */
+    /* background: #606c88;  fallback for old browsers */
+    border: 4px solid var(--main-app-color);
+  }
+  
+  
+  .AddButtonContainer {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 60px;
+
+    background: var(--main-background-color);
+
+    transition-duration: .25s;
+
+  
+  }
+  .Add{
+    margin: auto;
+  
+  }
+  
+  .Item {
+    background: #eeeeee;
+    background: #FFFFFF;
+  
+    /* background: red; */
+    /* border-radius: 20px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    /* margin-top: 10px; */
+    width: 85%;
+    height: 50px;
+    text-align: left;
+  
+  
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #E1E1E1;
+  }
+  
+  
+  
+  
+  .ItemStatic {
+    /* background: red; */
+    /* border-radius: 20px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-top: 5px;;
+    /* margin-top: 10px; */
+    width: 90%;
+    height: 48px;
+    text-align: left;
+  
+  
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eeeeee;
+  }
+  
+  
+  .Item:hover {
+    filter: brightness(85%);
+  }
+  
+  .ItemName {
+    color: #343434;
+    font-size: 14px;
+    padding: none;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    text-transform: capitalize;
+  }
+  
+  
+  .LeftItemDescription {
+    color: #848484;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    float: left;
+  
+  }
+  
+  .RightItemDescription {
+    color: #848484;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    /* background: purple; */
+    float: right;
+  }
+  
+  

@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import './style/MainApp.css';
+import './style/ExternalScreen.css';
 /*char api*/
 import {
   PieChart, Pie, Sector, Cell,
@@ -16,6 +18,7 @@ import Item from './components/Item';
 import ExternalScreenLoading from './components/ExternalScreenLoading';
 import ExternalScreenTop from './components/ExternalScreenTop';
 import ExternalScreenBottom from './components/ExternalScreenBottom';
+import ExternalScreen from './components/ExternalScreen';
 import DatePicker from './components/DatePicker';
 import MealContainer from './components/MealContainer';
 // import screens
@@ -566,6 +569,7 @@ class App extends React.Component {
             successMessage={this.state.successMessage}
 
           />
+          // <ExternalScreen />
         }
 
 

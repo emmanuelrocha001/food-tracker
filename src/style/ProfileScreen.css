@@ -1,0 +1,72 @@
+
+.ProfileScreenPicContainer {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 185px;
+    height: 185px;
+    border-radius: 50%;
+    margin-top: 20px;
+    background: var(--main-app-color);
+}
+
+.ProfileScreenPic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid white;
+    /* filter: drop-shadow( 2px 2px 5px 5px #848484); */
+    background-size: 100%;
+    /* background: red; */
+}
+
+.ProfileContentContainer {
+    margin: auto;
+    margin-top: 30px;
+    width: 100%;
+    display: block;
+}
+
+.ProfileInfoContainer {
+    width: 85%;
+    height: 35px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.LeftProfile {
+
+    width: 60px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    float: left;
+    height: 100%;
+    background: #AAAAAA;
+    background: var(--main-app-color);
+    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+.RightProfile {
+    margin-left: 5%;
+    width: 70%;
+    height: 100%;
+    float: left;
+    color: var(--main-app-color);
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
