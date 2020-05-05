@@ -119,13 +119,44 @@ class App extends React.Component {
   }
 
   handleEditProfile() {
-    // alert(this.state.currentFieldEditName);
-    // alert(this.state.editInput);
-    this.setState({
-      currentFieldEditName: "",
-      editInput: ""
+    if(this.state.editInput !== "") {
 
-    })
+      var propNameDic = {First: "firstName", Last: "lastName", Email: "email"};
+      var updateProps = [];
+      var field_name = this.state.currentFieldEditName;
+      var prop_name = propNameDic[field_name];
+      var prop_value = this.state.editInput;
+      updateProps.push({ propName: prop_name, value: prop_value});
+
+      const requestOptions = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateProps)
+      };
+
+      this.setState({
+        loadingExternal: true
+      });
+
+      fetch(foodAPIURL+'/user/' + this.state.currentUser["userId"], requestOptions)
+      .then(response => response.json()).then( data => {
+          this.setState({
+            currentUser: data["user"],
+            loadingExternal: false,
+            currentFieldEditName: "",
+            editInput: ""
+          });
+
+      })
+      .catch( error => {
+        console.log(error);
+        this.setState({
+          loadingExternal: false
+        });
+
+      });
+  
+    }
   }
   handleEditFieldNameToggle(fieldName) {
     // alert(fieldName);
@@ -560,7 +591,7 @@ class App extends React.Component {
           }
 
           {this.state.currentUser !== null &&
-            <p className="UserNameHeader">{this.state.currentUser["name"]}</p>
+            <p className="UserNameHeader">{this.state.currentUser["firstName"]}</p>
           }
 
         </div>

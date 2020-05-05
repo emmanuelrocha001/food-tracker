@@ -26,7 +26,7 @@ function ProfileScreen(props) {
                     <div className="ProfileContentContainer">
                         <ProfileItem 
                             fieldName="First"
-                            fieldContent={props.user["name"]}
+                            fieldContent={props.user["firstName"]}
                             handleEditFieldNameToggle={props.handleEditFieldNameToggle}
                             currentFieldEditName={props.currentFieldEditName}
                             handleEditProfile={props.handleEditProfile}
