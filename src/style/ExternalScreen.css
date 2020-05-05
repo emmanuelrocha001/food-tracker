@@ -1,6 +1,7 @@
 :root {
     --main-background-color: rgba(255,255,255,1);
     --main-app-color: #393e46;
+    --main-light-border: #E1E1E1;
 
 }
 
@@ -243,6 +244,10 @@
       top: 90%;
       transform: translate(-50%, 0px);
       /* bottom: 60px; */
+    }
+
+    .Item {
+        width: 100%;
     }
   
   

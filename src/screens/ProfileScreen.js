@@ -1,7 +1,11 @@
 import React from 'react';
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
+import ProfileItem from '../components/ProfileItem';
+import Button from '.././components/Button';
 import '.././style/ProfileScreen.css';
+import edit from '.././assets/ui/edit-dark.svg'
+
 
 function ProfileScreen(props) {
 
@@ -20,16 +24,35 @@ function ProfileScreen(props) {
                     </div>
 
                     <div className="ProfileContentContainer">
-                        <div className="ProfileInfoContainer">
-                            <div className="LeftProfile">Name</div>
-                            <p className="RightProfile">{props.user["name"]} {props.user["lastName"]}</p>
-                        </div>
-            
-                        <div className="ProfileInfoContainer">
-                            <div className="LeftProfile">Email</div>
-                            <p className="RightProfile">{props.user["email"]}</p>
-                        </div>
-                
+                        <ProfileItem 
+                            fieldName="First"
+                            fieldContent={props.user["name"]}
+                            handleEditFieldNameToggle={props.handleEditFieldNameToggle}
+                            currentFieldEditName={props.currentFieldEditName}
+                            handleEditProfile={props.handleEditProfile}
+                            handleEditInputChange={props.handleEditInputChange}
+                        />
+                        <ProfileItem 
+                            fieldName="Last"
+                            fieldContent={props.user["lastName"]}
+                            handleEditFieldNameToggle={props.handleEditFieldNameToggle}
+                            currentFieldEditName={props.currentFieldEditName}
+                            handleEditProfile={props.handleEditProfile}
+                            handleEditInputChange={props.handleEditInputChange}
+
+
+                        /> 
+                        <ProfileItem 
+                            fieldName="Email"
+                            fieldContent={props.user["email"]}
+                            handleEditFieldNameToggle={props.handleEditFieldNameToggle}
+                            currentFieldEditName={props.currentFieldEditName}
+                            handleEditProfile={props.handleEditProfile}
+                            handleEditInputChange={props.handleEditInputChange}
+
+                        
+                        /> 
+
                         <div className="ProfileInfoContainer">
                             <div className="LeftProfile">ID</div>
                             <p className="RightProfile">{props.user["userId"]}</p>

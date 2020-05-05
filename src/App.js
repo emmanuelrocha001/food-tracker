@@ -43,6 +43,8 @@ class App extends React.Component {
 
     this.state = {
       loadingExternal: false,
+      currentFieldEditName: "",
+      editInput: "",
       results: [],
       detailedResults: [],
       currentPage: 1,
@@ -90,6 +92,7 @@ class App extends React.Component {
     this.handleLastNameInputChange = this.handleLastNameInputChange.bind(this);
     this.handleProfilePicUpload = this.handleProfilePicUpload.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleEditInputChange = this.handleEditInputChange.bind(this);
 
     // action handlers
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -97,7 +100,8 @@ class App extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleQuery = this.handleQuery.bind(this);
     this.handleEnterSearch = this.handleEnterSearch.bind(this);
-
+    this.handleEditFieldNameToggle = this.handleEditFieldNameToggle.bind(this);
+    this.handleEditProfile = this.handleEditProfile.bind(this);
     // block scroll
     this.handleScroll = this.handleScroll.bind(this);
     // test
@@ -105,6 +109,29 @@ class App extends React.Component {
 
 
 
+  }
+
+  handleEditInputChange(event) {
+    this.setState({
+      editInput: event.target.value
+    });
+
+  }
+
+  handleEditProfile() {
+    // alert(this.state.currentFieldEditName);
+    // alert(this.state.editInput);
+    this.setState({
+      currentFieldEditName: "",
+      editInput: ""
+
+    })
+  }
+  handleEditFieldNameToggle(fieldName) {
+    // alert(fieldName);
+    this.setState({
+      currentFieldEditName: fieldName
+    });
   }
 
   setDetailedResults() {
@@ -265,6 +292,8 @@ class App extends React.Component {
     this.setState({
       loadingExternal: false,
       selectedDate: new Date(),
+      currentFieldEditName: "",
+      currentEditInput: "",
       showItemAddition: false,
       expandItem: false,
       showNutrition: false,
@@ -610,7 +639,10 @@ class App extends React.Component {
             handleShowProfile={this.handleShowProfile}
             handleSignOff={this.handleSignOff}
             loadingExternal={this.state.loadingExternal}
-
+            handleEditFieldNameToggle={this.handleEditFieldNameToggle}
+            currentFieldEditName={this.state.currentFieldEditName}
+            handleEditProfile={this.handleEditProfile}
+            handleEditInputChange={this.handleEditInputChange}
           />
         }
 

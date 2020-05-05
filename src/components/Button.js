@@ -9,19 +9,32 @@ function Button(props) {
     if(props.outerColor != null) {
         outerColor = props.outerColor;
     }
-    return(
 
-        <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
-            <img
-            className={props.styleClassName}
-            src={props.imageSource}
-            style={{width: props.imageSize, height: props.imageSize}}
-    
-            >
-            </img>
-        </div>
-    );
+    if(props.edit === true) {
+        return(
 
+            <div className={class_name} onClick={ () => props.actionHandler(props.fieldName)} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
+                <img
+                className={props.styleClassName}
+                src={props.imageSource}
+                style={{width: props.imageSize, height: props.imageSize}}
+                >
+                </img>
+            </div>
+        );
+    } else {
+        return(
+
+            <div className={class_name} onClick={props.actionHandler} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
+                <img
+                className={props.styleClassName}
+                src={props.imageSource}
+                style={{width: props.imageSize, height: props.imageSize}}
+                >
+                </img>
+            </div>
+        );
+    }
 }
 
 
