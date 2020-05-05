@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.css": "/food-tracker/static/css/main.64f6980f.chunk.css",
-    "main.js": "/food-tracker/static/js/main.dd8de4d5.chunk.js",
-    "main.js.map": "/food-tracker/static/js/main.dd8de4d5.chunk.js.map",
+    "main.css": "/food-tracker/static/css/main.40d6ac85.chunk.css",
+    "main.js": "/food-tracker/static/js/main.d105385e.chunk.js",
+    "main.js.map": "/food-tracker/static/js/main.d105385e.chunk.js.map",
     "runtime-main.js": "/food-tracker/static/js/runtime-main.76013246.js",
     "runtime-main.js.map": "/food-tracker/static/js/runtime-main.76013246.js.map",
-    "static/js/2.91e6fcfc.chunk.js": "/food-tracker/static/js/2.91e6fcfc.chunk.js",
-    "static/js/2.91e6fcfc.chunk.js.map": "/food-tracker/static/js/2.91e6fcfc.chunk.js.map",
+    "static/js/2.9c9f8335.chunk.js": "/food-tracker/static/js/2.9c9f8335.chunk.js",
+    "static/js/2.9c9f8335.chunk.js.map": "/food-tracker/static/js/2.9c9f8335.chunk.js.map",
     "index.html": "/food-tracker/index.html",
-    "precache-manifest.8b83bb70f6ec5265d94a4ef0d752a562.js": "/food-tracker/precache-manifest.8b83bb70f6ec5265d94a4ef0d752a562.js",
+    "precache-manifest.b6428475506b2530b0301e67d6822302.js": "/food-tracker/precache-manifest.b6428475506b2530b0301e67d6822302.js",
     "service-worker.js": "/food-tracker/service-worker.js",
-    "static/css/main.64f6980f.chunk.css.map": "/food-tracker/static/css/main.64f6980f.chunk.css.map",
-    "static/js/2.91e6fcfc.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.91e6fcfc.chunk.js.LICENSE.txt",
+    "static/css/main.40d6ac85.chunk.css.map": "/food-tracker/static/css/main.40d6ac85.chunk.css.map",
+    "static/js/2.9c9f8335.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.9c9f8335.chunk.js.LICENSE.txt",
     "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.bc62abcf.svg",
     "static/media/App.css": "/food-tracker/static/media/upload-image.d561443a.svg",
+    "static/media/check-dark.svg": "/food-tracker/static/media/check-dark.edf81f00.svg",
     "static/media/close-white.svg": "/food-tracker/static/media/close-white.d9560695.svg",
     "static/media/close.svg": "/food-tracker/static/media/close.c639de82.svg",
+    "static/media/edit-dark.svg": "/food-tracker/static/media/edit-dark.de4b9705.svg",
     "static/media/left-arrow-dark.svg": "/food-tracker/static/media/left-arrow-dark.638c7d9e.svg",
     "static/media/left-arrow.svg": "/food-tracker/static/media/left-arrow.d5f28d66.svg",
     "static/media/logo.svg": "/food-tracker/static/media/logo.53e6d68a.svg",
@@ -26,8 +28,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.76013246.js",
-    "static/js/2.91e6fcfc.chunk.js",
-    "static/css/main.64f6980f.chunk.css",
-    "static/js/main.dd8de4d5.chunk.js"
+    "static/js/2.9c9f8335.chunk.js",
+    "static/css/main.40d6ac85.chunk.css",
+    "static/js/main.d105385e.chunk.js"
   ]
 }
