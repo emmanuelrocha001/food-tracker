@@ -25,7 +25,7 @@ function ProfileItem(props) {
 
             {props.currentFieldEditName === props.fieldName && props.currentFieldEditName === "Weight" &&
                 <div className="EditInputFieldContainer">
-                    <input className="EditInputField" type="text" onBlur={props.handleQuitEditProfile} inputmode="numeric" placeholder="" onChange={props.handleEditInputChange}/>
+                    <input className="EditInputField" type="text" inputmode="numeric" placeholder="" onChange={props.handleEditInputChange}/>
                 </div>
 
             }
