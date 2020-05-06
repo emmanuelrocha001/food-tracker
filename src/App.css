@@ -472,14 +472,14 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 .LoginError{
   /* margin-top: 10px; */
   color: #848484;
-  color: #f64b3c;
+  color: var(--red-color);
   font-size: 14px;
   /* border: 1px solid #848484; */
 
 }
 
 .SuccessMessage{
-  color: #8cba51;
+  color: var(--green-color);
   font-size: 14px;
 }
 

@@ -31,6 +31,7 @@ function ProfileScreen(props) {
                             currentFieldEditName={props.currentFieldEditName}
                             handleEditProfile={props.handleEditProfile}
                             handleEditInputChange={props.handleEditInputChange}
+                            handleQuitEditProfile={props.handleQuitEditProfile}
                         />
                         <ProfileItem 
                             fieldName="Last"
@@ -39,10 +40,23 @@ function ProfileScreen(props) {
                             currentFieldEditName={props.currentFieldEditName}
                             handleEditProfile={props.handleEditProfile}
                             handleEditInputChange={props.handleEditInputChange}
+                            handleQuitEditProfile={props.handleQuitEditProfile}
+
+
+                        />
+
+                        <ProfileItem 
+                            fieldName="Weight"
+                            fieldContent={props.user["weight"] + " lbs."}
+                            handleEditFieldNameToggle={props.handleEditFieldNameToggle}
+                            currentFieldEditName={props.currentFieldEditName}
+                            handleEditProfile={props.handleEditProfile}
+                            handleEditInputChange={props.handleEditInputChange}
+                            handleQuitEditProfile={props.handleQuitEditProfile}
 
 
                         /> 
-                        <ProfileItem 
+                        {/* <ProfileItem 
                             fieldName="Email"
                             fieldContent={props.user["email"]}
                             handleEditFieldNameToggle={props.handleEditFieldNameToggle}
@@ -51,7 +65,12 @@ function ProfileScreen(props) {
                             handleEditInputChange={props.handleEditInputChange}
 
                         
-                        /> 
+                        />  */}
+
+                        <div className="ProfileInfoContainer">
+                            <div className="LeftProfile">Email</div>
+                            <p className="RightProfile">{props.user["email"]}</p>
+                        </div>
 
                         <div className="ProfileInfoContainer">
                             <div className="LeftProfile">ID</div>

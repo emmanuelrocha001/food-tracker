@@ -2,6 +2,10 @@
     --main-background-color: rgba(255,255,255,1);
     --main-app-color: #393e46;
     --main-light-border: #E1E1E1;
+    --medium-font-size: 15px;
+    --large-font-size: 17px;
+    --red-color: #f64b3c;
+    --green-color: #8cba51;
 
 }
 
@@ -105,6 +109,7 @@
     color: white;
     /* font-size: 16px; */
     background: var(--main-app-color);
+    font: var(--large-font-size);
 
 
     border-radius: 20px;
@@ -133,7 +138,7 @@
     color: white;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 16px;
+    font-size: var(--large-font-size);
 }
 .ExternalScreenBottomContainer:hover {
     filter: brightness(80%);

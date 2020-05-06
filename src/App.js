@@ -102,6 +102,7 @@ class App extends React.Component {
     this.handleEnterSearch = this.handleEnterSearch.bind(this);
     this.handleEditFieldNameToggle = this.handleEditFieldNameToggle.bind(this);
     this.handleEditProfile = this.handleEditProfile.bind(this);
+    this.handleQuitEditProfile = this.handleQuitEditProfile.bind(this);
     // block scroll
     this.handleScroll = this.handleScroll.bind(this);
     // test
@@ -118,10 +119,18 @@ class App extends React.Component {
 
   }
 
+  handleQuitEditProfile() {
+    this.setState({
+      loadingExternal: false,
+      currentFieldEditName: "",
+      editInput: ""
+    });
+  }
+
   handleEditProfile() {
     if(this.state.editInput !== "") {
 
-      var propNameDic = {First: "firstName", Last: "lastName", Email: "email"};
+      var propNameDic = {First: "firstName", Last: "lastName", Weight: "weight"};
       var updateProps = [];
       var field_name = this.state.currentFieldEditName;
       var prop_name = propNameDic[field_name];
@@ -151,11 +160,19 @@ class App extends React.Component {
       .catch( error => {
         console.log(error);
         this.setState({
-          loadingExternal: false
+          loadingExternal: false,
+          currentFieldEditName: "",
+          editInput: ""
         });
 
       });
   
+    } else {
+      this.setState({
+        loadingExternal: false,
+        currentFieldEditName: "",
+        editInput: ""
+      });
     }
   }
   handleEditFieldNameToggle(fieldName) {
@@ -378,6 +395,7 @@ class App extends React.Component {
             loginError: data["message"],
           });
         } else{
+          console.log(data["user"]);
           this.setState({
             currentUser: data["user"],
           });
@@ -674,6 +692,7 @@ class App extends React.Component {
             currentFieldEditName={this.state.currentFieldEditName}
             handleEditProfile={this.handleEditProfile}
             handleEditInputChange={this.handleEditInputChange}
+            handleQuitEditProfile={this.handleQuitEditProfile}
           />
         }
 
