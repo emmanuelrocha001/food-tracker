@@ -26,6 +26,10 @@ function SignInScreen(props) {
                                     {/* <img className="UserNameIcon" src={lock}></img> */}
                                     <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
                                 </div>
+
+                                <div className="InfoContainer" style={{width: "100%"}}>
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                                </div>
                         
                                 <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
                         

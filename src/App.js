@@ -13,6 +13,7 @@ import right from './assets/ui/right-arrow.svg';
 import cross from './assets/ui/close.svg';
 
 // import components
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import Button from './components/Button';
 import Item from './components/Item';
 import ExternalScreenLoading from './components/ExternalScreenLoading';
