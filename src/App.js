@@ -595,7 +595,11 @@ class App extends React.Component {
   componentDidMount() {
 
     window.gapi.load('auth2', () => {
-      window.gapi.auth2.init();
+      var auth = window.gapi.auth2.init();
+      auth.signIn();
+      if(auth.isSignedIn.get()) {
+        alert("success");
+      }
     });
   }
 
