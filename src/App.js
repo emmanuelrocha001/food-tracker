@@ -593,7 +593,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("scroll", this.handleScroll);
+
+    window.gapi.load('auth2', () => {
+      window.gapi.auth2.init();
+    });
   }
 
   componentWillUnmount() {
