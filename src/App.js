@@ -112,7 +112,6 @@ class App extends React.Component {
 
     //google
     this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
-    this.getBasicProfile = this.getBasicProfile.bind(this);
 
 
 
@@ -343,6 +342,14 @@ class App extends React.Component {
 
   }
   handleSignOff() {
+
+    if(this.state.currentUser["isGoogleAccount"] === true) {
+      this.state.auth.signOut().then( () => {
+        console.log('User signed out.');
+      });
+
+    }
+
     this.setState({
       loadingExternal: false,
       selectedDate: new Date(),
@@ -374,45 +381,80 @@ class App extends React.Component {
   }
 
 
-  onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-
-  getBasicProfile() {
-    if(this.state.auth.isSignedIn.get() === true) {
-      var profile = this.state.auth.BasicProfile();
-      var user = {
-        firstName: profile.getName(),
-        lastName: profile.getFamilyName(),
-        email: profile.getImageUrl(),
-        avatar: profile.getImageUrl(),
-        weight: 0,
-        userId: profile.getId()
-
-      }
-      this.setState({
-        currentUser: user
-      });
-
-    }
-
-  }
 
   handleGoogleSignIn() {
-    this.state.auth.signIn();
+    this.state.auth.signIn().then( (googleUser) => {
+        console.log("User Signed In");
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        var profile = googleUser.getBasicProfile();
+
+        var user = {
+          firstName: profile.getName(),
+          lastName: "",
+          avatar: profile.getImageUrl(),
+          email: profile.getEmail(),
+          weight: 156,
+          isGoogleAccount: true
+        }
+
+        this.setState({
+          currentUser: user
+        });
+    });
   }
 
   componentDidMount() {
     window.gapi.load('auth2', () => {
+      window.gapi.auth2.init();
+      
+      var auth2 = window.gapi.auth2.getAuthInstance();
+
       this.setState({
-        auth: window.gapi.auth2.init()
+        auth: auth2
       });
+
+      // auth2.signIn().then( (googleUser) => {
+      //   console.log("User Signed In");
+      //   var profile = googleUser.getBasicProfile();
+      //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      //   console.log('Name: ' + profile.getName());
+      //   console.log('Image URL: ' + profile.getImageUrl());
+      //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+      //   var f = profile.getName();
+      //   var a = profile.getImageUrl();
+      //   var e = profile.getEmail();
+      //   var user = {
+      //     firstName: f,
+      //     lastName: "",
+      //     avatar: a,
+      //     email: e,
+      //     weight: 150
+      //   }
+
+      //   this.setState({
+      //     currentUser: user
+      //   });
+
+      //   auth2.signOut().then( () => {
+      //     console.log('User signed out.');
+      //   });
+      // })
     });
   }
+
+  componentWillUnmount() {
+    if(this.state.auth !== null) {
+        this.state.auth.signOut().then( () => {
+          console.log('User signed out.');
+        });
+    }
+  }
+
 
   handleSignIn() {
     if(this.state.emailInput === '' || this.state.passwordInput === '') {

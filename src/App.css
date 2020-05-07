@@ -424,7 +424,16 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 }
 
-.GoogleButtonContainer:hover {
+.GoogleIcon {
+  /* width: 32px; */
+  height: 45px;
+}
+
+.GoogleButton {
+  height: 45px;
+}
+
+.GoogleButton:hover {
   filter: brightness(85%);
 }
 

@@ -2,7 +2,14 @@ import React from 'react';
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
 import logo from '.././assets/ui/logo.svg';
-
+import googleIcon from '.././assets/ui/google-button.png'
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 function SignInScreen(props) {
     if( props.haveAccount === true ) {
         return(
@@ -27,13 +34,13 @@ function SignInScreen(props) {
                                     <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
                                 </div>
 
-                                <div className="GoogleButtonContainer" style={{width: "50%", background: "white", margin: "auto"}} onClick={props.handleGoogleSignIn}>
-                                    sign in with google
+                                <div className="InfoContainer">
+                                    or
                                 </div>
 
-                                <div className="GoogleButtonContainer" style={{width: "50%", background: "white", margin: "auto"}} onClick={props.getBasicProfile}>
-                                    get basic profile
-                                </div>
+        
+
+                                <img className="GoogleButton" src={googleIcon} onClick={props.handleGoogleSignIn} ></img>
                         
                                 <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
                         

@@ -9,8 +9,8 @@
     <meta name="theme-color" content="#000000" />
     <meta content="default-src 'self';">
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="299600851325-g4j8qsom58g8qg4oq5ouv9riqede3ui3.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id" content="299600851325-slenqbb222vqhnu16mdu4smmfgu9tlgt.apps.googleusercontent.com">
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -36,15 +36,6 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script>
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
-    </script>
     
     <!--
       This HTML file is a template.
