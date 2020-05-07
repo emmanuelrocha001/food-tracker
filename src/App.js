@@ -43,6 +43,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      auth: null,
       loadingExternal: false,
       currentFieldEditName: "",
       editInput: "",
@@ -108,6 +109,9 @@ class App extends React.Component {
     this.handleScroll = this.handleScroll.bind(this);
     // test
     this.setDetailedResults = this.setDetailedResults.bind(this);
+
+    //google
+    this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
 
 
 
@@ -377,6 +381,18 @@ class App extends React.Component {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
 
+  handleGoogleSignIn() {
+    this.state.auth.signIn();
+  }
+
+  componentDidMount() {
+    window.gapi.load('auth2', () => {
+      this.setState({
+        auth: window.gapi.auth2.init()
+      });
+    });
+  }
+
   handleSignIn() {
     if(this.state.emailInput === '' || this.state.passwordInput === '') {
       this.setState({
@@ -592,16 +608,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-
-    window.gapi.load('auth2', () => {
-      var auth = window.gapi.auth2.init();
-      auth.signIn();
-      if(auth.isSignedIn.get()) {
-        alert("success");
-      }
-    });
-  }
+  
 
   componentWillUnmount() {
     document.removeEventListener("scroll", this.handleScroll);
@@ -659,6 +666,8 @@ class App extends React.Component {
 
             handleSignIn={this.handleSignIn}
             handleSignUp={this.handleSignUp}
+            handleGoogleSignIn={this.handleGoogleSignIn}
+
             loadingExternal={this.state.loadingExternal}
             error={this.state.loginError}
             successMessage={this.state.successMessage}

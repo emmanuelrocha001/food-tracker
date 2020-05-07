@@ -414,7 +414,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 
 
-.InfoContainer{
+.InfoContainer, .GoogleButtonContainer{
   /* background: purple; */
   display: flex;
   align-items: center;
@@ -422,6 +422,10 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   margin-bottom: 25px;
 
 
+}
+
+.GoogleButtonContainer:hover {
+  filter: brightness(85%);
 }
 
 

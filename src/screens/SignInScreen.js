@@ -27,9 +27,9 @@ function SignInScreen(props) {
                                     <input className="InfoInput" type="password" placeholder="Password" onChange={props.handlePasswordInputChange} />
                                 </div>
 
-                                {/* <div className="InfoContainer" style={{width: "100%"}}>
-                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                                </div> */}
+                                <div className="GoogleButtonContainer" style={{width: "50%", background: "white", margin: "auto"}} onClick={props.handleGoogleSignIn}>
+                                    sign in with google
+                                </div>
                         
                                 <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
                         
