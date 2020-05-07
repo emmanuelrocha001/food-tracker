@@ -384,7 +384,7 @@ class App extends React.Component {
 
   getBasicProfile() {
     if(this.state.auth.isSignedIn.get() === true) {
-      var profile = this.state.auth.getBasicProfile();
+      var profile = this.state.auth.BasicProfile();
       var user = {
         firstName: profile.getName(),
         lastName: profile.getFamilyName(),
