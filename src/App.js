@@ -112,6 +112,7 @@ class App extends React.Component {
 
     //google
     this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
+    this.getBasicProfile = this.getBasicProfile.bind(this);
 
 
 
@@ -379,6 +380,26 @@ class App extends React.Component {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+
+  getBasicProfile() {
+    if(this.state.auth.isSignedIn.get() === true) {
+      var profile = this.state.auth.getBasicProfile();
+      var user = {
+        firstName: profile.getName(),
+        lastName: profile.getFamilyName(),
+        email: profile.getImageUrl(),
+        avatar: profile.getImageUrl(),
+        weight: 0,
+        userId: profile.getId()
+
+      }
+      this.setState({
+        currentUser: user
+      });
+
+    }
+
   }
 
   handleGoogleSignIn() {
@@ -667,6 +688,7 @@ class App extends React.Component {
             handleSignIn={this.handleSignIn}
             handleSignUp={this.handleSignUp}
             handleGoogleSignIn={this.handleGoogleSignIn}
+            getBasicProfile={this.getBasicProfile}
 
             loadingExternal={this.state.loadingExternal}
             error={this.state.loginError}
