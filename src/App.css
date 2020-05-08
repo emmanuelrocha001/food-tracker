@@ -419,18 +419,37 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  color: var(--gray-color);
+  font-size: var(--medium-font-size);
 
 
+
+
+}
+
+.GoogleButtonContainer {
+  font-size: var(--medium-font-size);
+  color: var(--gray-color);
+  background: var(--almost-white-color);
+  width: 50%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+}
+
+.GoogleButtonContainer:hover {
+  filter: brightness(85%);
 }
 
 .GoogleIcon {
   /* width: 32px; */
-  height: 45px;
+  height: 22px;
+  margin-right: 10px;
 }
 
 .GoogleButton {
-  height: 45px;
+  height: 25px;
 }
 
 .GoogleButton:hover {
@@ -442,9 +461,11 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 .PicUploaderContainer {
   background: url(./assets/ui/upload-image.svg);
   background-size: 100%;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin: auto;
+  margin-bottom: 20px;
+
 }
 
 .PicUploader{
@@ -455,6 +476,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   width: 50px;
   height: 50px;
   opacity: 0;
+  
 
 }
 
@@ -516,7 +538,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .InfoInput{
   float: right;
-  font-size: 16px;
+  font-size: var(--medium-font-size);
   border-top: none;
   border-left: none;
   border-right: none;

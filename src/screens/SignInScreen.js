@@ -2,7 +2,7 @@ import React from 'react';
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
 import logo from '.././assets/ui/logo.svg';
-import googleIcon from '.././assets/ui/google-button.png'
+import googleIcon from '.././assets/ui/google-icon.svg'
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -38,9 +38,12 @@ function SignInScreen(props) {
                                     or
                                 </div>
 
+                                <div className="GoogleButtonContainer" onClick={props.handleGoogleSignIn} >
+                                    <img className="GoogleIcon" src={googleIcon} ></img>
+                                    Sign in with Google
+                                </div>
         
 
-                                <img className="GoogleButton" src={googleIcon} onClick={props.handleGoogleSignIn} ></img>
                         
                                 <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Don't have an account? Sign up here!</p>
                         
@@ -92,6 +95,15 @@ function SignInScreen(props) {
                 
                         <div className="PicUploaderContainer">
                             <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicUpload} />
+                        </div>
+
+                        <div className="InfoContainer">
+                            or
+                        </div>
+
+                        <div className="GoogleButtonContainer" onClick={props.handleGoogleSignIn} >
+                            <img className="GoogleIcon" src={googleIcon}  ></img>
+                            Sign up with Google
                         </div>
                 
                         <p className="NoAccountText" onClick={props.handleHaveAccountToggle} >Already have an account? Sign in here!</p>
