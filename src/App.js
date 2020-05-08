@@ -390,6 +390,9 @@ class App extends React.Component {
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
         var profile = googleUser.getBasicProfile();
 
         var user = {
@@ -410,40 +413,11 @@ class App extends React.Component {
   componentDidMount() {
     window.gapi.load('auth2', () => {
       window.gapi.auth2.init();
-      
       var auth2 = window.gapi.auth2.getAuthInstance();
-
       this.setState({
         auth: auth2
       });
 
-      // auth2.signIn().then( (googleUser) => {
-      //   console.log("User Signed In");
-      //   var profile = googleUser.getBasicProfile();
-      //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      //   console.log('Name: ' + profile.getName());
-      //   console.log('Image URL: ' + profile.getImageUrl());
-      //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-      //   var f = profile.getName();
-      //   var a = profile.getImageUrl();
-      //   var e = profile.getEmail();
-      //   var user = {
-      //     firstName: f,
-      //     lastName: "",
-      //     avatar: a,
-      //     email: e,
-      //     weight: 150
-      //   }
-
-      //   this.setState({
-      //     currentUser: user
-      //   });
-
-      //   auth2.signOut().then( () => {
-      //     console.log('User signed out.');
-      //   });
-      // })
     });
   }
 
