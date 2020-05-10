@@ -5,6 +5,7 @@ import ProfileItem from '../components/ProfileItem';
 import Button from '.././components/Button';
 import '.././style/ProfileScreen.css';
 import edit from '.././assets/ui/edit-dark.svg'
+import googleIcon from '.././assets/ui/google-icon.svg'
 
 
 function ProfileScreen(props) {
@@ -20,7 +21,14 @@ function ProfileScreen(props) {
                     <div className="Buffer"></div>
 
                     <div className="ProfileScreenPicContainer">
-                        <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
+                        {props.user["avatar"] !== "" &&
+                            <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
+
+                        }   
+
+                        {props.user["avatar"] === "" &&
+                            <p className="profilePicletters">{props.user.firstName.charAt(0) + props.user.lastName.charAt(0) }</p>
+                        }
                     </div>
 
                     <div className="ProfileContentContainer">
@@ -56,26 +64,18 @@ function ProfileScreen(props) {
 
 
                         /> 
-                        {/* <ProfileItem 
-                            fieldName="Email"
-                            fieldContent={props.user["email"]}
-                            handleEditFieldNameToggle={props.handleEditFieldNameToggle}
-                            currentFieldEditName={props.currentFieldEditName}
-                            handleEditProfile={props.handleEditProfile}
-                            handleEditInputChange={props.handleEditInputChange}
-
-                        
-                        />  */}
 
                         <div className="ProfileInfoContainer">
                             <div className="LeftProfile">Email</div>
                             <p className="RightProfile">{props.user["email"]}</p>
                         </div>
 
-                        <div className="ProfileInfoContainer">
-                            <div className="LeftProfile">ID</div>
-                            <p className="RightProfile">{props.user["userId"]}</p>
-                        </div>
+                        {props.user["googleId"] &&
+                            <div className="ProfileInfoContainer">
+                                <div className="InfoContainer">Google account linked</div>
+                                <img className="ProfileGoogleIcon" src={googleIcon}  ></img>
+                            </div>
+                        }
                     </div>
                 
                 </div>

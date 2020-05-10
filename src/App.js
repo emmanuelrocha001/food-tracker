@@ -152,7 +152,7 @@ class App extends React.Component {
         loadingExternal: true
       });
 
-      fetch(foodAPIURL+'/user/' + this.state.currentUser["userId"], requestOptions)
+      fetch(foodAPIURL+'/user/' + this.state.currentUser["_id"], requestOptions)
       .then(response => response.json()).then( data => {
           this.setState({
             currentUser: data["user"],
@@ -385,28 +385,54 @@ class App extends React.Component {
   handleGoogleSignIn() {
     this.state.auth.signIn().then( (googleUser) => {
         console.log("User Signed In");
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-        var profile = googleUser.getBasicProfile();
-
-        var user = {
-          firstName: profile.getName(),
-          lastName: "",
-          avatar: profile.getImageUrl(),
-          email: profile.getEmail(),
-          weight: 156,
-          isGoogleAccount: true
-        }
-
+        // var profile = googleUser.getBasicProfile();
+        // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // // The ID token you need to pass to your backend:
+        // var id_token = googleUser.getAuthResponse().id_token;
+        // console.log("ID Token: " + id_token);
+        // var profile = googleUser.getBasicProfile();
+        
         this.setState({
-          currentUser: user
+          loadingExternal: true
         });
+  
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        };
+  
+        fetch(foodAPIURL+'/user/login/' + googleUser.getAuthResponse().id_token , requestOptions)
+        .then(response => response.json()).then( data => {
+            this.setState({
+              loadingExternal: false
+            });
+  
+          if(data["user"]){
+            this.setState({
+              currentUser: data["user"]
+            });
+          } 
+        })
+        .catch( error => {
+          console.log(error);
+          this.setState({
+            loadingExternal: false
+          });
+          
+        });
+
+
+        // var user = {
+        //   firstName: profile.getName(),
+        //   lastName: "",
+        //   avatar: profile.getImageUrl(),
+        //   email: profile.getEmail(),
+        //   weight: 156,
+        //   isGoogleAccount: true
+        // }
     });
   }
 
@@ -666,7 +692,12 @@ class App extends React.Component {
           }
 
           {this.state.currentUser !== null &&
-            <div className="UserIconHeader" onClick={this.handleShowProfile} style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}></div>
+
+            <div className="UserIconHeader" onClick={this.handleShowProfile} style={{backgroundImage: "url(\" "+ this.state.currentUser["avatar"] +"\")"}}>
+              {this.state.currentUser["avatar"] === "" &&
+                <p className="HeaderProfilePicLetters">{this.state.currentUser["firstName"].charAt(0) + this.state.currentUser["lastName"].charAt(0) }</p>
+              }
+            </div>
           }
 
           {this.state.currentUser !== null &&

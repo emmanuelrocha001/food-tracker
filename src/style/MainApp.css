@@ -43,7 +43,24 @@ h1 {
     border-radius: 50%;
     background-size: 100%;
     float: right;
-    margin-right: 10%;}
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.HeaderProfilePicLetters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: none;
+    margin-bottom: none;
+    padding-top: none;
+    padding-bottom: none;
+    font-size: 22px;
+    /* font-style: bold; */
+    font-weight: bold;
+}
 
 .UserNameHeader {
     float: right;

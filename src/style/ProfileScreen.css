@@ -19,6 +19,28 @@
     background-size: 100%;
 }
 
+.profilePicletters {
+    color: var(--main-background-color);
+    font-size: 60px;
+    font-weight: bold;
+    background: var(--main-app-color);
+    border-radius: 50%;
+    border: 10px solid white;
+
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: none;
+    margin-bottom: none;
+    padding-top: none;
+    padding-bottom: none;
+
+}
+
+
+
 .ProfileContentContainer {
     margin: auto;
     margin-top: 30px;
@@ -80,7 +102,7 @@
 }
 .EditInputField {
 
-    font-size: 17px;
+    font-size: var(--medium-font-size);
     margin-left: 0px;
     margin-right: 0px;
     padding-left: 0px;
@@ -132,3 +154,17 @@
     /* background: red; */
     display: flex;
 }
+
+
+
+.ProfileGoogleIcon {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .25s;
+    height: 22px;
+    /* margin-right: 10px; */
+}
+
+
