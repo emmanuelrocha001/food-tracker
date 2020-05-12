@@ -217,9 +217,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 }
 
-.ButtonOutside:hover {
-  /* filter: brightness(85%); */
-}
+
 .Exit {
   transition-duration: .25s;
 }

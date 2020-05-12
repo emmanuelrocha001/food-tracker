@@ -99,6 +99,23 @@
     align-items: center;
     justify-content: center;
     transition-duration: .25s;
+    opacity: .5;
+}
+
+.ExitOuter {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .25s;
+}
+
+.ExitOuter:hover {
+    border: 4px solid var(--main-background-color);
+
+}
+.EditOuter:hover {
+    opacity: 1;
 }
 .EditInputField {
 

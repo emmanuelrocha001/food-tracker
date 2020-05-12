@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Button from './Button';
-import cross from '.././assets/ui/close-white.svg';
+import cross from '.././assets/ui/cross-white.svg';
 
 function ExternalScreenTop(props) {
     return(
@@ -10,10 +10,11 @@ function ExternalScreenTop(props) {
             {props.exitHandler !== null &&
                 <div className="ExitButtonContainer">
                     <Button
+                        styleClassNameOuter="ExitOuter"
                         styleClassName="Exit"
                         outerColor="#393e46"
                         containerSize="32px"
-                        imageSize="16px"
+                        imageSize="14px"
                         imageSource={cross}
                         actionHandler={props.exitHandler}
                     />
