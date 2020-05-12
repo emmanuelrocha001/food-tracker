@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/food-tracker/static/css/main.721c088c.chunk.css",
-    "main.js": "/food-tracker/static/js/main.21b4361b.chunk.js",
-    "main.js.map": "/food-tracker/static/js/main.21b4361b.chunk.js.map",
+    "main.css": "/food-tracker/static/css/main.b6f59a0c.chunk.css",
+    "main.js": "/food-tracker/static/js/main.449aac5e.chunk.js",
+    "main.js.map": "/food-tracker/static/js/main.449aac5e.chunk.js.map",
     "runtime-main.js": "/food-tracker/static/js/runtime-main.76013246.js",
     "runtime-main.js.map": "/food-tracker/static/js/runtime-main.76013246.js.map",
     "static/js/2.04b7d4d6.chunk.js": "/food-tracker/static/js/2.04b7d4d6.chunk.js",
     "static/js/2.04b7d4d6.chunk.js.map": "/food-tracker/static/js/2.04b7d4d6.chunk.js.map",
     "index.html": "/food-tracker/index.html",
-    "precache-manifest.2dfaca6dd2fd8e5b0d01e196adaee3c6.js": "/food-tracker/precache-manifest.2dfaca6dd2fd8e5b0d01e196adaee3c6.js",
+    "precache-manifest.c43f38b0d20c87ff2aef3fe877d94fb2.js": "/food-tracker/precache-manifest.c43f38b0d20c87ff2aef3fe877d94fb2.js",
     "service-worker.js": "/food-tracker/service-worker.js",
-    "static/css/main.721c088c.chunk.css.map": "/food-tracker/static/css/main.721c088c.chunk.css.map",
+    "static/css/main.b6f59a0c.chunk.css.map": "/food-tracker/static/css/main.b6f59a0c.chunk.css.map",
     "static/js/2.04b7d4d6.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.04b7d4d6.chunk.js.LICENSE.txt",
     "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.bc62abcf.svg",
     "static/media/App.css": "/food-tracker/static/media/upload-image.9f4664ec.svg",
@@ -31,7 +31,7 @@
   "entrypoints": [
     "static/js/runtime-main.76013246.js",
     "static/js/2.04b7d4d6.chunk.js",
-    "static/css/main.721c088c.chunk.css",
-    "static/js/main.21b4361b.chunk.js"
+    "static/css/main.b6f59a0c.chunk.css",
+    "static/js/main.449aac5e.chunk.js"
   ]
 }
