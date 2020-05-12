@@ -439,7 +439,7 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 }
 
 .GoogleButtonContainer:hover {
-  filter: brightness(85%);
+  filter: brightness(90%);
 }
 
 .GoogleIcon {

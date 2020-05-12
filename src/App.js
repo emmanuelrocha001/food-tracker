@@ -112,7 +112,7 @@ class App extends React.Component {
 
     //google
     this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
-
+    this.handleGoogleSignUp = this.handleGoogleSignUp.bind(this);
 
 
   }
@@ -381,20 +381,51 @@ class App extends React.Component {
   }
 
 
+  handleGoogleSignUp() {
+    this.state.auth.signIn().then( (googleUser) => {
+      this.setState({
+        loadingExternal: true
+      });
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      fetch(foodAPIURL+'/user/signup/' + googleUser.getAuthResponse().id_token , requestOptions)
+      .then(response => response.json()).then( data => {
+          this.setState({
+            loadingExternal: false
+          });
+
+        if(data["user"]){
+          this.setState({
+            currentUser: data["user"]
+          });
+        } else {
+          if(data["message"]) {
+            console.log(data["message"]);
+            this.setState({
+              loginError: data["message"]
+            });
+          }
+        } 
+      })
+      .catch( error => {
+        console.log(error);
+
+        this.setState({
+          loadingExternal: false,
+          
+        });
+        
+      });
+  });
+
+  }
 
   handleGoogleSignIn() {
     this.state.auth.signIn().then( (googleUser) => {
-        console.log("User Signed In");
-        // var profile = googleUser.getBasicProfile();
-        // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        // console.log('Name: ' + profile.getName());
-        // console.log('Image URL: ' + profile.getImageUrl());
-        // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        // // The ID token you need to pass to your backend:
-        // var id_token = googleUser.getAuthResponse().id_token;
-        // console.log("ID Token: " + id_token);
-        // var profile = googleUser.getBasicProfile();
-        
         this.setState({
           loadingExternal: true
         });
@@ -414,7 +445,14 @@ class App extends React.Component {
             this.setState({
               currentUser: data["user"]
             });
-          } 
+          } else {
+            if(data["message"]) {
+              console.log(data["message"]);
+              this.setState({
+                loginError: data["message"]
+              });
+            }
+          }
         })
         .catch( error => {
           console.log(error);
@@ -423,16 +461,6 @@ class App extends React.Component {
           });
           
         });
-
-
-        // var user = {
-        //   firstName: profile.getName(),
-        //   lastName: "",
-        //   avatar: profile.getImageUrl(),
-        //   email: profile.getEmail(),
-        //   weight: 156,
-        //   isGoogleAccount: true
-        // }
     });
   }
 
@@ -735,6 +763,7 @@ class App extends React.Component {
             handleSignIn={this.handleSignIn}
             handleSignUp={this.handleSignUp}
             handleGoogleSignIn={this.handleGoogleSignIn}
+            handleGoogleSignUp={this.handleGoogleSignUp}
             getBasicProfile={this.getBasicProfile}
 
             loadingExternal={this.state.loadingExternal}

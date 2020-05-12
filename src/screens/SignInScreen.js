@@ -101,7 +101,7 @@ function SignInScreen(props) {
                             or
                         </div>
 
-                        <div className="GoogleButtonContainer" onClick={props.handleGoogleSignIn} >
+                        <div className="GoogleButtonContainer" onClick={props.handleGoogleSignUp} >
                             <img className="GoogleIcon" src={googleIcon}  ></img>
                             Sign up with Google
                         </div>
