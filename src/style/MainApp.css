@@ -41,12 +41,15 @@ h1 {
 
     background: white;
     border-radius: 50%;
-    background-size: 100%;
     float: right;
     margin-right: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     
 }
 .HeaderProfilePicLetters {
