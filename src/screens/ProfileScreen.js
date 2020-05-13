@@ -20,15 +20,24 @@ function ProfileScreen(props) {
 
                     <div className="Buffer"></div>
 
-                    <div className="ProfileScreenPicContainer">
-                        {props.user["avatar"] !== "" &&
-                            <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
+                    <div className="ProfileContentContainer">
+                        <div className="ProfileScreenPicContainer">
+                            {props.user["avatar"] !== "" &&
+                                <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
 
-                        }   
+                            }   
 
-                        {props.user["avatar"] === "" &&
-                            <p className="profilePicletters">{props.user.firstName.charAt(0) + props.user.lastName.charAt(0) }</p>
-                        }
+                            {props.user["avatar"] === "" &&
+                                <p className="profilePicletters">{props.user.firstName.charAt(0) + props.user.lastName.charAt(0) }</p>
+                            }
+                            
+                        </div>
+                        <div className="EditProfilePicCContainerOuter">                        
+                            <div className="EditProfilePicCContainer">
+                                <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicEdit} />
+                            </div>
+                        </div>
+
                     </div>
 
                     <div className="ProfileContentContainer">
@@ -72,7 +81,7 @@ function ProfileScreen(props) {
 
                         {props.user["googleId"] &&
                             <div className="ProfileInfoContainer">
-                                <div className="InfoContainer">Google account linked</div>
+                                {/* <div className="InfoContainer">Google account linked</div> */}
                                 <img className="ProfileGoogleIcon" src={googleIcon}  ></img>
                             </div>
                         }

@@ -93,6 +93,8 @@ class App extends React.Component {
     this.handleFirstNameInputChange = this.handleFirstNameInputChange.bind(this);
     this.handleLastNameInputChange = this.handleLastNameInputChange.bind(this);
     this.handleProfilePicUpload = this.handleProfilePicUpload.bind(this);
+    // profile pic edit
+    this.handleProfilePicEdit = this.handleProfilePicEdit.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleEditInputChange = this.handleEditInputChange.bind(this);
 
@@ -585,9 +587,45 @@ class App extends React.Component {
   }
 
   handleProfilePicUpload(event) {
-    console.log(event.target.files[0]);
     this.setState({
       profilePicInput: event.target.files[0]
+    });
+  }
+
+  handleProfilePicEdit(event) {
+    console.log(event.target.files[0]);
+
+
+    this.setState({
+      loadingExternal: true
+    });
+
+    const form = new FormData();
+    form.append("avatar", event.target.files[0]);
+
+    const requestOptions = {
+      method: 'PATCH',
+      body: form,
+      mode: 'cors'
+    };
+
+
+    fetch(foodAPIURL+'/user/pic/' + this.state.currentUser["_id"], requestOptions)
+    .then(response => response.json()).then( data => {
+      this.setState({
+        loadingExternal: false
+      });
+
+      if(data["user"]){
+        this.setState({
+          currentUser: data["user"]
+        });
+      }
+    })
+    .catch(error => {
+      this.setState({
+        loadingExternal: false
+      });
     });
   }
   handleFirstNameInputChange(event){
@@ -817,6 +855,7 @@ class App extends React.Component {
             handleEditProfile={this.handleEditProfile}
             handleEditInputChange={this.handleEditInputChange}
             handleQuitEditProfile={this.handleQuitEditProfile}
+            handleProfilePicEdit={this.handleProfilePicEdit}
           />
         }
 
