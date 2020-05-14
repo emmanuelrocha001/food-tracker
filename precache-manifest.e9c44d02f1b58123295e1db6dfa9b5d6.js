@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "56c7012eab6ad5e2d79f414101fea1e5",
+    "revision": "7aa813969489643f33c0f159c021bf2a",
     "url": "/food-tracker/index.html"
   },
   {
-    "revision": "f7fdc3ed84d97e1ada51",
-    "url": "/food-tracker/static/css/main.27fbb19a.chunk.css"
+    "revision": "78792cc23c035de4f76b",
+    "url": "/food-tracker/static/css/main.0f70ca6a.chunk.css"
   },
   {
     "revision": "78c338c17332f20d9405",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/js/2.86f3f45d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f7fdc3ed84d97e1ada51",
-    "url": "/food-tracker/static/js/main.1094e55a.chunk.js"
+    "revision": "78792cc23c035de4f76b",
+    "url": "/food-tracker/static/js/main.0b1f9927.chunk.js"
   },
   {
     "revision": "481b91c8d0c811d9cc4b",
@@ -48,6 +48,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/media/cross-white.51e88bbe.svg"
   },
   {
+    "revision": "5e81bbbf50f2e65a03792424c6a6626f",
+    "url": "/food-tracker/static/media/down.5e81bbbf.svg"
+  },
+  {
     "revision": "de4b970527c2b2403ec87c6921c1697f",
     "url": "/food-tracker/static/media/edit-dark.de4b9705.svg"
   },
@@ -64,16 +68,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/food-tracker/static/media/left-arrow.d5f28d66.svg"
   },
   {
-    "revision": "408311ed98448cb52374d13adbac50f7",
-    "url": "/food-tracker/static/media/line.408311ed.svg"
+    "revision": "0a271adeb8652b1a4bc71ab2a22ba85f",
+    "url": "/food-tracker/static/media/line.0a271ade.svg"
   },
   {
     "revision": "53e6d68a497feaba461997c1e6eced60",
     "url": "/food-tracker/static/media/logo.53e6d68a.svg"
   },
   {
-    "revision": "70a48665567e21f370401359ee47a268",
-    "url": "/food-tracker/static/media/refresh.70a48665.svg"
+    "revision": "4af0c0c72470004bca2ff9dc9183f297",
+    "url": "/food-tracker/static/media/refresh.4af0c0c7.svg"
   },
   {
     "revision": "b8f99d8266dfe5ecce2ba395341216a1",
@@ -86,6 +90,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "fa0fe2057e298fffb4998be9bb04d15a",
     "url": "/food-tracker/static/media/search.fa0fe205.svg"
+  },
+  {
+    "revision": "c0ae577c314a1c2f3305eb878b17eb8d",
+    "url": "/food-tracker/static/media/up.c0ae577c.svg"
   },
   {
     "revision": "9f4664ecaf0bb9deaf27d229bec36eab",
