@@ -26,18 +26,3 @@ function ExternalScreenTop(props) {
 
 
 export default ExternalScreenTop;
-
-{/* <div className="ExternalScreenTop">
-    <p className="ExternalScreenTitle">{props.screenTitle}</p>
-    {props.exitHandler !== null &&
-        <div className="ExitButtonContainer">
-        <Button
-            styleClassName="Exit"
-            containerSize="32px"
-            imageSize="16px"
-            imageSource={cross}
-            actionHandler={props.exitHandler}
-        />
-        </div>
-    }
-</div> */}

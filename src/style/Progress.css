@@ -1,0 +1,82 @@
+.Milestone {
+    width: 100%;
+    /* height: 50px; */
+    /* margin-bottom: 50px; */
+    /* background: red; */
+
+    display: inline-block;
+}
+
+.MileStoneMainInfoContainer {
+    /* width: 200px; */
+    height: 100%;
+    /* background: purple; */
+    /* background: var(--main-app-color); */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.MainInfoMilestone {
+    /* background: var(--main-app-color); */
+    font-size: var(--medium-font-size);
+    color: var(--main-app-color);
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.MileStonePicContainer {
+    width: 100%;
+    height: 200px;
+    /* background: yellow; */
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.MileStonePic {
+    height: 100%;
+    width: 200px;
+    background: red;
+    border-radius: 50%;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* border: 10px solid var(--main-app-color); */
+}
+
+.LineContainer {
+    margin-top: 30px;
+    width: 100%;
+    height: 30px;
+    /* background: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.Line {
+    background-image: url(../assets/ui/line.svg);
+    background-size: 100%;
+    background-position: center center;
+    height: 100%;
+    width: 24px;
+    opacity: .5;
+}

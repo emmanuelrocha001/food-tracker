@@ -22,13 +22,15 @@ import ExternalScreenBottom from './components/ExternalScreenBottom';
 import ExternalScreen from './components/ExternalScreen';
 import DatePicker from './components/DatePicker';
 import MealContainer from './components/MealContainer';
+import ContentPicker from './components/ContentPicker';
 // import screens
 import ProfileScreen from './screens/ProfileScreen';
 import SignInScreen from './screens/SignInScreen';
 import SearchScreen from './screens/SearchScreen';
 import ItemScreen from './screens/ItemScreen';
 import Helper from './helper.js';
-
+// import content
+import Progress from './content/Progress';
 // const foodAPIURL = 'https://localhost:5000'
 const foodAPIURL = 'https://food-tracker-api.herokuapp.com'
 
@@ -43,6 +45,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      currentContent: "Diary",
+      milestones: [],
       auth: null,
       loadingExternal: false,
       currentFieldEditName: "",
@@ -112,13 +116,47 @@ class App extends React.Component {
     // test
     this.setDetailedResults = this.setDetailedResults.bind(this);
 
-    //google
+    // google
     this.handleGoogleSignIn = this.handleGoogleSignIn.bind(this);
     this.handleGoogleSignUp = this.handleGoogleSignUp.bind(this);
-
+    // content picker
+    this.handleContentPicker = this.handleContentPicker.bind(this);
+    // get progress milestones
+    this.fetchMilestones = this.fetchMilestones.bind(this);
 
   }
 
+
+  fetchMilestones() {
+    // alert('fetching');
+
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    fetch(foodAPIURL+'/milestone/' + this.state.currentUser['_id'] , requestOptions)
+    .then(response => response.json()).then( data => {
+
+      if(data["milestones"]) {
+        this.setState({
+          milestones: data["milestones"]
+        });
+        console.log(data["milestones"]);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+
+  handleContentPicker(contentName) {
+    // alert(contentName);
+    this.setState({
+      currentContent: contentName
+    });
+  }
   handleEditInputChange(event) {
     this.setState({
       editInput: event.target.value
@@ -353,20 +391,24 @@ class App extends React.Component {
     }
 
     this.setState({
+      currentContent: "Diary",
+      milestones: [],
+      auth: null,
       loadingExternal: false,
-      selectedDate: new Date(),
       currentFieldEditName: "",
-      currentEditInput: "",
+      editInput: "",
+      results: [],
+      detailedResults: [],
+      currentPage: 1,
+      pageSize: 5,
+      totalHits: 0,
+      selectedDate: new Date(),
       showItemAddition: false,
       expandItem: false,
       showNutrition: false,
       currentUser: null,
       userInput: "",
       searchInput: "",
-      currentPage: 1,
-      results: [],
-      detailedResults: [],
-      totalHits: 0,
       emailInput:"",
       passwordInput: "",
       firstNameInput: "",
@@ -447,6 +489,8 @@ class App extends React.Component {
             this.setState({
               currentUser: data["user"]
             });
+            // fetch milestones
+            this.fetchMilestones();
           } else {
             if(data["message"]) {
               console.log(data["message"]);
@@ -518,6 +562,8 @@ class App extends React.Component {
           this.setState({
             currentUser: data["user"],
           });
+          // fetch milestones
+          this.fetchMilestones();
         }
       })
       .catch( error => console.log(error));
@@ -770,21 +816,35 @@ class App extends React.Component {
             <p className="UserNameHeader">{this.state.currentUser["firstName"]}</p>
           }
 
+
+
         </div>
 
-
-
-        <DatePicker currentDate={this.state.selectedDate}
-          handleDateChange={this.handleDateChange}
-          handleDateIncrement={this.handleDateIncrement}
-          handleDateDecrement={this.handleDateDecrement}
+        <ContentPicker 
+          currentContent={this.state.currentContent} 
+          handleContentPicker={this.handleContentPicker} 
         />
 
-        <MealContainer
-          handleSearchScreenToggle={this.handleSearchScreenToggle}
-          handleItemScreenToggle={this.handleItemScreenToggle}
-          showItemAddition={this.state.showItemAddition}
-        />
+        {this.state.currentContent === "Diary" &&
+          <div>
+            <DatePicker currentDate={this.state.selectedDate}
+              handleDateChange={this.handleDateChange}
+              handleDateIncrement={this.handleDateIncrement}
+              handleDateDecrement={this.handleDateDecrement}
+            />
+
+            <MealContainer
+              handleSearchScreenToggle={this.handleSearchScreenToggle}
+              handleItemScreenToggle={this.handleItemScreenToggle}
+              showItemAddition={this.state.showItemAddition}
+            />
+          </div>
+        }
+
+        {this.state.currentContent === "Progress" &&
+          <Progress milestones={this.state.milestones} />
+        }
+
 
 
         {this.state.currentUser === null &&
