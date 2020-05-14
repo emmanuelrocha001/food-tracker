@@ -388,13 +388,13 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
   /* bottom: 70px; */
 }
 .LoadingIcon {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   /* opacity: .75; */
 
-  -webkit-animation:spin 1.75s linear infinite;
-  -moz-animation:spin 1.75s linear infinite;
-  animation:spin 1.75s linear infinite;
+  -webkit-animation:spin 2s linear infinite;
+  -moz-animation:spin 2s linear infinite;
+  animation:spin 2s linear infinite;
 }
 
 @-moz-keyframes spin {

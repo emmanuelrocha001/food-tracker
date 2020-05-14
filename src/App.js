@@ -393,7 +393,6 @@ class App extends React.Component {
     this.setState({
       currentContent: "Diary",
       milestones: [],
-      auth: null,
       loadingExternal: false,
       currentFieldEditName: "",
       editInput: "",

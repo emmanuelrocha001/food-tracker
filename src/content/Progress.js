@@ -20,11 +20,19 @@ function Milestone(props) {
     return(
         <div className="Milestone">
             <div className="MileStoneMainInfoContainer">
-                <div className="MainInfoMilestone">
-                    {props.info["weight"]} lbs.
+                <div className="IndicatorContainer">
+                    {props.indicator === "down" &&
+                        <div className="IndicatorDown" > </div>
+                    }
+                    {props.indicator === "up" &&
+                        <div className="IndicatorUp" > </div>
 
+                    }
                 </div>
-                <div className="MainInfoMilestone">
+                <div className="MilestoneWeight">
+                    {props.info["weight"]} lbs.
+                </div>
+                <div className="MilestoneDate">
                     {formatDate(props.info["date"])}
                 </div>
 
@@ -49,16 +57,32 @@ function Milestone(props) {
 }
 
 function MilestoneContainer(props) {
-    const listMilestones =  props.milestones.map( milestone =>
+    const listMilestones =  props.milestones.map( (milestone, index) => {
+        var indicator = "";
+        if(index < props.milestones.length - 1) {
+            if(props.milestones[index]["weight"] < props.milestones[index+1]["weight"]) {
+                indicator = "down"
+            } else if(props.milestones[index]["weight"] > props.milestones[index+1]["weight"]) {
+                indicator = "up"
+            }
+        }
+        return (
         <div key={milestone["_id"]}>
             <Milestone
                 info={milestone}
+                index={index}
+                indicator={indicator}
             />
         </div>
-    );
+        );
+
+    });
 
     return(
         <div>
+            {/* <div className="AddMilestoneContainer">
+
+            </div> */}
             {listMilestones}
         </div>
     )
@@ -69,7 +93,7 @@ class Progress extends React.Component {
         super(props);
         this.state = {
             selectedMilestone: "",
-            milestones: props.milestones
+            milestones: props.milestones,
         }
     }
 
