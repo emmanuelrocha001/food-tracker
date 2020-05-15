@@ -3,6 +3,10 @@
 import React from 'react';
 import '../style/Progress.css';
 import Helper from '../helper.js';
+import Button from '../components/Button';
+import check from '../assets/ui/check-green.svg'
+import cross from '../assets/ui/cross-red.svg'
+import add from '../assets/ui/add-dark.svg'
 
 const helper = new Helper();
 
@@ -80,9 +84,59 @@ function MilestoneContainer(props) {
 
     return(
         <div>
-            {/* <div className="AddMilestoneContainer">
+            <div className="AddMilestoneContainer">
+                <div style={{color: "var(--gray-color", fontSize: "var(--medium-font-size)"}}>Add Weight</div>
+                {props.expandAddMenu === false &&
+                    <div className="MilestoneAdditionExpand">
+                        <Button
+                                styleClassNameOuter="AddOuterMilestone"
+                                outerColor="white"
+                                containerSize="32px"
+                                imageSize="18px"
+                                imageSource={add}
+                                actionHandler={props.toggleExpandAddMenu}
+                        />
+                    </div>
+                }
+                {props.expandAddMenu === true &&
+                <div>
+                    <div className="EditMilestoneWeightContainer">
+                        <input className="EditMilestoneWeightInput" type="text" inputMode="numeric" placeholder="" />
+                        <div className="MilestoneWeightText">lbs.</div>
+                    </div>
+                    <div className="MilestonePictureInputContainer">
+                            <div className="EditProfilePicCContainerOuter">                        
+                                <div className="EditProfilePicCContainer">
+                                    <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicEdit} />
+                                </div>
+                            </div>
+                    </div>
 
-            </div> */}
+                    <div className="MilestoneConfirmationContainer">
+                        <div className="ProfileEditActionContainer">
+
+                            <Button
+                                styleClassNameOuter="EditOuterQuit"
+                                outerColor="white"
+                                containerSize="32px"
+                                imageSize="18px"
+                                imageSource={cross}
+                                actionHandler={props.toggleExpandAddMenu}
+
+                            />
+                            <Button
+                                styleClassNameOuter="EditOuterCheck"
+                                outerColor="white"
+                                containerSize="32px"
+                                imageSize="18px"
+                                imageSource={check}
+                            />
+
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
             {listMilestones}
         </div>
     )
@@ -94,7 +148,19 @@ class Progress extends React.Component {
         this.state = {
             selectedMilestone: "",
             milestones: props.milestones,
+            expandAddMenu: false
         }
+
+    this.toggleExpandAddMenu = this.toggleExpandAddMenu.bind(this);
+        
+    }
+
+    toggleExpandAddMenu() {
+        var n = !(this.state.expandAddMenu);
+        // alert("heloi");
+        this.setState({
+            expandAddMenu: n
+        });
     }
 
 
@@ -104,7 +170,10 @@ class Progress extends React.Component {
 
         return(
 
-            <MilestoneContainer milestones={this.state.milestones} />
+            <MilestoneContainer 
+            toggleExpandAddMenu={this.toggleExpandAddMenu}
+            expandAddMenu={this.state.expandAddMenu}
+            milestones={this.state.milestones} />
         );
     }
 }

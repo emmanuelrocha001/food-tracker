@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve" width="512px" height="512px" class=""><g><script xmlns="" id="metastreaminitscript" class="active-path">(function() {
+<svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 469.33333 469.33333" width="512px" class="hovered-paths"><g><script xmlns="" id="metastreaminitscript" class="hovered-path active-path" style="">(function() {
     document.getElementById('metastreaminitscript').remove()
 
     const INIT_TIMEOUT = 5e3
@@ -125,8 +125,4 @@
     }
 
     observeScripts()
-  }());</script><g>
-	<g>
-		<polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192     341.4,149.4   " data-original="#000000" class="active-path" fill="#393E46"/>
-	</g>
-</g></g> </svg>
+  }());</script><path d="m437.332031 192h-160v-160c0-17.664062-14.335937-32-32-32h-21.332031c-17.664062 0-32 14.335938-32 32v160h-160c-17.664062 0-32 14.335938-32 32v21.332031c0 17.664063 14.335938 32 32 32h160v160c0 17.664063 14.335938 32 32 32h21.332031c17.664063 0 32-14.335937 32-32v-160h160c17.664063 0 32-14.335937 32-32v-21.332031c0-17.664062-14.335937-32-32-32zm0 0" data-original="#000000" class="hovered-path active-path" fill="#393E46"/></g> </svg>

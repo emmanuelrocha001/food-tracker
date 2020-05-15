@@ -130,9 +130,58 @@
 
 .AddMilestoneContainer {
     margin:auto;
-    background: yellow;
-    height: 200px;
+    /* background: yellow; */
+    height: 150px;
     width: 200px;
     margin-bottom: 30px;
     display: inline-block;
+}
+.MilestoneAdditionExpand {
+    width: 100%;
+    height: 100px;
+    /* background: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.EditMilestoneWeightInput {
+
+    font-size: var(--medium-font-size);
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 1px solid var(--main-light-border);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 60px;
+    direction: rtl;
+    margin-right: 10px;
+
+}
+
+.MilestoneWeightText {
+    color: var(--gray-color);
+    font-size: var(--medium-font-size);
+}
+
+.EditMilestoneWeightContainer {
+    /* background: red; */
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* background: purple; */
+    
+}
+.MilestonePictureInputContainer, .MilestoneConfirmationContainer {
+    margin-bottom: 15px;
+    width: 100%;
+    /* background: red; */
 }
