@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/food-tracker/static/css/main.40596e76.chunk.css",
-    "main.js": "/food-tracker/static/js/main.76f0cc3c.chunk.js",
-    "main.js.map": "/food-tracker/static/js/main.76f0cc3c.chunk.js.map",
+    "main.css": "/food-tracker/static/css/main.00f897f2.chunk.css",
+    "main.js": "/food-tracker/static/js/main.4460a048.chunk.js",
+    "main.js.map": "/food-tracker/static/js/main.4460a048.chunk.js.map",
     "runtime-main.js": "/food-tracker/static/js/runtime-main.76013246.js",
     "runtime-main.js.map": "/food-tracker/static/js/runtime-main.76013246.js.map",
-    "static/js/2.9e51d9e1.chunk.js": "/food-tracker/static/js/2.9e51d9e1.chunk.js",
-    "static/js/2.9e51d9e1.chunk.js.map": "/food-tracker/static/js/2.9e51d9e1.chunk.js.map",
+    "static/js/2.b9764c68.chunk.js": "/food-tracker/static/js/2.b9764c68.chunk.js",
+    "static/js/2.b9764c68.chunk.js.map": "/food-tracker/static/js/2.b9764c68.chunk.js.map",
     "index.html": "/food-tracker/index.html",
-    "precache-manifest.030677fc9f2e77f88d4b725607059046.js": "/food-tracker/precache-manifest.030677fc9f2e77f88d4b725607059046.js",
+    "precache-manifest.c328b22c1a4a623c26e9fe1701c072e4.js": "/food-tracker/precache-manifest.c328b22c1a4a623c26e9fe1701c072e4.js",
     "service-worker.js": "/food-tracker/service-worker.js",
-    "static/css/main.40596e76.chunk.css.map": "/food-tracker/static/css/main.40596e76.chunk.css.map",
-    "static/js/2.9e51d9e1.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.9e51d9e1.chunk.js.LICENSE.txt",
-    "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.7708732a.svg",
+    "static/css/main.00f897f2.chunk.css.map": "/food-tracker/static/css/main.00f897f2.chunk.css.map",
+    "static/js/2.b9764c68.chunk.js.LICENSE.txt": "/food-tracker/static/js/2.b9764c68.chunk.js.LICENSE.txt",
+    "static/media/add-dark.svg": "/food-tracker/static/media/add-dark.a79e11c9.svg",
     "static/media/App.css": "/food-tracker/static/media/calendar.95dd0f20.svg",
     "static/media/can.svg": "/food-tracker/static/media/can.14bee590.svg",
     "static/media/check-green.svg": "/food-tracker/static/media/check-green.459ce075.svg",
@@ -33,8 +33,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.76013246.js",
-    "static/js/2.9e51d9e1.chunk.js",
-    "static/css/main.40596e76.chunk.css",
-    "static/js/main.76f0cc3c.chunk.js"
+    "static/js/2.b9764c68.chunk.js",
+    "static/css/main.00f897f2.chunk.css",
+    "static/js/main.4460a048.chunk.js"
   ]
 }
