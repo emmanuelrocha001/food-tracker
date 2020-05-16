@@ -197,9 +197,29 @@
 
 .ExternalScreenPicture{
     width: 100%;
-    height: 570px;
-    /* background: red; */
-    
+    height:70%;
+    height: 600px;
+    /* background: var(--light-background-color); */
+}
+
+.MilestoneExpansionTop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 15%; */
+    /* background: purple; */
+}
+
+.MilestoneExpansionBottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 15%; */
+    width: 100%;
+    /* background: purple; */
+
+
 }
 
 @media only screen and (max-device-height: 900px) and (max-device-width: 600px){
@@ -207,6 +227,14 @@
     .ExternalScreenPicture {
         height: 80%;
     }
+    .MilestoneExpansionTop {
+        height: 10%;
+        /* background: purple; */
+    }
 
+    .MilestoneExpansionBottom {
+        height: 10%;
+        /* background: purple; */
+    }
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import '../style/ContentPicker.css'
-
-
+import '../style/ContentPicker.css';
+import Button from './Button';
+import add from '../assets/ui/add-dark.svg'
 
 function ContentPickerItem(props) {
     if(props.currentContent  === props.contentName) {
@@ -22,6 +22,21 @@ function ContentPicker(props) {
 
     return(
         <div className="ContentPickerContainer">
+
+            {props.currentContent === "Diary" &&
+
+                <div className="ContentPickerItem" >
+                    <Button
+                        styleClassNameOuter="AddOuterMilestone"
+                        outerColor="none"
+                        containerSize="32px"
+                        imageSize="18px"
+                        imageSource={add}
+                        actionHandler={props.toggleExpandAddMenu}
+                    />
+                </div>
+
+            }
             <ContentPickerItem 
                 currentContent={props.currentContent} 
                 contentName="Diary"
@@ -32,6 +47,21 @@ function ContentPicker(props) {
                 contentName="Progress" 
                 handleContentPicker={props.handleContentPicker}
             />
+
+            {props.currentContent === "Progress" &&
+
+                <div className="ContentPickerItem" >
+                    <Button
+                        styleClassNameOuter="AddOuterMilestone"
+                        outerColor="none"
+                        containerSize="32px"
+                        imageSize="18px"
+                        imageSource={add}
+                        actionHandler={props.toggleExpandAddMenu}
+                    />
+                </div>
+
+            }
             
 
         </div>

@@ -134,6 +134,7 @@ class Progress extends React.Component {
         return(
 
             <div>
+                <div className="Buffer"></div>
                 <MilestoneContainer 
                     toggleExpandAddMenu={this.toggleExpandAddMenu}
                     expandAddMenu={this.state.expandAddMenu}

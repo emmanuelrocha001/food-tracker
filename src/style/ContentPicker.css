@@ -1,11 +1,13 @@
 .ContentPickerContainer {
     width: 100%;
     height: 60px;
-    /* background: red; */
+    background: red;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--main-background-color)
+    background: var(--main-background-color);
+    /* background: red; */
+
 
 }
 
@@ -38,7 +40,7 @@
     font-size: var(--large-font-size);
     margin-left: 20px;
     margin-right: 20px;
-    opacity: .5;
+    opacity: .75;
     color: var(--main-app-color);
     /* color: white; */
     /* border-left: 2px solid black; */

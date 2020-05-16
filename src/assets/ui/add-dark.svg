@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 469.33333 469.33333" width="512px" class="hovered-paths"><g><script xmlns="" id="metastreaminitscript" class="hovered-path active-path" style="">(function() {
+<svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 512 512" width="512px" class="hovered-paths"><g><script xmlns="" id="metastreaminitscript">(function() {
     document.getElementById('metastreaminitscript').remove()
 
     const INIT_TIMEOUT = 5e3
@@ -125,4 +125,4 @@
     }
 
     observeScripts()
-  }());</script><path d="m437.332031 192h-160v-160c0-17.664062-14.335937-32-32-32h-21.332031c-17.664062 0-32 14.335938-32 32v160h-160c-17.664062 0-32 14.335938-32 32v21.332031c0 17.664063 14.335938 32 32 32h160v160c0 17.664063 14.335938 32 32 32h21.332031c17.664063 0 32-14.335937 32-32v-160h160c17.664063 0 32-14.335937 32-32v-21.332031c0-17.664062-14.335937-32-32-32zm0 0" data-original="#000000" class="hovered-path active-path" fill="#393E46"/></g> </svg>
+  }());</script><path d="m304 512h-96c-17.679688 0-32-14.320312-32-32v-144h-144c-17.679688 0-32-14.320312-32-32v-96c0-17.679688 14.320312-32 32-32h144v-144c0-17.679688 14.320312-32 32-32h96c17.679688 0 32 14.320312 32 32v144h144c17.679688 0 32 14.320312 32 32v96c0 17.679688-14.320312 32-32 32h-144v144c0 17.679688-14.320312 32-32 32zm0 0" fill="#393E46" data-original="#48C8EF" class="hovered-path active-path" data-old_color="#48c8ef"/></g> </svg>

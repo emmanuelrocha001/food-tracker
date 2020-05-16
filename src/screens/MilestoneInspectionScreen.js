@@ -22,27 +22,33 @@ function MilestoneInspectionScreen(props) {
     return(
     <div className="DarkBackground">
         <div className="ExternalScreenContainer">
-            <Button
-                styleClassNameOuter="ExitMilestoneOuter"
-                outerColor="none"
-                containerSize="32px"
-                imageSize="18px"
-                imageSource={exit}
-                actionHandler={props.handleMilestoneInspectExit}
-            />
+
+            <div className="MilestoneExpansionTop">
+                <Button
+                    styleClassNameOuter="ExitMilestoneOuter"
+                    outerColor="var(--light-background-color)"
+                    containerSize="32px"
+                    imageSize="18px"
+                    imageSource={exit}
+                    actionHandler={props.handleMilestoneInspectExit}
+                />
+
+            </div>
             <div className="ExternalScreenPicture">
                 <div className="MilestoneInspectionPic" style={{backgroundImage: "url(\" "+ url +"\")"}}>
 
                 </div>
 
             </div>
-            <Button
-                styleClassNameOuter="EditOuterQuit"
-                outerColor="none"
-                containerSize="32px"
-                imageSize="18px"
-                imageSource={can}
-            />
+            <div className="MilestoneExpansionBottom">
+                <Button
+                    styleClassNameOuter="EditOuterQuit"
+                    outerColor="var(--light-background-color)"
+                    containerSize="32px"
+                    imageSize="18px"
+                    imageSource={can}
+                />
+            </div>
 
             {/* <ExternalScreenBottom buttonText="Sign Out" loadingExternal={props.loadingExternal} actionHandler={props.handleSignOff} /> */}
         </div>
