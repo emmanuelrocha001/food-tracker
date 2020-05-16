@@ -24,7 +24,6 @@ function ProfileScreen(props) {
                         <div className="ProfileScreenPicContainer">
                             {props.user["avatar"] !== "" &&
                                 <div className="ProfileScreenPic" style={{backgroundImage: "url(\" "+ url +"\")"}}></div>
-
                             }   
 
                             {props.user["avatar"] === "" &&

@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import check from '../assets/ui/check-green.svg'
 import cross from '../assets/ui/cross-red.svg'
 import add from '../assets/ui/add-dark.svg'
+import MilestoneInspectionScreen from '../screens/MilestoneInspectionScreen';
 
 const helper = new Helper();
 
@@ -22,7 +23,7 @@ function Milestone(props) {
     var url = props.info["pic"];
 
     return(
-        <div className="Milestone">
+        <div className="Milestone" onClick={() => props.handleMilestoneInspect(props.info)}>
             <div className="MileStoneMainInfoContainer">
                 <div className="IndicatorContainer">
                     {props.indicator === "down" &&
@@ -76,6 +77,7 @@ function MilestoneContainer(props) {
                 info={milestone}
                 index={index}
                 indicator={indicator}
+                handleMilestoneInspect = {props.handleMilestoneInspect}
             />
         </div>
         );
@@ -84,7 +86,84 @@ function MilestoneContainer(props) {
 
     return(
         <div>
-            <div className="AddMilestoneContainer">
+            {listMilestones}
+        </div>
+    )
+}
+
+class Progress extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedMilestone: "",
+            milestones: props.milestones,
+            expandAddMenu: false,
+            currentMilestone: null
+        }
+
+        this.toggleExpandAddMenu = this.toggleExpandAddMenu.bind(this);
+        this.handleMilestoneInspect = this.handleMilestoneInspect.bind(this);
+        this.handleMilestoneInspectExit = this.handleMilestoneInspectExit.bind(this);
+
+        
+    }
+
+    handleMilestoneInspect(currentMilestone) {
+        this.setState({
+            currentMilestone: currentMilestone
+        });
+    }
+
+    handleMilestoneInspectExit() {
+        this.setState({
+            currentMilestone: null
+        });
+    }
+    
+
+    toggleExpandAddMenu() {
+        var n = !(this.state.expandAddMenu);
+        // alert("heloi");
+        this.setState({
+            expandAddMenu: n
+        });
+    }
+
+
+    render() {
+        return(
+
+            <div>
+                <MilestoneContainer 
+                    toggleExpandAddMenu={this.toggleExpandAddMenu}
+                    expandAddMenu={this.state.expandAddMenu}
+                    milestones={this.state.milestones}
+                    handleMilestoneInspect={this.handleMilestoneInspect}
+                />
+
+
+                {this.state.currentMilestone !== null && 
+                    <MilestoneInspectionScreen
+                        currentMilestone={this.state.currentMilestone}
+                        handleMilestoneInspectExit={this.handleMilestoneInspectExit}
+
+                    />
+                }
+
+
+            </div>
+
+
+        );
+    }
+}
+
+
+
+export default Progress;
+
+
+{/* <div className="AddMilestoneContainer">
                 <div style={{color: "var(--gray-color", fontSize: "var(--medium-font-size)"}}>Add Weight</div>
                 {props.expandAddMenu === false &&
                     <div className="MilestoneAdditionExpand">
@@ -98,7 +177,7 @@ function MilestoneContainer(props) {
                         />
                     </div>
                 }
-                {props.expandAddMenu === true &&
+                {props.expandAddMenu === false &&
                 <div>
                     <div className="EditMilestoneWeightContainer">
                         <input className="EditMilestoneWeightInput" type="text" inputMode="numeric" placeholder="" />
@@ -136,48 +215,4 @@ function MilestoneContainer(props) {
                     </div>
                 </div>
                 }
-            </div>
-            {listMilestones}
-        </div>
-    )
-}
-
-class Progress extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedMilestone: "",
-            milestones: props.milestones,
-            expandAddMenu: false
-        }
-
-    this.toggleExpandAddMenu = this.toggleExpandAddMenu.bind(this);
-        
-    }
-
-    toggleExpandAddMenu() {
-        var n = !(this.state.expandAddMenu);
-        // alert("heloi");
-        this.setState({
-            expandAddMenu: n
-        });
-    }
-
-
-    render() {
-
-
-
-        return(
-
-            <MilestoneContainer 
-            toggleExpandAddMenu={this.toggleExpandAddMenu}
-            expandAddMenu={this.state.expandAddMenu}
-            milestones={this.state.milestones} />
-        );
-    }
-}
-
-
-
-export default Progress;
+            </div> */}

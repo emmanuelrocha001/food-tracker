@@ -22,7 +22,7 @@
     width: 60px;
 
     background: var(--main-app-color);
-    font-size: var(--medium-font-size);
+    font-size: var(--small-font-size);
     color: var(--main-background-color);
     border-radius: 20px;
     margin-right: 15px;
@@ -72,8 +72,8 @@
 
 .IndicatorUp, .IndicatorDown {
     background-size: 100%;
-    height: 22px;
-    width: 22px;
+    height: 18px;
+    width: 18px;
     background-position: center center;
     background-repeat: no-repeat;
     background-image: url(../assets/ui/up.svg);
@@ -84,7 +84,7 @@
 }
 .MileStonePicContainer {
     width: 100%;
-    height: 200px;
+    height: 90px;
     /* background: yellow; */
 
 
@@ -97,7 +97,7 @@
 
 .MileStonePic {
     height: 100%;
-    width: 200px;
+    width: 90px;
     border-radius: 50%;
 
     background-size: cover;
@@ -184,4 +184,29 @@
     margin-bottom: 15px;
     width: 100%;
     /* background: red; */
+}
+
+.MilestoneInspectionPic{
+    height: 100%;
+    width: 100%;
+    border-radius: 0px;
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.ExternalScreenPicture{
+    width: 100%;
+    height: 570px;
+    /* background: red; */
+    
+}
+
+@media only screen and (max-device-height: 900px) and (max-device-width: 600px){
+
+    .ExternalScreenPicture {
+        height: 80%;
+    }
+
+
 }

@@ -148,7 +148,7 @@
     
 }
 
-.AddOuterMilestone, .EditOuter, .EditOuterQuit, .EditOuterCheck{
+.ExitMilestoneOuter,.AddOuterMilestone, .EditOuter, .EditOuterQuit, .EditOuterCheck{
     margin: auto;
     display: flex;
     align-items: center;
@@ -166,6 +166,10 @@
     border: 4px solid var(--green-color);
 }
 
+.ExitMilestoneOuter:hover {
+    border: 4px solid var(--main-background-color);
+
+}
 
 .ProfileEditActionContainer {
     margin: auto;
