@@ -7,6 +7,8 @@ import {
 
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
+import ExternalScreenLoading from '../components/ExternalScreenLoading';
+
 import Helper from '../helper.js';
 import Item from '../components/Item';
 import Button from '../components/Button';
@@ -14,6 +16,8 @@ import Button from '../components/Button';
 import left from '../assets/ui/left-arrow.svg';
 import right from '../assets/ui/right-arrow.svg';
 import search from '../assets/ui/search.svg';
+
+import edit from '../assets/ui/edit-light.svg';
 const helper = new Helper();
 
 
@@ -230,13 +234,35 @@ function ItemScreen(props) {
                     </div>
             
             
-                    {props.showItemAddition === false &&
+                    {/* {props.showItemAddition === false &&
+
+
                         <ExternalScreenBottom buttonText="Update" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenToggle} />
             
                     }
                     {props.showItemAddition === true &&
                         <ExternalScreenBottom buttonText="Add" loadingExternal={props.loadingExternal} actionHandler={props.handleItemScreenScreenToggle} />
+                    } */}
+
+
+                <div className="MilestoneExpansionBottom">
+                    {props.loadingExternal === false &&
+
+                        <Button
+                            styleClassNameOuter="ExitMilestoneOuter"
+                            outerColor="var(--light-background-color)"
+                            containerSize="32px"
+                            imageSize="18px"
+                            imageSource={edit}
+                            actionHandler={props.handleItemScreenToggle}
+                        />
                     }
+
+                    {props.loadingExternal === true &&
+                        <ExternalScreenLoading />
+                    }
+
+                </div>
         
         
                 </div>

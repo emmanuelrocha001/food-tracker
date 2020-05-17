@@ -6,6 +6,7 @@ import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
 import exit from '.././assets/ui/cross-white.svg';
 import can from '.././assets/ui/can.svg';
+import ExternalScreenLoading from '../components/ExternalScreenLoading';
 
 function formatDate(d) {
     var eventYear = d.substring(0,4);
@@ -22,18 +23,8 @@ function MilestoneInspectionScreen(props) {
     return(
     <div className="DarkBackground">
         <div className="ExternalScreenContainer">
+            <ExternalScreenTop screenTitle="Profile" exitHandler={props.handleMilestoneInspectExit}/>
 
-            <div className="MilestoneExpansionTop">
-                <Button
-                    styleClassNameOuter="ExitMilestoneOuter"
-                    outerColor="var(--light-background-color)"
-                    containerSize="32px"
-                    imageSize="18px"
-                    imageSource={exit}
-                    actionHandler={props.handleMilestoneInspectExit}
-                />
-
-            </div>
             <div className="ExternalScreenPicture">
                 <div className="MilestoneInspectionPic" style={{backgroundImage: "url(\" "+ url +"\")"}}>
 
@@ -41,13 +32,20 @@ function MilestoneInspectionScreen(props) {
 
             </div>
             <div className="MilestoneExpansionBottom">
-                <Button
-                    styleClassNameOuter="EditOuterQuit"
-                    outerColor="var(--light-background-color)"
-                    containerSize="32px"
-                    imageSize="18px"
-                    imageSource={can}
-                />
+                {props.loadingExternal === false &&
+                    <Button
+                        styleClassNameOuter="EditOuterQuit"
+                        outerColor="var(--light-background-color)"
+                        containerSize="32px"
+                        imageSize="18px"
+                        imageSource={can}
+                        actionHandler={props.handleMilestoneDeletion}
+                    />
+                }
+                {props.loadingExternal === true &&
+                    <ExternalScreenLoading />
+                }
+
             </div>
 
             {/* <ExternalScreenBottom buttonText="Sign Out" loadingExternal={props.loadingExternal} actionHandler={props.handleSignOff} /> */}

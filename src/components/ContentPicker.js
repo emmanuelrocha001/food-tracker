@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/ContentPicker.css';
 import Button from './Button';
-import add from '../assets/ui/add-dark.svg'
+import add from '../assets/ui/edit-dark.svg'
 
 function ContentPickerItem(props) {
     if(props.currentContent  === props.contentName) {

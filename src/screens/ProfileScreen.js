@@ -6,7 +6,8 @@ import Button from '.././components/Button';
 import '.././style/ProfileScreen.css';
 import edit from '.././assets/ui/edit-dark.svg'
 import googleIcon from '.././assets/ui/google-icon.svg'
-
+import power from '../assets/ui/power-light.svg'
+import ExternalScreenLoading from '../components/ExternalScreenLoading';
 
 function ProfileScreen(props) {
 
@@ -88,7 +89,25 @@ function ProfileScreen(props) {
                 
                 </div>
 
-                <ExternalScreenBottom buttonText="Sign Out" loadingExternal={props.loadingExternal} actionHandler={props.handleSignOff} />
+                <div className="MilestoneExpansionBottom">
+                    {props.loadingExternal === false &&
+
+                        <Button
+                            styleClassNameOuter="ExitMilestoneOuter"
+                            outerColor="var(--light-background-color)"
+                            containerSize="32px"
+                            imageSize="18px"
+                            imageSource={power}
+                            actionHandler={props.handleSignOff}
+                        />
+                    }
+
+                    {props.loadingExternal === true &&
+                        <ExternalScreenLoading />
+                    }
+
+                </div>
+
             </div>
         </div>
     );

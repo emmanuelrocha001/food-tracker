@@ -199,24 +199,33 @@
     width: 100%;
     height:70%;
     height: 600px;
+    /* background: var(--dark-transparent-color); */
+
     /* background: var(--light-background-color); */
 }
 
 .MilestoneExpansionTop {
     width: 100%;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* background: var(--dark-transparent-color); */
+
     /* height: 15%; */
     /* background: purple; */
 }
 
 .MilestoneExpansionBottom {
+    height: 90px;
+
     display: flex;
     align-items: center;
     justify-content: center;
     /* height: 15%; */
     width: 100%;
+    /* background: var(--dark-transparent-color); */
+
     /* background: purple; */
 
 
@@ -225,14 +234,25 @@
 @media only screen and (max-device-height: 900px) and (max-device-width: 600px){
 
     .ExternalScreenPicture {
+        background: var(--main-app-color);
+
         height: 80%;
     }
     .MilestoneExpansionTop {
+        background: black;
+        background: var(--main-app-color);
+
+
+
         height: 10%;
         /* background: purple; */
     }
 
     .MilestoneExpansionBottom {
+        background: black;
+        background: var(--main-app-color);
+
+
         height: 10%;
         /* background: purple; */
     }

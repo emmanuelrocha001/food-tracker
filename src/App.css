@@ -379,17 +379,23 @@ input::-webkit-datetime-edit, input::-webkit-clear-button, input::-webkit-inner-
 
 .LoadingIconContainer {
   /* background: red; */
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  /* position: absolute; */
+  /* width: 100%;
+  height: 100%; */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  background: var(--light-background-color);
+
   display: flex;
   align-items: center;
   justify-content: center;
   /* bottom: 70px; */
 }
 .LoadingIcon {
-  width: 35px;
-  height: 35px;
+  width: 24px;
+  height: 24px;
   /* opacity: .75; */
 
   -webkit-animation:spin 2s linear infinite;

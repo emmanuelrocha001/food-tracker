@@ -1,8 +1,14 @@
 import React from 'react';
 import ExternalScreenTop from '.././components/ExternalScreenTop';
 import ExternalScreenBottom from '../components/ExternalScreenBottom';
+import Button from '.././components/Button';
+import power from '../assets/ui/power-light.svg'
+
+
 import logo from '.././assets/ui/logo.svg';
-import googleIcon from '.././assets/ui/google-icon.svg'
+import googleIcon from '.././assets/ui/google-icon.svg';
+import ExternalScreenLoading from '../components/ExternalScreenLoading';
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -56,8 +62,28 @@ function SignInScreen(props) {
                                 }
                         </div>
                     
-                        <ExternalScreenBottom buttonText="Sign In" loadingExternal={props.loadingExternal} actionHandler={props.handleSignIn} />
+                        {/* <ExternalScreenBottom buttonText="Sign In" loadingExternal={props.loadingExternal} actionHandler={props.handleSignIn} /> */}
                 
+
+                        <div className="MilestoneExpansionBottom">
+                            {props.loadingExternal === false &&
+                                <Button
+                                    styleClassNameOuter="ExitMilestoneOuter"
+                                    outerColor="var(--light-background-color)"
+                                    containerSize="32px"
+                                    imageSize="18px"
+                                    imageSource={power}
+                                    actionHandler={props.handleSignIn}
+                                />
+                            }
+
+                            {props.loadingExternal === true &&
+                                <ExternalScreenLoading />
+                            }
+
+                        </div>
+
+
                     </div>
                 </div>
         );
@@ -117,8 +143,26 @@ function SignInScreen(props) {
                         }
             
                     </div>
-                    <ExternalScreenBottom buttonText="Sign Up" loadingExternal={props.loadingExternal} actionHandler={props.handleSignUp} />
-            
+                    
+                    <div className="MilestoneExpansionBottom">
+                        {props.loadingExternal === false &&
+                            <Button
+                                styleClassNameOuter="ExitMilestoneOuter"
+                                outerColor="var(--light-background-color)"
+                                containerSize="32px"
+                                imageSize="18px"
+                                imageSource={power}
+                                actionHandler={props.handleSignIn}
+                            />
+                        }
+
+                        {props.loadingExternal === true &&
+                            <ExternalScreenLoading />
+                        }
+
+                    </div>
+
+
                 </div>
             </div>
         );

@@ -9,6 +9,9 @@ import Button from '../components/Button';
 import left from '../assets/ui/left-arrow-dark.svg';
 import right from '../assets/ui/right-arrow-dark.svg';
 import search from '../assets/ui/search.svg';
+import searchLight from '../assets/ui/search-light.svg'
+import ExternalScreenLoading from '../components/ExternalScreenLoading';
+
 const helper = new Helper();
 
 function Result(props) {
@@ -65,7 +68,7 @@ function SearchScreen(props) {
 
                     <div className="SearchBarContainer">
                         <input className="SearchBar" type="text" onChange={props.handleQueryChange} onKeyPress={props.handleEnterSearch} />
-                        <img className="SearchIcon" src={search}></img>
+                        {/* <img className="SearchIcon" src={search}></img> */}
                     </div>
             
                     {props.results !== undefined && props.results.length > 0 &&
@@ -104,7 +107,26 @@ function SearchScreen(props) {
                         </div>
                     }
                 </div>
-                <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} />
+
+                <div className="MilestoneExpansionBottom">
+                    {props.loadingExternal === false &&
+                        <Button
+                            styleClassNameOuter="ExitMilestoneOuter"
+                            outerColor="var(--light-background-color)"
+                            containerSize="32px"
+                            imageSize="18px"
+                            imageSource={searchLight}
+                            actionHandler={props.handleQuery}
+                        />
+                    }
+
+                    {props.loadingExternal === true &&
+                        <ExternalScreenLoading />
+                    }
+
+                </div>
+                
+                {/* <ExternalScreenBottom buttonText="Search" loadingExternal={props.loadingExternal} actionHandler={props.handleQuery} /> */}
             </div>
         </div>
     );

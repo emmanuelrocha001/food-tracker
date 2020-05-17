@@ -98,16 +98,22 @@ class Progress extends React.Component {
             selectedMilestone: "",
             milestones: props.milestones,
             expandAddMenu: false,
-            currentMilestone: null
+            currentMilestone: null,
+            loadingExternal: false
         }
 
         this.toggleExpandAddMenu = this.toggleExpandAddMenu.bind(this);
         this.handleMilestoneInspect = this.handleMilestoneInspect.bind(this);
         this.handleMilestoneInspectExit = this.handleMilestoneInspectExit.bind(this);
-
+        this.handleMilestoneDeletion = this.handleMilestoneDeletion.bind(this);
         
     }
 
+    handleMilestoneDeletion() {
+        this.setState({
+            loadingExternal: true
+        });
+    }
     handleMilestoneInspect(currentMilestone) {
         this.setState({
             currentMilestone: currentMilestone
@@ -116,7 +122,8 @@ class Progress extends React.Component {
 
     handleMilestoneInspectExit() {
         this.setState({
-            currentMilestone: null
+            currentMilestone: null,
+            loadingExternal: false
         });
     }
     
@@ -147,7 +154,8 @@ class Progress extends React.Component {
                     <MilestoneInspectionScreen
                         currentMilestone={this.state.currentMilestone}
                         handleMilestoneInspectExit={this.handleMilestoneInspectExit}
-
+                        handleMilestoneDeletion={this.handleMilestoneDeletion}
+                        loadingExternal={this.state.loadingExternal}
                     />
                 }
 
