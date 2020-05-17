@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 512 512" width="512px" class="hovered-paths"><g><script xmlns="" id="metastreaminitscript">(function() {
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve" width="512px" height="512px" class="hovered-paths"><g transform="matrix(-1 0 0 1 256 0)"><script xmlns="" id="metastreaminitscript" class="hovered-path active-path" style="">(function() {
     document.getElementById('metastreaminitscript').remove()
 
     const INIT_TIMEOUT = 5e3
@@ -125,4 +125,8 @@
     }
 
     observeScripts()
-  }());</script><path d="m304 512h-96c-17.679688 0-32-14.320312-32-32v-144h-144c-17.679688 0-32-14.320312-32-32v-96c0-17.679688 14.320312-32 32-32h144v-144c0-17.679688 14.320312-32 32-32h96c17.679688 0 32 14.320312 32 32v144h144c17.679688 0 32 14.320312 32 32v96c0 17.679688-14.320312 32-32 32h-144v144c0 17.679688-14.320312 32-32 32zm0 0" fill="#393E46" data-original="#48C8EF" class="hovered-path active-path" data-old_color="#48c8ef"/></g> </svg>
+  }());</script><g>
+	<g>
+		<polygon points="207.093,30.187 176.907,0 48.907,128 176.907,256 207.093,225.813 109.28,128   " data-original="#000000" class="hovered-path active-path" fill="#252525"/>
+	</g>
+</g></g> </svg>
