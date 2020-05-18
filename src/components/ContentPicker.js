@@ -57,7 +57,7 @@ function ContentPicker(props) {
                         containerSize="32px"
                         imageSize="18px"
                         imageSource={add}
-                        actionHandler={props.toggleExpandAddMenu}
+                        actionHandler={props.toggleshowMilestoneAddScreen}
                     />
                 </div>
 

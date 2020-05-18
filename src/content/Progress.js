@@ -8,7 +8,8 @@ import check from '../assets/ui/check-green.svg'
 import cross from '../assets/ui/cross-red.svg'
 import add from '../assets/ui/add-dark.svg'
 import MilestoneInspectionScreen from '../screens/MilestoneInspectionScreen';
-
+import MilesoneAddScreeen from '../screens/MilestoneAddScreen';
+import MilestoneAddScreen from '../screens/MilestoneAddScreen';
 const helper = new Helper();
 
 function formatDate(d) {
@@ -91,80 +92,34 @@ function MilestoneContainer(props) {
     )
 }
 
-class Progress extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedMilestone: "",
-            milestones: props.milestones,
-            expandAddMenu: false,
-            currentMilestone: null,
-            loadingExternal: false
-        }
-
-        this.toggleExpandAddMenu = this.toggleExpandAddMenu.bind(this);
-        this.handleMilestoneInspect = this.handleMilestoneInspect.bind(this);
-        this.handleMilestoneInspectExit = this.handleMilestoneInspectExit.bind(this);
-        this.handleMilestoneDeletion = this.handleMilestoneDeletion.bind(this);
-        
-    }
-
-    handleMilestoneDeletion() {
-        this.setState({
-            loadingExternal: true
-        });
-    }
-    handleMilestoneInspect(currentMilestone) {
-        this.setState({
-            currentMilestone: currentMilestone
-        });
-    }
-
-    handleMilestoneInspectExit() {
-        this.setState({
-            currentMilestone: null,
-            loadingExternal: false
-        });
-    }
+function Progress(props) {
     
 
-    toggleExpandAddMenu() {
-        var n = !(this.state.expandAddMenu);
-        // alert("heloi");
-        this.setState({
-            expandAddMenu: n
-        });
-    }
+
+    
 
 
-    render() {
-        return(
 
-            <div>
-                <div className="Buffer"></div>
-                <MilestoneContainer 
-                    toggleExpandAddMenu={this.toggleExpandAddMenu}
-                    expandAddMenu={this.state.expandAddMenu}
-                    milestones={this.state.milestones}
-                    handleMilestoneInspect={this.handleMilestoneInspect}
-                />
+    
+    return(
 
-
-                {this.state.currentMilestone !== null && 
-                    <MilestoneInspectionScreen
-                        currentMilestone={this.state.currentMilestone}
-                        handleMilestoneInspectExit={this.handleMilestoneInspectExit}
-                        handleMilestoneDeletion={this.handleMilestoneDeletion}
-                        loadingExternal={this.state.loadingExternal}
-                    />
-                }
+        <div>
+            <div className="Buffer"></div>
+            <MilestoneContainer 
+                // showMilestoneAddScreen={this.state.showMilestoneAddScreen}
+                milestones={props.milestones}
+                handleMilestoneInspect={props.handleMilestoneInspect}
+                handleMilestoneDeletion={props.handleMilestoneDeletion}
+            />
 
 
-            </div>
+            
 
 
-        );
-    }
+        </div>
+
+
+    );
 }
 
 

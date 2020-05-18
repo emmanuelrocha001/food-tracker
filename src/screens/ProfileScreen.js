@@ -70,8 +70,6 @@ function ProfileScreen(props) {
                             handleEditProfile={props.handleEditProfile}
                             handleEditInputChange={props.handleEditInputChange}
                             handleQuitEditProfile={props.handleQuitEditProfile}
-
-
                         /> 
 
                         <div className="ProfileInfoContainer">

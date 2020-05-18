@@ -27,6 +27,8 @@ import ContentPicker from './components/ContentPicker';
 import ProfileScreen from './screens/ProfileScreen';
 import SignInScreen from './screens/SignInScreen';
 import SearchScreen from './screens/SearchScreen';
+import MilestoneInspectionScreen from './screens/MilestoneInspectionScreen';
+import MilestoneAddScreen from './screens/MilestoneAddScreen';
 import ItemScreen from './screens/ItemScreen';
 import Helper from './helper.js';
 // import content
@@ -45,6 +47,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      currentMilestone: null,
+      showMilestoneAddScreen: false,
       currentContent: "Diary",
       milestones: [],
       auth: null,
@@ -124,9 +128,41 @@ class App extends React.Component {
     // get progress milestones
     this.fetchMilestones = this.fetchMilestones.bind(this);
 
+
+    // milestones
+    this.handleMilestoneInspect = this.handleMilestoneInspect.bind(this);
+    this.handleMilestoneInspectExit = this.handleMilestoneInspectExit.bind(this);
+    this.handleMilestoneDeletion = this.handleMilestoneDeletion.bind(this);
+    this.toggleshowMilestoneAddScreen = this.toggleshowMilestoneAddScreen.bind(this);
   }
 
 
+  toggleshowMilestoneAddScreen() {
+    var s = !(this.state.showMilestoneAddScreen);
+    this.setState({
+      showMilestoneAddScreen: s
+    });
+
+  }
+
+  handleMilestoneInspect(currentMilestone) {
+    this.setState({
+      currentMilestone: currentMilestone
+    });
+  }
+
+  handleMilestoneInspectExit() {
+    this.setState({
+      currentMilestone: null,
+      loadingExternal: false
+    });
+  }
+  
+  handleMilestoneDeletion() {
+    this.setState({
+        loadingExternal: true
+    });
+  }
   fetchMilestones() {
     // alert('fetching');
 
@@ -391,6 +427,8 @@ class App extends React.Component {
     }
 
     this.setState({
+      currentMilestone: null,
+      showMilestoneAddScreen: false,
       currentContent: "Diary",
       milestones: [],
       loadingExternal: false,
@@ -821,7 +859,9 @@ class App extends React.Component {
 
         <ContentPicker 
           currentContent={this.state.currentContent} 
-          handleContentPicker={this.handleContentPicker} 
+          handleContentPicker={this.handleContentPicker}
+          toggleshowMilestoneAddScreen={this.toggleshowMilestoneAddScreen}
+
         />
 
         {this.state.currentContent === "Diary" &&
@@ -841,7 +881,45 @@ class App extends React.Component {
         }
 
         {this.state.currentContent === "Progress" &&
-          <Progress milestones={this.state.milestones} />
+
+
+          <div>
+              <Progress 
+                milestones={this.state.milestones}
+                handleMilestoneInspect={this.handleMilestoneInspect} 
+
+              />
+
+              {this.state.currentMilestone !== null && 
+                <MilestoneInspectionScreen
+                    currentMilestone={this.state.currentMilestone}
+                    handleMilestoneInspectExit={this.handleMilestoneInspectExit}
+                    handleMilestoneDeletion={this.handleMilestoneDeletion}
+                    loadingExternal={this.state.loadingExternal}
+                />
+              }
+
+              {this.state.showMilestoneAddScreen === true && 
+                <MilestoneAddScreen
+                  user={this.state.currentUser}
+                  toggleshowMilestoneAddScreen={this.toggleshowMilestoneAddScreen}
+                  loadingExternal={this.state.loadingExternal}
+                  handleEditFieldNameToggle={this.handleEditFieldNameToggle}
+                  currentFieldEditName={this.state.currentFieldEditName}
+                  handleEditProfile={this.handleEditProfile}
+                  handleEditInputChange={this.handleEditInputChange}
+                  handleQuitEditProfile={this.handleQuitEditProfile}
+                />
+              }
+
+
+
+
+
+          </div>
+
+
+
         }
 
 

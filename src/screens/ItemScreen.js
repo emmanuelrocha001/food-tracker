@@ -106,7 +106,7 @@ function NutritionScreen(props) {
 function MacrosVisual(props) {
     const data = [{name: 'Carbs', value: 40}, {name: 'Fat', value: 10},
                     {name: 'Protein', value: 2}];
-    const COLORS = ['#393E46', '#f3c623', '#848484'];
+    const COLORS = ['#848484', '#f64b3c', '#8cba51'];
 
     return (
         <div className="CalMacroContainer">
