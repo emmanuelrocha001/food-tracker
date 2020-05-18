@@ -48,6 +48,7 @@ class App extends React.Component {
 
     this.state = {
       currentMilestone: null,
+      milestonePicInput: null,
       showMilestoneAddScreen: false,
       currentContent: "Diary",
       milestones: [],
@@ -134,8 +135,102 @@ class App extends React.Component {
     this.handleMilestoneInspectExit = this.handleMilestoneInspectExit.bind(this);
     this.handleMilestoneDeletion = this.handleMilestoneDeletion.bind(this);
     this.toggleshowMilestoneAddScreen = this.toggleshowMilestoneAddScreen.bind(this);
+    this.handleMilestoneAdd = this.handleMilestoneAdd.bind(this);
+    this.handleMilestonePicInput = this.handleMilestonePicInput.bind(this);
+  
   }
 
+  handleMilestonePicInput(event) {
+    this.setState({
+      milestonePicInput: event.target.files[0]
+    });
+  }
+
+  handleMilestoneDeletion(milestoneId) {
+    this.setState({
+      loadingExternal: true,
+
+    });
+
+    const requestOptions = {
+      method: 'DELETE',
+      mode: 'cors'
+    };
+
+    fetch(foodAPIURL+'/milestone/' + milestoneId, requestOptions)
+    .then(response => response.json()).then( data => {
+
+      this.setState({
+        loadingExternal: false
+      });
+      
+      
+      if(data["message"]) {
+        this.fetchMilestones();
+        this.setState({
+          currentMilestone: null
+        });
+      }
+
+    })
+    .catch( error => {
+      console.log(error);
+
+      this.setState({
+        loadingExternal: false,
+        currentMilestone: null,
+      });
+      
+    });
+
+
+  }
+  handleMilestoneAdd() {
+
+    this.setState({
+      loadingExternal: true
+    });
+
+    const form = new FormData();
+    form.append("weight", this.state.currentUser["weight"]);
+    form.append("pic", this.state.milestonePicInput);
+
+    const requestOptions = {
+      method: 'POST',
+      body: form,
+      mode: 'cors'
+    };
+
+
+    fetch(foodAPIURL+'/milestone/' + this.state.currentUser["_id"], requestOptions)
+    .then(response => response.json()).then( data => {
+
+      this.setState({
+        loadingExternal: false
+      });
+      
+      
+      if(data["milestone"]) {
+        this.fetchMilestones();
+        this.setState({
+          showMilestoneAddScreen: false
+        });
+      }
+
+    })
+    .catch( error => {
+      console.log(error);
+
+      this.setState({
+        loadingExternal: false,
+        showMilestoneAddScreen: false
+      });
+      
+    });
+
+
+
+  }
 
   toggleshowMilestoneAddScreen() {
     var s = !(this.state.showMilestoneAddScreen);
@@ -158,11 +253,6 @@ class App extends React.Component {
     });
   }
   
-  handleMilestoneDeletion() {
-    this.setState({
-        loadingExternal: true
-    });
-  }
   fetchMilestones() {
     // alert('fetching');
 
@@ -428,6 +518,7 @@ class App extends React.Component {
 
     this.setState({
       currentMilestone: null,
+      milestonePicInput: null,
       showMilestoneAddScreen: false,
       currentContent: "Diary",
       milestones: [],
@@ -909,6 +1000,8 @@ class App extends React.Component {
                   handleEditProfile={this.handleEditProfile}
                   handleEditInputChange={this.handleEditInputChange}
                   handleQuitEditProfile={this.handleQuitEditProfile}
+                  handleMilestoneAdd={this.handleMilestoneAdd}
+                  handleMilestonePicInput={this.handleMilestonePicInput}
                 />
               }
 

@@ -22,6 +22,18 @@ function Button(props) {
                 </img>
             </div>
         );
+    } else if(props.addMilestone === true) {
+        return(
+            <div className={class_name} onClick={ () => props.actionHandler(props.milestoneId)} style={{width: props.containerSize, height: props.containerSize, background: outerColor, borderRadius: "50%", transitionDuration: "0s"}} >
+                <img
+                className={props.styleClassName}
+                src={props.imageSource}
+                style={{width: props.imageSize, height: props.imageSize}}
+                >
+                </img>
+            </div>
+        );
+
     } else {
         return(
 
@@ -35,7 +47,7 @@ function Button(props) {
             </div>
         );
     }
-}
+    }
 
 
 export default Button;

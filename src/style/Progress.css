@@ -241,6 +241,18 @@
     justify-content: center;
 
 }
+
+.MilestoneExternalScreenMiddleContainer{
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 570px;
+    /* background: var(--main-background-color); */
+    border-radius: 20px;
+
+}
 .MilestoneAddScreenMiddle {
     width: 100%;
     background: white;
@@ -248,9 +260,19 @@
     border-radius: 20px;
     height: 160px;
     
-
 }
 @media only screen and (max-device-height: 900px) and (max-device-width: 600px){
+
+    .MilestoneExternalScreenMiddleContainer{
+        height: 80%;
+        border-radius: 0px;
+        background: var(--main-app-color);
+    }
+    .MilestoneAddScreenMiddle {
+        border-radius: 0px;
+        /* width: 90%; */
+        
+    }
 
     .ExternalScreenPicture {
         background: var(--main-app-color);

@@ -39,6 +39,8 @@ function MilestoneInspectionScreen(props) {
                         containerSize="32px"
                         imageSize="18px"
                         imageSource={can}
+                        addMilestone={true}
+                        milestoneId={props.currentMilestone["_id"]}
                         actionHandler={props.handleMilestoneDeletion}
                     />
                 }

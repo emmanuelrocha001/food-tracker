@@ -16,7 +16,7 @@ function MilestoneAddScreen(props) {
         <div className="ExternalScreenContainer">
             <ExternalScreenTop screenTitle="Profile" exitHandler={props.toggleshowMilestoneAddScreen}/>
 
-            <div className="ExternalScreenMiddleContainer" style={{background: "none", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <div className="MilestoneExternalScreenMiddleContainer" >
 
                 <div className="MilestoneAddScreenMiddle">
                     <div className="MilestoneAddScreenTitle">Milestone</div>
@@ -34,7 +34,7 @@ function MilestoneAddScreen(props) {
                     <div className="EditProfilePicCContainerOuter">                        
 
                         <div className="EditProfilePicCContainer">
-                            <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleProfilePicEdit} />
+                            <input className="PicUploader" type="file" accept="image/png, image/jpeg, image/jpg" onChange={props.handleMilestonePicInput} />
                         </div> 
                     </div>
                 </div>
@@ -49,7 +49,7 @@ function MilestoneAddScreen(props) {
                         containerSize="32px"
                         imageSize="18px"
                         imageSource={add}
-                        actionHandler={props.toggleshowMilestoneAddScreen}
+                        actionHandler={props.handleMilestoneAdd}
                     />
                 }
                 {props.loadingExternal === true &&
